@@ -87,6 +87,14 @@ public class HeadMovement : MonoBehaviour
                 hBobVerticalAmplitude = crouchingHeadVerticalAmplitude;
                 break;
         }
+        if (player.GetIsGrounded())
+        {
+             cam.position = Vector3.Lerp(cam.position, newHeadPosition, headBobbingIntensity);
+             if ((cam.position - newHeadPosition).magnitude <= axisDifference)
+             {
+                 cam.position = newHeadPosition;
+             }
+        }
     }
     Vector3 CalculateHeadBobOffset(float value)
     {
@@ -100,6 +108,7 @@ public class HeadMovement : MonoBehaviour
             else
                 offset = minimumHeadHeight.transform.up * movement;
         }
+
         return offset;
     }
 

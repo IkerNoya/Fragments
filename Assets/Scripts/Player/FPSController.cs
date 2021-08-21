@@ -32,6 +32,10 @@ public class FPSController : MonoBehaviour
     bool isGrounded;
     bool canMove = true;
 
+    Vector2 xMovement = Vector2.zero;
+    Vector2 zMovement = Vector2.zero;
+    Vector2 velocity = Vector2.zero;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();   
@@ -40,6 +44,7 @@ public class FPSController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        Debug.Log(isGrounded);
         if (!canMove)
             return;
 
@@ -60,20 +65,23 @@ public class FPSController : MonoBehaviour
                 break;
         }
         
-        Vector2 x = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
-        Vector2 z = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
+        xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
+        zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
 
-        Vector2 velocity = (x + z).normalized * currentSpeed;
+        velocity = (xMovement + zMovement).normalized * currentSpeed;
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
             timeWalking += Time.deltaTime;
         else
             timeWalking = 0;
 
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
-
         SetMovementState();
         Inputs();
+    }
+
+    void FixedUpdate()
+    {
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
     }
 
     void Inputs()
