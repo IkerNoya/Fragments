@@ -66,7 +66,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LensDistortion: 0.52
+    - _LensDistortion: 1.12
     - _LineAmount: 200
     - _LinesDisplacement: 0.64
     - _LinesSpeed: 1
