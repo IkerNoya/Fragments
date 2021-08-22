@@ -6,18 +6,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FPSController : MonoBehaviour
 {
+    [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundDistance;
-    [Space]
+    [Header("Movement Data")]
     [SerializeField] float standardSpeed;
     [SerializeField] float walkingSpeed;
     [SerializeField] float crouchSpeed;
     [SerializeField] float sprintingSpeed;
-    [Space]
+    [Header("Jump Data")]
+    [SerializeField] float jumpForce;
+    [Header("Physics Data")]
     [SerializeField] float gravity;
     [SerializeField] float gravityScale;
-   
+    [Header("Input Data")]
+    [SerializeField] KeyCode jumpKey;
+    [SerializeField] KeyCode crouchKey;
+    [SerializeField] KeyCode walkKey;
+    [SerializeField] KeyCode sprintKey;
+    
     public enum MovementState
     {
         jogging, walking, crouching, sprinting
@@ -99,46 +107,56 @@ public class FPSController : MonoBehaviour
 
     void Inputs()
     {
+        if (isGrounded)
+        {
+            if (Input.GetKey(sprintKey))
+            {
+                isRunning = true;
+                isWalking = false;
+                isCrouching = false;
+            }
+            else if (Input.GetKeyUp(sprintKey))
+            {
+                isRunning = false;
+                isWalking = false;
+                isCrouching = false;
+            }
 
+            if (Input.GetKeyDown(crouchKey) && !isCrouching)
+            {
+                isRunning = false;
+                isWalking = false;
+                isCrouching = true;
+            }
+            else if (Input.GetKeyDown(crouchKey) && isCrouching)
+            {
+                isRunning = false;
+                isWalking = false;
+                isCrouching = false;
+            }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            isRunning = true;
-            isWalking = false;
-            isCrouching = false;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isRunning = false;
-            isWalking = false;
-            isCrouching = false;
-        }
+            if (Input.GetKey(walkKey))
+            {
+                isRunning = false;
+                isWalking = true;
+                isCrouching = false;
+            }
+            else if (Input.GetKeyUp(walkKey))
+            {
+                isRunning = false;
+                isWalking = false;
+                isCrouching = false;
+            }
 
-        if (Input.GetKeyDown(KeyCode.C) && !isCrouching)
-        {
-            isRunning = false;
-            isWalking = false;
-            isCrouching = true;
+            if (Input.GetKeyDown(jumpKey))
+            {
+                isRunning = false;
+                isWalking = false;
+                isCrouching = false;
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            }
         }
-        else if(Input.GetKeyDown(KeyCode.C) && isCrouching)
-        {
-            isRunning = false;
-            isWalking = false;
-            isCrouching = false;
-        }
-
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            isRunning = false;
-            isWalking = true;
-            isCrouching = false;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftAlt))
-        {
-            isRunning = false;
-            isWalking = false;
-            isCrouching = false;
-        }
+        
     }
     void SetMovementState()
     {
