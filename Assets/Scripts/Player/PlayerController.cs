@@ -10,13 +10,33 @@ public class PlayerController : MonoBehaviour {
     [Space]
     [SerializeField] KeyCode keyToPickUpItem;
     [SerializeField] KeyCode keyToInteractWithEnviroment;
+    [SerializeField] KeyCode KeyToEscape;
     [SerializeField] LayerMask layerDoors;
 
     public static event Action<bool> ActivateText;
+    public static event Action ActivatePause;
+
+    bool isPaused = false;
+
 
     void Update() {
+        if (Input.GetKeyDown(KeyToEscape))
+        {
+            isPaused = !isPaused;
+            ActivatePause.Invoke();
+            if (!isPaused) Time.timeScale = 1;
+        }
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            return;
+        }
+
         playerPickUpController.TryPickUpObject(keyToPickUpItem);
         TryInteractWithDoor(keyToInteractWithEnviroment);
+
+
     }
 
     void TryInteractWithDoor(KeyCode key) {
