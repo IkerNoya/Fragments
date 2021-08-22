@@ -13,6 +13,7 @@ public class Door_Key : MonoBehaviour {
     }
     public void UseKey() {
         Destroy(this.gameObject, 0.1f);
+        canUseKey = false;
     }
     public Door_Key PickUpItem() {
         transform.position = new Vector3(0, -999, 0);

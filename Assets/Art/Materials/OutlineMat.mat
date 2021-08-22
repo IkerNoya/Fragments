@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KeyMat
+  m_Name: OutlineMat
   m_Shader: {fileID: 4800000, guid: a8e6afb10939b6444938850edbe8563f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

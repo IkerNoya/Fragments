@@ -19,6 +19,9 @@ public class UIPause : MonoBehaviour
 
     void Start()
     {
+        verticalSensitivity.value = ml.GetVerticalSensitivity();
+        horizontalSensitivity.value = ml.GetHorizontalSensitivity();
+
         verticalValue.text = ((int)ml.GetVerticalSensitivity() / 10).ToString();
         horizontalValue.text = ((int)ml.GetHorizontalSensitivity() / 10).ToString();
     }

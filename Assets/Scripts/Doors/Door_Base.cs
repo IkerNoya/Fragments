@@ -5,6 +5,26 @@ using UnityEngine;
 public class Door_Base : MonoBehaviour {
     [SerializeField] Door_Key keyNecesaryToOpenDoor;
     [SerializeField] bool closedDoor = true;
+    [SerializeField] float doorRotation = 90;
+    [SerializeField] float openingSpeed = 5;
+
+    Quaternion originalRotation = Quaternion.identity;
+    Quaternion newRotation = Quaternion.identity;
+
+    bool isDoorOpening = false;
+    void Start()
+    {
+        originalRotation = transform.parent.rotation;
+        newRotation = Quaternion.Euler(transform.parent.rotation.x, doorRotation, transform.parent.rotation.z);
+    }
+    void Update()
+    {
+        if (!isDoorOpening)
+            return;
+
+        transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, newRotation, Time.deltaTime * openingSpeed);
+
+    }
     public bool TryOpenDoor(Door_Key key) {
         if (!closedDoor)
             return false;
@@ -17,7 +37,7 @@ public class Door_Base : MonoBehaviour {
 
     public void OpenDoor() {
         closedDoor = false;
-        transform.position += Vector3.up;
+        isDoorOpening = true;
     }
 
 }

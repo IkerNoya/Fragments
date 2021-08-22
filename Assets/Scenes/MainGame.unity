@@ -3590,7 +3590,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750096794}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ed71317f1d83cb40bd4ef10f0dbadd8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4105,6 +4105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNecesaryToOpenDoor: {fileID: 258765309}
   closedDoor: 1
+  doorRotation: 90
+  openingSpeed: 5
 --- !u!1 &849272731
 GameObject:
   m_ObjectHideFlags: 0
@@ -7166,6 +7168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNecesaryToOpenDoor: {fileID: 258765309}
   closedDoor: 1
+  doorRotation: -90
+  openingSpeed: 5
 --- !u!43 &1724525792
 Mesh:
   m_ObjectHideFlags: 0
@@ -7357,7 +7361,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725053852}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ed71317f1d83cb40bd4ef10f0dbadd8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -11451,7 +11455,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922312375}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ed71317f1d83cb40bd4ef10f0dbadd8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -15927,6 +15931,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2421654268103295068, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: verticalSensitivity
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421654268103295068, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: horizontalSensitivity
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2421654268257577184, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
         type: 3}
       propertyPath: m_Name
@@ -15935,6 +15949,26 @@ PrefabInstance:
     - target: {fileID: 2421654268257577188, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
         type: 3}
       propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421654268257577188, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: standardSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421654268257577188, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: walkingSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421654268257577188, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: crouchSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421654268257577188, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: sprintingSpeed
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2421654268257577191, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
