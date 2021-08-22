@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out hit, 3))
+        {
             if (layerDoors == (layerDoors | (1 << hit.transform.gameObject.layer)))
             {
                 ActivateText.Invoke(true);
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour {
                         }
                 }
             }
-            else
-                ActivateText.Invoke(false);
+        }
+        else
+            ActivateText.Invoke(false);
     }
 }
