@@ -43,6 +43,7 @@ public class FPSController : MonoBehaviour
     bool isWalking = false;
     bool isGrounded;
     bool canMove = true;
+    bool isJumping = false; // tal vez lo usemos despues
 
     Vector2 xMovement = Vector2.zero;
     Vector2 zMovement = Vector2.zero;
@@ -79,6 +80,7 @@ public class FPSController : MonoBehaviour
 
         if (isGrounded)
         {
+            isJumping = false;
             xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
             zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
         }
@@ -153,6 +155,7 @@ public class FPSController : MonoBehaviour
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
+                isJumping = true;
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
         }

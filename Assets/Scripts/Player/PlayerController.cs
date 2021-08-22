@@ -20,11 +20,10 @@ public class PlayerController : MonoBehaviour {
 
 
     void Update() {
-        if (Input.GetKeyDown(KeyToEscape))
+        if (Input.GetKeyDown(KeyToEscape) && !isPaused)
         {
-            isPaused = !isPaused;
+            isPaused = true;
             ActivatePause.Invoke();
-            if (!isPaused) Time.timeScale = 1;
         }
 
         if (isPaused)
@@ -67,4 +66,11 @@ public class PlayerController : MonoBehaviour {
         else
             ActivateText.Invoke(false);
     }
+
+    public void SetPause(bool value)
+    {
+        isPaused = value;
+        ActivatePause.Invoke();
+    }
+
 }

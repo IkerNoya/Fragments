@@ -46,4 +46,22 @@ public class MouseLook : MonoBehaviour
         verticalRecoil += vertical;
         horizontalRecoil += horizontal;
     }
+
+    public float GetVerticalSensitivity()
+    {
+        return verticalSensitivity;
+    }
+    public float GetHorizontalSensitivity()
+    {
+        return horizontalSensitivity;
+    }
+
+    public void SetVerticalSensitivity(float value)
+    {
+        verticalSensitivity = value;
+    }
+    public void SetHorizontalSensitivity(float value)
+    {
+        horizontalSensitivity = value;
+    }
 }
