@@ -14,6 +14,10 @@ public class FPSController : MonoBehaviour
     [SerializeField] float walkingSpeed;
     [SerializeField] float crouchSpeed;
     [SerializeField] float sprintingSpeed;
+    [Space]
+    [SerializeField] float gravity;
+    [SerializeField] float gravityScale;
+   
     public enum MovementState
     {
         jogging, walking, crouching, sprinting
@@ -44,7 +48,7 @@ public class FPSController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        Debug.Log(isGrounded);
+
         if (!canMove)
             return;
 
@@ -64,11 +68,16 @@ public class FPSController : MonoBehaviour
                 currentSpeed = crouchSpeed;
                 break;
         }
-        
-        xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
-        zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
+
+        if (isGrounded)
+        {
+            xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
+            zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
+        }
 
         velocity = (xMovement + zMovement).normalized * currentSpeed;
+
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
             timeWalking += Time.deltaTime;
@@ -81,11 +90,16 @@ public class FPSController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
+        if (!isGrounded) 
+        {
+            Vector3 gravity = this.gravity * gravityScale * Vector3.up;
+            rb.AddForce(gravity, ForceMode.Acceleration);
+        }
     }
 
     void Inputs()
     {
+
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
