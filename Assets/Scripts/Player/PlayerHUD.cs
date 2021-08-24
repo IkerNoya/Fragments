@@ -6,17 +6,14 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] GameObject openDoorText;
     [SerializeField] GameObject pickUpText;
-    [SerializeField] GameObject PauseMenu;
  
     bool pickUpEvent;
     bool doorEvent;
-    bool isPaused = false;
 
     void Start()
     {
         PlayerPickUp.ActivateText += GetPickupEvent;
         PlayerController.ActivateText += GetDoorEvent;
-        PlayerController.ActivatePause += GetPausedEvent;
     }
 
     void Update()
@@ -26,24 +23,6 @@ public class PlayerHUD : MonoBehaviour
 
         if (doorEvent) openDoorText.SetActive(true);
         else openDoorText.SetActive(false);
-
-        if (isPaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            PauseMenu.SetActive(true);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            PauseMenu.SetActive(false);
-        }
-    }
-
-    void GetPausedEvent()
-    {
-        isPaused = !isPaused;
     }
 
     void GetPickupEvent(bool value)
@@ -60,6 +39,5 @@ public class PlayerHUD : MonoBehaviour
     {
         PlayerPickUp.ActivateText -= GetPickupEvent;
         PlayerController.ActivateText -= GetDoorEvent;
-        PlayerController.ActivatePause -= GetPausedEvent;
     }
 }
