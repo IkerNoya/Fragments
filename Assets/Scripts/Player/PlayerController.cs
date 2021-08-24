@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     
     [SerializeField] Inventory playerInventory;
     [SerializeField] PlayerPickUp playerPickUpController;
-    [Space]
+    [Header("Inputs")]
     [SerializeField] KeyCode keyToPickUpItem;
     [SerializeField] KeyCode keyToInteractWithEnviroment;
     [SerializeField] KeyCode KeyToEscape;
@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     public static event Action ActivatePause;
 
     bool isPaused = false;
-
 
     void Update() {
         if (Input.GetKeyDown(KeyToEscape) && !isPaused)

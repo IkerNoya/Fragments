@@ -7,6 +7,10 @@ public class Door_Base : MonoBehaviour {
     [SerializeField] bool closedDoor = true;
     [SerializeField] float doorRotation = 90;
     [SerializeField] float openingSpeed = 5;
+    [Header("Audio")]
+    [SerializeField] AudioClip openDoor;
+    [SerializeField] AudioClip lockedDoor;
+    [SerializeField] AudioSource source;
 
     Quaternion originalRotation = Quaternion.identity;
     Quaternion newRotation = Quaternion.identity;

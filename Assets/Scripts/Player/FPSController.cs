@@ -25,7 +25,17 @@ public class FPSController : MonoBehaviour
     [SerializeField] KeyCode crouchKey;
     [SerializeField] KeyCode walkKey;
     [SerializeField] KeyCode sprintKey;
-    
+    [Header("Audio Data")]
+    [SerializeField] AudioClip walkSound;
+    [SerializeField] AudioClip jogSound;
+    [SerializeField] AudioClip runSound;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip landSound;
+    [SerializeField] AudioSource sfxSource;
+    [SerializeField] AudioSource loopedSoundsSource;
+
+    AudioClip currentMovementAudio;
+
     public enum MovementState
     {
         jogging, walking, crouching, sprinting
@@ -51,7 +61,8 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();   
+        rb = GetComponent<Rigidbody>();
+        currentMovementAudio = jogSound;
     }
 
     void Update()
@@ -89,6 +100,17 @@ public class FPSController : MonoBehaviour
 
         rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
 
+        if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded)
+        {
+            Debug.Log("PITOTEEEEE");
+            loopedSoundsSource.Play();
+        }
+        else if(((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded)
+        {
+            Debug.Log("PARA");
+            loopedSoundsSource.Stop();
+        }
+
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
             timeWalking += Time.deltaTime;
         else
@@ -113,12 +135,14 @@ public class FPSController : MonoBehaviour
         {
             if (Input.GetKey(sprintKey))
             {
+                loopedSoundsSource.clip = runSound;
                 isRunning = true;
                 isWalking = false;
                 isCrouching = false;
             }
             else if (Input.GetKeyUp(sprintKey))
             {
+                loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
@@ -126,12 +150,14 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKeyDown(crouchKey) && !isCrouching)
             {
+                loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = true;
             }
             else if (Input.GetKeyDown(crouchKey) && isCrouching)
             {
+                loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
@@ -139,12 +165,14 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKey(walkKey))
             {
+                loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = true;
                 isCrouching = false;
             }
             else if (Input.GetKeyUp(walkKey))
             {
+                loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
@@ -152,6 +180,7 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKeyDown(jumpKey))
             {
+                sfxSource.Play();
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
