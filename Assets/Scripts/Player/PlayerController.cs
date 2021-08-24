@@ -51,14 +51,25 @@ public class PlayerController : MonoBehaviour {
                 if (d != null && Input.GetKeyDown(key))
                 {
                     List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
-                    for (int i = 0; i < keyListAux.Count; i++)
-                        if (d.TryOpenDoor(keyListAux[i]))
+                    if (keyListAux.Count > 0)
+                    {
+                        for (int i = 0; i < keyListAux.Count; i++)
                         {
-                            d.OpenDoor();
-                            keyListAux[i].UseKey();
-                            keyListAux.RemoveAt(i);
-                            break;
+                            if (d.TryOpenDoor(keyListAux[i]))
+                            {
+                                d.OpenDoor();
+                                keyListAux[i].UseKey();
+                                keyListAux.RemoveAt(i);
+                                break;
+                            }
+                            // hacer bool para el caso que no encuentre la llave pa
                         }
+                    }
+                    else
+                    {
+                        d.PlayLockedDoorSound();
+                    }
+
                 }
             }
         }

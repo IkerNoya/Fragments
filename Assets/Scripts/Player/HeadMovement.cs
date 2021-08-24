@@ -83,7 +83,7 @@ public class HeadMovement : MonoBehaviour
                 hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
                 break;
             case FPSController.MovementState.crouching:
-                hBobFrequency = joggingHeadBobFrequency;
+                hBobFrequency = walkingHeadBobFrequency;
                 hBobVerticalAmplitude = crouchingHeadVerticalAmplitude;
                 break;
         }

@@ -102,12 +102,10 @@ public class FPSController : MonoBehaviour
 
         if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded)
         {
-            Debug.Log("PITOTEEEEE");
             loopedSoundsSource.Play();
         }
         else if(((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded)
         {
-            Debug.Log("PARA");
             loopedSoundsSource.Stop();
         }
 

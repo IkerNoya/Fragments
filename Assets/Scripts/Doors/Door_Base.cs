@@ -12,13 +12,11 @@ public class Door_Base : MonoBehaviour {
     [SerializeField] AudioClip lockedDoor;
     [SerializeField] AudioSource source;
 
-    Quaternion originalRotation = Quaternion.identity;
     Quaternion newRotation = Quaternion.identity;
 
     bool isDoorOpening = false;
     void Start()
     {
-        originalRotation = transform.parent.rotation;
         newRotation = Quaternion.Euler(transform.parent.rotation.x, doorRotation, transform.parent.rotation.z);
     }
     void Update()
@@ -31,10 +29,16 @@ public class Door_Base : MonoBehaviour {
     }
     public bool TryOpenDoor(Door_Key key) {
         if (!closedDoor)
+        {
             return false;
+        }
 
-        if (key == keyNecesaryToOpenDoor) 
+        if (key == keyNecesaryToOpenDoor)
+        {
+            source.clip = openDoor;
+            source.Play();
             return true;
+        }
 
         return false;
     }
@@ -42,6 +46,11 @@ public class Door_Base : MonoBehaviour {
     public void OpenDoor() {
         closedDoor = false;
         isDoorOpening = true;
+    }
+
+    public void PlayLockedDoorSound()
+    {
+        source.Play();
     }
 
 }
