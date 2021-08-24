@@ -18,19 +18,24 @@ public class PlayerController : MonoBehaviour {
 
     bool isPaused = false;
 
+    [Header("UI")]
+    [SerializeField] UI_Inventory inventoryUI;
+
 
     void Update() {
-        if (Input.GetKeyDown(KeyToEscape) && !isPaused)
-        {
+        if (Input.GetKeyDown(KeyToEscape) && !isPaused) {
             isPaused = true;
             ActivatePause.Invoke();
         }
 
-        if (isPaused)
-        {
+        if (isPaused) {
             Time.timeScale = 0;
             return;
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab)) 
+            inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        
 
         playerPickUpController.TryPickUpObject(keyToPickUpItem);
         TryInteractWithDoor(keyToInteractWithEnviroment);
