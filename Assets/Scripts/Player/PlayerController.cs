@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         {
             if (layerDoors == (layerDoors | (1 << hit.transform.gameObject.layer)))
             {
-                ActivateText.Invoke(true);
+                ActivateText?.Invoke(true);
                 Door_Base d = hit.transform.GetComponent<Door_Base>();
                 if (d != null && Input.GetKeyDown(key))
                 {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else
-            ActivateText.Invoke(false);
+            ActivateText?.Invoke(false);
     }
 
     public void SetPause(bool value)

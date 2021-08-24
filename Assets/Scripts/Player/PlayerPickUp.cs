@@ -15,12 +15,12 @@ public class PlayerPickUp : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, 3))
             if (pickUpKey == (pickUpKey | (1 << hit.transform.gameObject.layer))) {
-                ActivateText.Invoke(true);
+                ActivateText?.Invoke(true);
                 Door_Key item = hit.collider.GetComponent<Door_Key>();
                 if (item != null && item.GetCanPickUp() && Input.GetKeyDown(key))
                     inventory.AddKeyToInventory(item.PickUpItem());
             }
         else
-            ActivateText.Invoke(false);
+            ActivateText?.Invoke(false);
     }
 }
