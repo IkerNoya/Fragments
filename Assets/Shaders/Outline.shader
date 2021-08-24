@@ -7,15 +7,15 @@
         _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
         _OutlineWidth("Outline Width", Range(1.0, 5.0)) = 1
     }
-        CGINCLUDE
+        CGINCLUDE // Lo agrego para añadir codigo de HLSL
         #include "UnityCG.cginc"
 
-        struct appdata
+        struct appdata // creo estructura del programa
         {
             float4 vertex : POSITION;
             float3 normal : NORMAL;
         };
-        struct v2f
+        struct v2f // creo estructura para el vertex shader
         {
             float4 pos : POSITION;
             float3 normal : NORMAL;
@@ -24,13 +24,13 @@
         float _OutlineWidth;
         float4 _OutlineColor;
 
-        v2f vert(appdata v) 
+        v2f vert(appdata v)  // creo vertex shader
         {
             v.vertex.xyz *= _OutlineWidth;
 
             v2f o;
 
-            o.pos = UnityObjectToClipPos(v.vertex);
+            o.pos = UnityObjectToClipPos(v.vertex); // transformo las posiciones locales del objeto para que clipeen con la camara?
             return o;
         }
 
@@ -40,13 +40,13 @@
     {
         Tags{"Queue" = "Transparent"}
 
-        Pass // Render outline
+        Pass // Renderizar outline
         {
             ZWrite Off
 
             CGPROGRAM
-            #pragma vertex vert    
-            #pragma fragment frag
+            #pragma vertex vert    // compilo el vertex shader que cree arriba
+            #pragma fragment frag //compilo el fragment shader de abajo que devuelve el color del outline
 
             half4 frag(v2f i) : COLOR
             {
@@ -57,7 +57,7 @@
 
         }
 
-        Pass // Normal Render
+        Pass // Normal Material Render
         {
              ZWrite On
 
