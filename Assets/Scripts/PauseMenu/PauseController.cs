@@ -9,7 +9,7 @@ public class PauseController : MonoBehaviour {
     [SerializeField] KeyCode pauseKey;
     bool gamePaused = false;
     void Start() {
-        pauseMenu.SetActive(false);
+        ResumeGame();
     }
     void Update() {
         if (Input.GetKeyDown(pauseKey)) {

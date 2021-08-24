@@ -769,8 +769,6 @@ GameObject:
   - component: {fileID: 2421654268257577188}
   - component: {fileID: 5949045429134001185}
   - component: {fileID: 5949045429134001184}
-  - component: {fileID: 5949045429134001187}
-  - component: {fileID: 6359345832459313175}
   - component: {fileID: 2421654268257577189}
   m_Layer: 9
   m_Name: Player
@@ -869,14 +867,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 5949045429134001184}
-  playerPickUpController: {fileID: 5949045429134001187}
   keyToPickUpItem: 101
   keyToInteractWithEnviroment: 101
-  KeyToEscape: 27
   layerDoors:
     serializedVersion: 2
     m_Bits: 2048
+  layerKeys:
+    serializedVersion: 2
+    m_Bits: 4096
   inventoryUI: {fileID: 791021175}
+  hud: {fileID: 1872051593}
 --- !u!114 &5949045429134001184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,37 +891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryKeys: []
   inventoryUI: {fileID: 791021175}
---- !u!114 &5949045429134001187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421654268257577184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc703e3330386c4e9cdab7401f01f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 5949045429134001184}
-  pickUpKey:
-    serializedVersion: 2
-    m_Bits: 4096
---- !u!114 &6359345832459313175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421654268257577184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f85855999f1d2d2418e817a3c6304d1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openDoorText: {fileID: 3122366331134585540}
-  pickUpText: {fileID: 32683118}
-  PauseMenu: {fileID: 0}
 --- !u!114 &2421654268257577189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,8 +975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
+  m_RaycastTarget: 0
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1204,13 +1173,14 @@ GameObject:
   - component: {fileID: 1507885503240087035}
   - component: {fileID: 6946155720834319759}
   - component: {fileID: 1900200899172665835}
+  - component: {fileID: 1872051593}
   m_Layer: 9
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4921382373780152697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1291,3 +1261,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1872051593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950960987412226829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85855999f1d2d2418e817a3c6304d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openDoorText: {fileID: 3122366331134585540}
+  pickUpText: {fileID: 32683118}
