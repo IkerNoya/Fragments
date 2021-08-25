@@ -29,23 +29,27 @@ public class Door_Base : MonoBehaviour {
     }
     public bool TryOpenDoor(Door_Key key) {
         if (!closedDoor)
-        {
             return false;
-        }
 
         if (key == keyNecesaryToOpenDoor)
-        {
-            source.clip = openDoor;
-            source.Play();
             return true;
-        }
+
+        source.Play();
 
         return false;
     }
 
     public void OpenDoor() {
+        source.clip = openDoor;
+        source.Play();
         closedDoor = false;
         isDoorOpening = true;
+        gameObject.layer = 0; // Solucion temporal para evitar que se muestre texto de abrir cuando la puerta esta abierta 
+    }
+
+    public bool GetClosedDoor()
+    {
+        return closedDoor;
     }
 
     public void PlayLockedDoorSound()
