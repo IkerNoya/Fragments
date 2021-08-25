@@ -19,9 +19,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
-    }
 
-    private void FixedUpdate() {
         TryPickUpObject();
         TryInteractWithDoor();
     }
