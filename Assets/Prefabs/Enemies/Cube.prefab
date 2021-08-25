@@ -107,3 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dissolveSpeed: 1.5
+  deathValue: 0

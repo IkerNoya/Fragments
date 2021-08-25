@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
     MeshRenderer meshRenderer;
     Material deathEffect;
-    float deathValue = 0;
+    [SerializeField] float deathValue = 0;
     bool isDead = false;
     void Start()
     {
@@ -19,14 +19,15 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && !isDead)
         {
             isDead = true;
+            
         }
         if (isDead)
         {
             meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporar hasta lograr que se casteen sombras del shader
-            Destroy(gameObject, 5f);
+            Destroy(gameObject, 10f);
             deathValue -= Time.deltaTime * dissolveSpeed;
             deathEffect.SetFloat("_DissolveY", deathValue);
         }
