@@ -4,83 +4,77 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    
+
     [SerializeField] Inventory playerInventory;
-    [SerializeField] PlayerPickUp playerPickUpController;
-    [Header("Inputs")]
+    [Space]
     [SerializeField] KeyCode keyToPickUpItem;
     [SerializeField] KeyCode keyToInteractWithEnviroment;
-    [SerializeField] KeyCode KeyToEscape;
     [SerializeField] LayerMask layerDoors;
+    [SerializeField] LayerMask layerKeys;
 
-    public static event Action<bool> ActivateText;
-    public static event Action ActivatePause;
-
-    bool isPaused = false;
+    [Header("UI")]
+    [SerializeField] UI_Inventory inventoryUI;
+    [SerializeField] PlayerHUD hud;
 
     void Update() {
-        if (Input.GetKeyDown(KeyToEscape) && !isPaused)
-        {
-            isPaused = true;
-            ActivatePause.Invoke();
-        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+            inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
 
-        if (isPaused)
-        {
-            Time.timeScale = 0;
-            return;
-        }
-
-        playerPickUpController.TryPickUpObject(keyToPickUpItem);
-        TryInteractWithDoor(keyToInteractWithEnviroment);
-
-
+        TryPickUpObject();
+        TryInteractWithDoor();
     }
 
-    void TryInteractWithDoor(KeyCode key) {
+    void TryInteractWithDoor() {
         RaycastHit hit;
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        if (Physics.Raycast(ray, out hit, 3))
-        {
-            if (layerDoors == (layerDoors | (1 << hit.transform.gameObject.layer)))
-            {
-                ActivateText?.Invoke(true);
-                Door_Base d = hit.transform.GetComponent<Door_Base>();
-                if (d != null && Input.GetKeyDown(key))
-                {
-                    List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
-                    if (keyListAux.Count > 0)
-                    {
+        if (Physics.Raycast(ray, out hit, 3)) {
+            if (layerDoors == (layerDoors | (1 << hit.transform.gameObject.layer))) {
+                hud.SetDoorTextActive(true);
+                if (Input.GetKeyDown(keyToInteractWithEnviroment)) {
+                    Door_Base d = hit.transform.GetComponent<Door_Base>();
+
+                    if (d != null) {
+                        List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
                         for (int i = 0; i < keyListAux.Count; i++)
-                        {
-                            if (d.TryOpenDoor(keyListAux[i]))
-                            {
+                            if (d.TryOpenDoor(keyListAux[i])) {
                                 d.OpenDoor();
                                 keyListAux[i].UseKey();
                                 keyListAux.RemoveAt(i);
                                 break;
                             }
-                            // hacer bool para el caso que no encuentre la llave pa
-                        }
-                    }
-                    else
-                    {
-                        d.PlayLockedDoorSound();
+                        hud.SetDoorTextActive(false);
                     }
 
                 }
             }
         }
         else
-            ActivateText?.Invoke(false);
+            hud.SetDoorTextActive(false);
     }
 
-    public void SetPause(bool value)
-    {
-        isPaused = value;
-        ActivatePause.Invoke();
+    void TryPickUpObject() {
+        RaycastHit hit;
+        Vector3 mousePos = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out hit, 3)) {
+            if (layerKeys == (layerKeys | (1 << hit.transform.gameObject.layer))) {
+                hud.SetPickupTextActive(true);
+
+                if (Input.GetKeyDown(keyToPickUpItem)) {
+                    Door_Key item = hit.collider.GetComponent<Door_Key>();
+                    if (item != null && item.GetCanPickUp()) {
+                        playerInventory.AddKeyToInventory(item.PickUpItem());
+                        hud.SetPickupTextActive(false);
+                    }
+                }
+
+            }
+        }
+        else
+            hud.SetPickupTextActive(false);
     }
 
 }

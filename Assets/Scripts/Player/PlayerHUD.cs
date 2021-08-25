@@ -6,60 +6,17 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] GameObject openDoorText;
     [SerializeField] GameObject pickUpText;
-    [SerializeField] GameObject PauseMenu;
- 
-    bool pickUpEvent;
-    bool doorEvent;
-    bool isPaused = false;
 
-    void Start()
-    {
-        PlayerPickUp.ActivateText += GetPickupEvent;
-        PlayerController.ActivateText += GetDoorEvent;
-        PlayerController.ActivatePause += GetPausedEvent;
+    private void Start() {
+        SetDoorTextActive(false);
+        SetPickupTextActive(false);
     }
 
-    void Update()
-    {
-        if (pickUpEvent) pickUpText.SetActive(true);
-        else pickUpText.SetActive(false);
-
-        if (doorEvent) openDoorText.SetActive(true);
-        else openDoorText.SetActive(false);
-
-        if (isPaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            PauseMenu.SetActive(true);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            PauseMenu.SetActive(false);
-        }
+    public void SetPickupTextActive(bool value) {
+        pickUpText.SetActive(value);
     }
 
-    void GetPausedEvent()
-    {
-        isPaused = !isPaused;
-    }
-
-    void GetPickupEvent(bool value)
-    {
-        pickUpEvent = value;
-    }
-
-    void GetDoorEvent(bool value)
-    {
-        doorEvent = value;
-    }
-
-    private void OnDisable()
-    {
-        PlayerPickUp.ActivateText -= GetPickupEvent;
-        PlayerController.ActivateText -= GetDoorEvent;
-        PlayerController.ActivatePause -= GetPausedEvent;
+    public void SetDoorTextActive(bool value) {
+        openDoorText.SetActive(value);
     }
 }

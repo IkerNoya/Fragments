@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UIPause : MonoBehaviour
 {
     [Header("Player References")]
-    [SerializeField] PlayerController pc;
     [SerializeField] MouseLook ml;
     [Header("Pause Panels")]
     [SerializeField] GameObject pausePanel;
@@ -34,13 +33,6 @@ public class UIPause : MonoBehaviour
     {
         ml.SetHorizontalSensitivity(horizontalSensitivity.value);
         horizontalValue.text = ((int)ml.GetHorizontalSensitivity() / 10).ToString();
-    }
-
-    public void OnClickResume()
-    {
-        pausePanel.SetActive(true);
-        pc.SetPause(false);
-        Time.timeScale = 1f;
     }
     public void OnClickOptions()
     {
