@@ -7,14 +7,16 @@ public class Door_Base : MonoBehaviour {
     [SerializeField] bool closedDoor = true;
     [SerializeField] float doorRotation = 90;
     [SerializeField] float openingSpeed = 5;
+    [Header("Audio")]
+    [SerializeField] AudioClip openDoor;
+    [SerializeField] AudioClip lockedDoor;
+    [SerializeField] AudioSource source;
 
-    Quaternion originalRotation = Quaternion.identity;
     Quaternion newRotation = Quaternion.identity;
 
     bool isDoorOpening = false;
     void Start()
     {
-        originalRotation = transform.parent.rotation;
         newRotation = Quaternion.Euler(transform.parent.rotation.x, doorRotation, transform.parent.rotation.z);
     }
     void Update()
@@ -29,15 +31,30 @@ public class Door_Base : MonoBehaviour {
         if (!closedDoor)
             return false;
 
-        if (key == keyNecesaryToOpenDoor) 
+        if (key == keyNecesaryToOpenDoor)
             return true;
+
+        source.Play();
 
         return false;
     }
 
     public void OpenDoor() {
+        source.clip = openDoor;
+        source.Play();
         closedDoor = false;
         isDoorOpening = true;
+        gameObject.layer = 0; // Solucion temporal para evitar que se muestre texto de abrir cuando la puerta esta abierta 
+    }
+
+    public bool GetClosedDoor()
+    {
+        return closedDoor;
+    }
+
+    public void PlayLockedDoorSound()
+    {
+        source.Play();
     }
 
 }
