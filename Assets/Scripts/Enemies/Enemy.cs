@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
     MeshRenderer meshRenderer;
     Material deathEffect;
-    [SerializeField] float deathValue = 0;
+    float deathValue = 0;
     bool isDead = false;
     void Start()
     {
