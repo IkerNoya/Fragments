@@ -16,9 +16,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] UI_Inventory inventoryUI;
     [SerializeField] PlayerHUD hud;
 
+    [Header("Weapons")]
+    [SerializeField] Weapon_Base weapon;
+    [SerializeField] KeyCode keyToShoot;
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+
+        if (Input.GetKeyDown(keyToShoot))
+            if (weapon)
+                weapon.Shoot();
 
         TryPickUpObject();
         TryInteractWithDoor();
@@ -37,11 +45,9 @@ public class PlayerController : MonoBehaviour {
 
                     if (d != null) {
                         List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
-                        if (d.GetClosedDoor())
-                        {
+                        if (d.GetClosedDoor()) {
                             for (int i = 0; i < keyListAux.Count; i++)
-                                if (d.TryOpenDoor(keyListAux[i]))
-                                {
+                                if (d.TryOpenDoor(keyListAux[i])) {
                                     d.OpenDoor();
                                     keyListAux[i].UseKey();
                                     keyListAux.RemoveAt(i);
@@ -51,7 +57,7 @@ public class PlayerController : MonoBehaviour {
                         }
                         hud.SetDoorTextActive(false);
                     }
-                    
+
 
                 }
             }
