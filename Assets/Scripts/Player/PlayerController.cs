@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Weapons")]
     [SerializeField] Weapon_Base weapon;
     [SerializeField] KeyCode keyToShoot;
+    [SerializeField] KeyCode keyToReload;
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(keyToShoot))
             if (weapon)
                 weapon.Shoot();
+        if (Input.GetKeyDown(keyToReload))
+            if (weapon)
+                weapon.StartReload();
 
         TryPickUpObject();
         TryInteractWithDoor();
