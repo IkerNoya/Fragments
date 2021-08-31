@@ -14,6 +14,20 @@ public class MouseLook : MonoBehaviour
     float horizontalRecoil = 0;
     float rotateZ = 0;
 
+    bool canMove = true;
+
+    void Awake()
+    {
+        InitialCutscene.initialCutscene += SetMoveBool;
+        InitialCutscene.endInitialCutscene += SetMoveBool;
+    }
+
+    void OnDisable()
+    {
+        InitialCutscene.initialCutscene -= SetMoveBool;
+        InitialCutscene.endInitialCutscene -= SetMoveBool;
+    }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,6 +36,10 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+
+        if (!canMove)
+            return;
+
         float mouseX = Input.GetAxis("Mouse X") * horizontalSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * verticalSensitivity * Time.deltaTime;
 
@@ -63,5 +81,10 @@ public class MouseLook : MonoBehaviour
     public void SetHorizontalSensitivity(float value)
     {
         horizontalSensitivity = value;
+    }
+
+    void SetMoveBool(bool value)
+    {
+        canMove = value;
     }
 }

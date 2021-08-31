@@ -59,6 +59,18 @@ public class FPSController : MonoBehaviour
     Vector2 zMovement = Vector2.zero;
     Vector2 velocity = Vector2.zero;
 
+    void Awake()
+    {
+        InitialCutscene.initialCutscene += SetCanMove;    
+        InitialCutscene.endInitialCutscene += SetCanMove;    
+    }
+
+    void OnDisable()
+    {
+        InitialCutscene.initialCutscene -= SetCanMove;
+        InitialCutscene.endInitialCutscene -= SetCanMove;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();

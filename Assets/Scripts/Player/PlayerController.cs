@@ -16,7 +16,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] UI_Inventory inventoryUI;
     [SerializeField] PlayerHUD hud;
 
+    FPSController fPSController;
+
+    void Start()
+    {
+        fPSController = GetComponent<FPSController>();
+    }
+
     void Update() {
+        if (!fPSController.GetCanMove())
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
 
