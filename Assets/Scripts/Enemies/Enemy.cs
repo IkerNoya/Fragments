@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,11 +15,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] float speed;
     [SerializeField] float damage;
+    [SerializeField] NavMeshAgent navMesh;
+    PlayerController player;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+        navMesh.SetDestination(player.transform.position);
         deathEffect = meshRenderer.material;
         deathValue = deathEffect.GetFloat("_DissolveY");
+    }
+
+    private void FixedUpdate() {
+        navMesh.SetDestination(player.transform.position);
     }
 
     public void Hit(float dmg) {
@@ -35,7 +44,6 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator DissolveEffect() {
-
         while (deathValue >= 0) {
             deathValue -= Time.deltaTime * dissolveSpeed;
             deathEffect.SetFloat("_DissolveY", deathValue);

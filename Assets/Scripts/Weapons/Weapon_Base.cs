@@ -7,7 +7,6 @@ public class Weapon_Base : MonoBehaviour {
     [Header("Shoot")]
     [SerializeField] float range;
     [SerializeField] float damage;
-    [SerializeField] LayerMask enemyLayer;
 
     [Header("Ammo")]
     [SerializeField] float timeToReload;
@@ -47,7 +46,7 @@ public class Weapon_Base : MonoBehaviour {
         RaycastHit hit;
             Debug.Log("Pum cachipum");
         if (Physics.Raycast(ray, out hit, range)) {
-            if (enemyLayer == (enemyLayer | (1 << hit.transform.gameObject.layer))) {
+            if (hit.collider.CompareTag("Enemy")) {
                 Debug.Log("Hitted enemy");
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
