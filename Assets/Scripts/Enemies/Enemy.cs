@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     float deathValue = 0;
     bool isDead = false;
 
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip deathSound;
+
     [SerializeField] float health;
     [SerializeField] float speed;
     [SerializeField] float damage;
@@ -27,6 +30,9 @@ public class Enemy : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (isDead)
+            return;
+
         navMesh.SetDestination(player.transform.position);
     }
 
@@ -36,6 +42,8 @@ public class Enemy : MonoBehaviour
 
         health -= dmg;
         if(health <= 0) {
+            navMesh.enabled = false;
+            source.PlayOneShot(deathSound);
             isDead = true;
             Destroy(this.gameObject, 10f);
             meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporar hasta lograr que se casteen sombras del shader

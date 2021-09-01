@@ -1615,31 +1615,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4989335983627719815}
     m_Modifications:
-    - target: {fileID: 1631931124061167045, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
-        type: 3}
-      propertyPath: range
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631931124061167045, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
-        type: 3}
-      propertyPath: timeToReload
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631931124061167045, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
-        type: 3}
-      propertyPath: totalAmmo
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631931124061167045, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
-        type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631931124061167045, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
-        type: 3}
-      propertyPath: enemyLayer.m_Bits
-      value: 8192
-      objectReference: {fileID: 0}
     - target: {fileID: 1631931124061167046, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
         type: 3}
       propertyPath: m_LocalPosition.x

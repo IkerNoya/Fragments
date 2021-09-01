@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] Weapon_Base weapon;
     [SerializeField] KeyCode keyToShoot;
     [SerializeField] KeyCode keyToReload;
-
+ 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
