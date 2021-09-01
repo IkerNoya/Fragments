@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Start() {
-        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetMaxAmmo());
+        hud.ChangeAmmoText(weapon.GetActualAmmo(),weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
     }
     private void OnDisable() {
         Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void WeaponAmmoChanged() {
-        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetMaxAmmo());
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(),weapon.GetMaxAmmo());
     }
 
     void SetGamePause(bool value) {

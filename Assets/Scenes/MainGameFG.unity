@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 228837373}
   - component: {fileID: 228837372}
   - component: {fileID: 228837371}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Front_L_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -2729,7 +2729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474121472}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Upper_Rails
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -3186,7 +3186,7 @@ GameObject:
   - component: {fileID: 572824257}
   - component: {fileID: 572824256}
   - component: {fileID: 572824255}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Back_R_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -4989,7 +4989,7 @@ GameObject:
   - component: {fileID: 756411540}
   - component: {fileID: 756411539}
   - component: {fileID: 756411538}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Back_Stair_L_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -5644,7 +5644,7 @@ GameObject:
   - component: {fileID: 850065876}
   - component: {fileID: 850065875}
   - component: {fileID: 850065874}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Front_Stair_R_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -6214,7 +6214,7 @@ GameObject:
   - component: {fileID: 1010836656}
   - component: {fileID: 1010836655}
   - component: {fileID: 1010836654}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Back_Stair_R_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -7350,7 +7350,7 @@ GameObject:
   - component: {fileID: 1256123403}
   - component: {fileID: 1256123402}
   - component: {fileID: 1256123401}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Front_R_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -8608,7 +8608,7 @@ GameObject:
   - component: {fileID: 1444138259}
   - component: {fileID: 1444138258}
   - component: {fileID: 1444138257}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Front_Stair_L_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -9166,7 +9166,7 @@ GameObject:
   - component: {fileID: 1495943505}
   - component: {fileID: 1495943504}
   - component: {fileID: 1495943503}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Back_L_Rail
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -19413,7 +19413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2140983737}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stair_Objects
   m_TagString: Map
   m_Icon: {fileID: 0}

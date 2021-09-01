@@ -14,6 +14,7 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] float timeToReload;
     float timerReloading;
     [SerializeField] int totalAmmo;
+    [SerializeField] int ammoPerMagazine;
     bool reloading;
     int actualAmmo;
 
@@ -29,7 +30,7 @@ public class Weapon_Base : MonoBehaviour {
     public static Action AmmoChanged;
 
     protected virtual void Start() {
-        actualAmmo = totalAmmo;
+        actualAmmo = ammoPerMagazine;
         reloading = false;
         timerReloading = 0f;
     }
@@ -42,7 +43,18 @@ public class Weapon_Base : MonoBehaviour {
         if (timerReloading >= timeToReload) {
             timerReloading = 0;
             reloading = false;
-            actualAmmo = totalAmmo;
+
+            int diff = ammoPerMagazine - actualAmmo;
+            totalAmmo -= diff;
+
+            if (totalAmmo <= 0) {
+                totalAmmo += ammoPerMagazine;
+                actualAmmo = totalAmmo;
+                totalAmmo = 0;
+            }
+            else 
+                actualAmmo = ammoPerMagazine;
+
             AmmoChanged?.Invoke();
         }
 
@@ -81,9 +93,7 @@ public class Weapon_Base : MonoBehaviour {
     }
 
     public virtual void StartReload() {
-        if (reloading)  
-            return;
-        if (actualAmmo == totalAmmo) 
+        if (reloading || actualAmmo == ammoPerMagazine || totalAmmo <= 0)
             return;
 
         animator.Play("Reload");
@@ -94,9 +104,11 @@ public class Weapon_Base : MonoBehaviour {
     public int GetActualAmmo() {
         return actualAmmo;
     }
-
     public int GetMaxAmmo() {
         return totalAmmo;
+    }
+    public int GetAmmoPerMagazine() {
+        return ammoPerMagazine;
     }
 
 }

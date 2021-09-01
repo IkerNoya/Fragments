@@ -53,7 +53,8 @@ MonoBehaviour:
   shootImpactHole: {fileID: 3701030072362383426, guid: 0e69b8908f0f3d74fbbc8d803c9e9a85,
     type: 3}
   timeToReload: 1.5
-  totalAmmo: 12
+  totalAmmo: 120
+  ammoPerMagazine: 12
   source: {fileID: 9132767095682124890}
   shootSounds:
   - {fileID: 8300000, guid: d31f4115cdf5bc1499ae20f66ca4e051, type: 3}
