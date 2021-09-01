@@ -23,6 +23,9 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] AudioClip noAmmoSound;
     [SerializeField] AudioClip reloadingSound;
 
+    [Header("Animations")]
+    [SerializeField] Animator animator;
+
     public static Action AmmoChanged;
 
     protected virtual void Start() {
@@ -82,7 +85,8 @@ public class Weapon_Base : MonoBehaviour {
             return;
         if (actualAmmo == totalAmmo) 
             return;
-        
+
+        animator.Play("Reload");
         source.PlayOneShot(reloadingSound);
         reloading = true;
     }
