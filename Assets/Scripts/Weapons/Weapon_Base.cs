@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Weapon_Base : MonoBehaviour {
 
     [Header("Shoot")]
@@ -23,6 +23,8 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] AudioClip noAmmoSound;
     [SerializeField] AudioClip reloadingSound;
 
+    public static Action AmmoChanged;
+
     protected virtual void Start() {
         actualAmmo = totalAmmo;
         reloading = false;
@@ -38,12 +40,16 @@ public class Weapon_Base : MonoBehaviour {
             timerReloading = 0;
             reloading = false;
             actualAmmo = totalAmmo;
+            AmmoChanged?.Invoke();
             Debug.Log("Reloading completed");
         }
 
     }
 
     public virtual void Shoot() {
+        if (reloading)
+            return;
+
         if (actualAmmo <= 0) {
             if (!source.isPlaying)
                 source.PlayOneShot(noAmmoSound);
@@ -53,7 +59,7 @@ public class Weapon_Base : MonoBehaviour {
 
         shootParticles.Play();
 
-        source.PlayOneShot(shootSounds[Random.Range(0, shootSounds.Count)]);
+        source.PlayOneShot(shootSounds[UnityEngine.Random.Range(0, shootSounds.Count)]);
 
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -75,6 +81,7 @@ public class Weapon_Base : MonoBehaviour {
         }
 
         actualAmmo--;
+        AmmoChanged?.Invoke();
     }
 
     public virtual void StartReload() {
@@ -90,6 +97,14 @@ public class Weapon_Base : MonoBehaviour {
         source.PlayOneShot(reloadingSound);
         reloading = true;
         Debug.Log("Starting reloading");
+    }
+
+    public int GetActualAmmo() {
+        return actualAmmo;
+    }
+
+    public int GetMaxAmmo() {
+        return totalAmmo;
     }
 
 }

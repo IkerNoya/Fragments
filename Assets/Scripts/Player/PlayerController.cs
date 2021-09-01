@@ -20,7 +20,23 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] Weapon_Base weapon;
     [SerializeField] KeyCode keyToShoot;
     [SerializeField] KeyCode keyToReload;
- 
+
+    private void Awake() {
+        Weapon_Base.AmmoChanged += WeaponAmmoChanged;
+    }
+
+
+    private void Start() {
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetMaxAmmo());
+    }
+    private void OnDisable() {
+        Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+    }
+
+    private void OnDestroy() {
+        Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
@@ -91,6 +107,10 @@ public class PlayerController : MonoBehaviour {
         }
         else
             hud.SetPickupTextActive(false);
+    }
+
+    void WeaponAmmoChanged() {
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetMaxAmmo());
     }
 
 }
