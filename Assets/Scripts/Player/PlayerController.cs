@@ -21,8 +21,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] KeyCode keyToShoot;
     [SerializeField] KeyCode keyToReload;
 
+    bool gamePaused = false;
+
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
+        PauseController.SetPause += SetGamePause;
     }
 
 
@@ -31,13 +34,18 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnDisable() {
         Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+        PauseController.SetPause -= SetGamePause;
     }
 
     private void OnDestroy() {
         Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+        PauseController.SetPause -= SetGamePause;
     }
 
     void Update() {
+        if (gamePaused)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
 
@@ -111,6 +119,10 @@ public class PlayerController : MonoBehaviour {
 
     void WeaponAmmoChanged() {
         hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetMaxAmmo());
+    }
+
+    void SetGamePause(bool value) {
+        gamePaused = value;
     }
 
 }

@@ -41,7 +41,6 @@ public class Weapon_Base : MonoBehaviour {
             reloading = false;
             actualAmmo = totalAmmo;
             AmmoChanged?.Invoke();
-            Debug.Log("Reloading completed");
         }
 
     }
@@ -51,9 +50,7 @@ public class Weapon_Base : MonoBehaviour {
             return;
 
         if (actualAmmo <= 0) {
-            if (!source.isPlaying)
-                source.PlayOneShot(noAmmoSound);
-            Debug.Log("No Ammo");
+            source.PlayOneShot(noAmmoSound);
             return;
         }
 
@@ -64,15 +61,11 @@ public class Weapon_Base : MonoBehaviour {
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
-        Debug.Log("Pum cachipum");
         if (Physics.Raycast(ray, out hit, range)) {
             if (hit.collider.CompareTag("Enemy")) {
-                Debug.Log("Hitted enemy");
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
                     e.Hit(damage);
-                else
-                    Debug.LogError("Enemy hitted dont have component Enemy");
             }
             else if (hit.collider.CompareTag("Map")) {
                 GameObject hole = Instantiate(shootImpactHole, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
@@ -85,18 +78,13 @@ public class Weapon_Base : MonoBehaviour {
     }
 
     public virtual void StartReload() {
-        if (reloading) {
-            Debug.Log("Already reloading");
+        if (reloading)  
             return;
-        }
-
-        if (actualAmmo == totalAmmo) {
-            Debug.Log("Max ammo, no reload");
+        if (actualAmmo == totalAmmo) 
             return;
-        }
+        
         source.PlayOneShot(reloadingSound);
         reloading = true;
-        Debug.Log("Starting reloading");
     }
 
     public int GetActualAmmo() {

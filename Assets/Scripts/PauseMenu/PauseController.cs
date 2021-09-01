@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PauseController : MonoBehaviour {
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject playerHUD;
     [SerializeField] KeyCode pauseKey;
     bool gamePaused = false;
+
+    public static Action<bool> SetPause;
+
     void Start() {
         ResumeGame();
     }
@@ -27,7 +30,7 @@ public class PauseController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenu.SetActive(true);
-
+        SetPause?.Invoke(true);
     }
     public void ResumeGame() {
         Time.timeScale = 1.0f;
@@ -36,5 +39,6 @@ public class PauseController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);
+        SetPause?.Invoke(false);
     }
 }

@@ -21,6 +21,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] NavMeshAgent navMesh;
     PlayerController player;
 
+    bool gamePaused = false;
+
+    private void Awake() {
+        PauseController.SetPause += SetGamePause;
+    }
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
@@ -29,7 +35,26 @@ public class Enemy : MonoBehaviour
         deathValue = deathEffect.GetFloat("_DissolveY");
     }
 
+    private void OnDestroy() {
+        PauseController.SetPause -= SetGamePause;
+    }
+    private void OnDisable() {
+        PauseController.SetPause -= SetGamePause;
+    }
+
+    private void Update() {
+        if (gamePaused) {
+            navMesh.enabled = false;
+            return;
+        }
+
+        navMesh.enabled = true;
+    }
+
     private void FixedUpdate() {
+        if (gamePaused)
+            return;
+
         if (isDead)
             return;
 
@@ -60,4 +85,9 @@ public class Enemy : MonoBehaviour
 
         yield return null;
     }
+
+    void SetGamePause(bool value) {
+        gamePaused = value;
+    }
+
 }
