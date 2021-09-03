@@ -35,6 +35,9 @@ public class HeadMovement : MonoBehaviour
     }
     void Update()
     {
+        if (!player.GetCanMove())
+            return;
+
         if (!player.GetIsCrouching())
         {
             CapsuleColl.height = defaultColliderHeight;
@@ -46,6 +49,8 @@ public class HeadMovement : MonoBehaviour
     }
     void LateUpdate()
     {
+        if (!player.GetCanMove())
+            return;
         //Crouch();
         HeadBobbing();
     }

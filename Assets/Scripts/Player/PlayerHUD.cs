@@ -6,6 +6,7 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] GameObject openDoorText;
     [SerializeField] GameObject pickUpText;
+    [SerializeField] GameObject blackScreen;
 
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] GameObject lowAmmoText;

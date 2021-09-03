@@ -59,9 +59,13 @@ public class FPSController : MonoBehaviour {
 
     bool gamePaused = false;
 
-    private void Awake() {
+    void Awake()
+    {
+        InitialCutscene.initialCutscene += SetCanMove;    
+        InitialCutscene.endInitialCutscene += SetCanMove;    
         PauseController.SetPause += SetGamePause;
     }
+
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -70,6 +74,8 @@ public class FPSController : MonoBehaviour {
 
     private void OnDisable() {
         PauseController.SetPause -= SetGamePause;
+        InitialCutscene.initialCutscene -= SetCanMove;
+        InitialCutscene.endInitialCutscene -= SetCanMove;
     }
 
     private void OnDestroy() {

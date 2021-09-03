@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] UI_Inventory inventoryUI;
     [SerializeField] PlayerHUD hud;
 
+
     [Header("Weapons")]
     [SerializeField] Weapon_Base weapon;
     [SerializeField] KeyCode keyToShoot;
     [SerializeField] KeyCode keyToReload;
 
+    FPSController fPSController;
     bool gamePaused = false;
 
     private void Awake() {
@@ -28,10 +30,11 @@ public class PlayerController : MonoBehaviour {
         PauseController.SetPause += SetGamePause;
     }
 
-
     private void Start() {
+        fPSController = GetComponent<FPSController>();
         hud.ChangeAmmoText(weapon.GetActualAmmo(),weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
     }
+
     private void OnDisable() {
         Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
         PauseController.SetPause -= SetGamePause;
@@ -43,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if (gamePaused)
+        if (!fPSController.GetCanMove())
             return;
 
         if (Input.GetKeyDown(KeyCode.Tab))
