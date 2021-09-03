@@ -1,35 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float dissolveSpeed = 0;
 
-    MeshRenderer meshRenderer;
+    [SerializeField] MeshRenderer meshRenderer;
     Material deathEffect;
     float deathValue = 0;
     bool isDead = false;
+
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip deathSound;
+
+    [SerializeField] float health;
+    [SerializeField] float speed;
+    [SerializeField] float damage;
+    [SerializeField] NavMeshAgent navMesh;
+    PlayerController player;
+
+    bool gamePaused = false;
+
+    private void Awake() {
+        PauseController.SetPause += SetGamePause;
+    }
+
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        deathEffect = GetComponent<MeshRenderer>().material;
+        player = FindObjectOfType<PlayerController>();
+        navMesh.SetDestination(player.transform.position);
+        deathEffect = meshRenderer.material;
         deathValue = deathEffect.GetFloat("_DissolveY");
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) && !isDead)
-        {
-            isDead = true;
-            
+    private void OnDestroy() {
+        PauseController.SetPause -= SetGamePause;
+    }
+    private void OnDisable() {
+        PauseController.SetPause -= SetGamePause;
+    }
+
+    private void Update() {
+        if (gamePaused) {
+            navMesh.enabled = false;
+            return;
         }
+
+        navMesh.enabled = true;
+    }
+
+    private void FixedUpdate() {
+        if (gamePaused)
+            return;
+
         if (isDead)
-        {
+            return;
+
+        navMesh.SetDestination(player.transform.position);
+    }
+
+    public void Hit(float dmg) {
+        if (isDead)
+            return;
+
+        health -= dmg;
+        if(health <= 0) {
+            navMesh.enabled = false;
+            source.PlayOneShot(deathSound);
+            isDead = true;
+            Destroy(this.gameObject, 10f);
             meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporar hasta lograr que se casteen sombras del shader
-            Destroy(gameObject, 10f);
-            deathValue -= Time.deltaTime * dissolveSpeed;
-            deathEffect.SetFloat("_DissolveY", deathValue);
+            StartCoroutine(DissolveEffect());
         }
     }
+
+    IEnumerator DissolveEffect() {
+        while (deathValue >= 0) {
+            deathValue -= Time.deltaTime * dissolveSpeed;
+            deathEffect.SetFloat("_DissolveY", deathValue);
+            yield return null;
+        }
+
+        yield return null;
+    }
+
+    void SetGamePause(bool value) {
+        gamePaused = value;
+    }
+
 }

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Post-Processing
   - Door
   - Key
-  - 
-  - 
+  - Enemy
+  - Wall
   - 
   - 
   - 

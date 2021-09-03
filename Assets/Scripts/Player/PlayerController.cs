@@ -16,11 +16,33 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] UI_Inventory inventoryUI;
     [SerializeField] PlayerHUD hud;
 
-    FPSController fPSController;
 
-    void Start()
-    {
+    [Header("Weapons")]
+    [SerializeField] Weapon_Base weapon;
+    [SerializeField] KeyCode keyToShoot;
+    [SerializeField] KeyCode keyToReload;
+
+    FPSController fPSController;
+    bool gamePaused = false;
+
+    private void Awake() {
+        Weapon_Base.AmmoChanged += WeaponAmmoChanged;
+        PauseController.SetPause += SetGamePause;
+    }
+
+    private void Start() {
         fPSController = GetComponent<FPSController>();
+        hud.ChangeAmmoText(weapon.GetActualAmmo(),weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
+    }
+
+    private void OnDisable() {
+        Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+        PauseController.SetPause -= SetGamePause;
+    }
+
+    private void OnDestroy() {
+        Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
+        PauseController.SetPause -= SetGamePause;
     }
 
     void Update() {
@@ -29,6 +51,13 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+
+        if (Input.GetKeyDown(keyToShoot))
+            if (weapon)
+                weapon.Shoot();
+        if (Input.GetKeyDown(keyToReload))
+            if (weapon)
+                weapon.StartReload();
 
         TryPickUpObject();
         TryInteractWithDoor();
@@ -47,11 +76,9 @@ public class PlayerController : MonoBehaviour {
 
                     if (d != null) {
                         List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
-                        if (d.GetClosedDoor())
-                        {
+                        if (d.GetClosedDoor()) {
                             for (int i = 0; i < keyListAux.Count; i++)
-                                if (d.TryOpenDoor(keyListAux[i]))
-                                {
+                                if (d.TryOpenDoor(keyListAux[i])) {
                                     d.OpenDoor();
                                     keyListAux[i].UseKey();
                                     keyListAux.RemoveAt(i);
@@ -61,7 +88,7 @@ public class PlayerController : MonoBehaviour {
                         }
                         hud.SetDoorTextActive(false);
                     }
-                    
+
 
                 }
             }
@@ -91,6 +118,14 @@ public class PlayerController : MonoBehaviour {
         }
         else
             hud.SetPickupTextActive(false);
+    }
+
+    void WeaponAmmoChanged() {
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(),weapon.GetMaxAmmo());
+    }
+
+    void SetGamePause(bool value) {
+        gamePaused = value;
     }
 
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 //Forces unity to create a rigidbody into object if missing
 [RequireComponent(typeof(Rigidbody))]
-public class FPSController : MonoBehaviour
-{
+public class FPSController : MonoBehaviour {
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
@@ -36,8 +35,7 @@ public class FPSController : MonoBehaviour
 
     AudioClip currentMovementAudio;
 
-    public enum MovementState
-    {
+    public enum MovementState {
         jogging, walking, crouching, sprinting
     }
 
@@ -59,34 +57,45 @@ public class FPSController : MonoBehaviour
     Vector2 zMovement = Vector2.zero;
     Vector2 velocity = Vector2.zero;
 
+    bool gamePaused = false;
+
     void Awake()
     {
         InitialCutscene.initialCutscene += SetCanMove;    
         InitialCutscene.endInitialCutscene += SetCanMove;    
+        PauseController.SetPause += SetGamePause;
     }
 
-    void OnDisable()
-    {
-        InitialCutscene.initialCutscene -= SetCanMove;
-        InitialCutscene.endInitialCutscene -= SetCanMove;
-    }
 
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
         currentMovementAudio = jogSound;
     }
 
-    void Update()
-    {
+    private void OnDisable() {
+        PauseController.SetPause -= SetGamePause;
+        InitialCutscene.initialCutscene -= SetCanMove;
+        InitialCutscene.endInitialCutscene -= SetCanMove;
+    }
+
+    private void OnDestroy() {
+        PauseController.SetPause -= SetGamePause;
+    }
+
+    void Update() {
+        if (gamePaused) {
+            loopedSoundsSource.Stop();
+            return;
+        }
+
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (!canMove)
             return;
 
 
-        switch (movementState)
-        {
+        switch (movementState) {
             case MovementState.jogging:
                 currentSpeed = standardSpeed;
                 break;
@@ -101,8 +110,7 @@ public class FPSController : MonoBehaviour
                 break;
         }
 
-        if (isGrounded)
-        {
+        if (isGrounded) {
             isJumping = false;
             xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
             zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
@@ -112,12 +120,10 @@ public class FPSController : MonoBehaviour
 
         rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
 
-        if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded)
-        {
+        if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded) {
             loopedSoundsSource.Play();
         }
-        else if(((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded)
-        {
+        else if (((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded) {
             loopedSoundsSource.Stop();
         }
 
@@ -130,66 +136,58 @@ public class FPSController : MonoBehaviour
         Inputs();
     }
 
-    void FixedUpdate()
-    {
-        if (!isGrounded) 
-        {
+    void FixedUpdate() {
+        if (gamePaused)
+            return;
+
+        if (!isGrounded) {
             Vector3 gravity = this.gravity * gravityScale * Vector3.up;
             rb.AddForce(gravity, ForceMode.Acceleration);
         }
     }
 
-    void Inputs()
-    {
-        if (isGrounded)
-        {
-            if (Input.GetKey(sprintKey))
-            {
+    void Inputs() {
+        if (isGrounded) {
+            if (Input.GetKey(sprintKey)) {
                 loopedSoundsSource.clip = runSound;
                 isRunning = true;
                 isWalking = false;
                 isCrouching = false;
             }
-            else if (Input.GetKeyUp(sprintKey))
-            {
+            else if (Input.GetKeyUp(sprintKey)) {
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
             }
 
-            if (Input.GetKeyDown(crouchKey) && !isCrouching)
-            {
+            if (Input.GetKeyDown(crouchKey) && !isCrouching) {
                 loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = true;
             }
-            else if (Input.GetKeyDown(crouchKey) && isCrouching)
-            {
+            else if (Input.GetKeyDown(crouchKey) && isCrouching) {
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
             }
 
-            if (Input.GetKey(walkKey))
-            {
+            if (Input.GetKey(walkKey)) {
                 loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = true;
                 isCrouching = false;
             }
-            else if (Input.GetKeyUp(walkKey))
-            {
+            else if (Input.GetKeyUp(walkKey)) {
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
                 isCrouching = false;
             }
 
-            if (Input.GetKeyDown(jumpKey))
-            {
+            if (Input.GetKeyDown(jumpKey)) {
                 sfxSource.Play();
                 isRunning = false;
                 isWalking = false;
@@ -198,67 +196,57 @@ public class FPSController : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
         }
-        
+
     }
-    void SetMovementState()
-    {
-        if (!isCrouching && !isWalking && !isRunning)
-        {
+    void SetMovementState() {
+        if (!isCrouching && !isWalking && !isRunning) {
             movementState = MovementState.jogging;
         }
-        else if (isCrouching && !isWalking && !isRunning)
-        {
+        else if (isCrouching && !isWalking && !isRunning) {
             movementState = MovementState.crouching;
         }
-        else if (!isCrouching && isWalking && !isRunning)
-        {
+        else if (!isCrouching && isWalking && !isRunning) {
             movementState = MovementState.walking;
         }
-        else if (!isCrouching && !isWalking && isRunning)
-        {
+        else if (!isCrouching && !isWalking && isRunning) {
             movementState = MovementState.sprinting;
         }
     }
 
     #region GETTERS
-    public bool GetIsCrouching()
-    {
+    public bool GetIsCrouching() {
         return isCrouching;
     }
-    public bool GetIsRunning()
-    {
+    public bool GetIsRunning() {
         return isRunning;
     }
-    public bool GetIsWalking()
-    {
+    public bool GetIsWalking() {
         return isWalking;
     }
-    public bool GetIsGrounded()
-    {
+    public bool GetIsGrounded() {
         return isGrounded;
     }
-    public bool GetCanMove()
-    {
+    public bool GetCanMove() {
         return canMove;
     }
-    public float GetTimeWalking()
-    {
+    public float GetTimeWalking() {
         return timeWalking;
     }
-    public MovementState GetMovementState()
-    {
+    public MovementState GetMovementState() {
         return movementState;
     }
     #endregion
 
     #region Setters
-    public void SetIsCrounching(bool value)
-    {
+    public void SetIsCrounching(bool value) {
         isCrouching = value;
     }
-    public void SetCanMove(bool value)
-    {
+    public void SetCanMove(bool value) {
         canMove = value;
     }
+    void SetGamePause(bool value) {
+        gamePaused = value;
+    }
+
     #endregion
 }
