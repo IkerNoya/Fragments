@@ -6,10 +6,10 @@ public class InitialCutscene : MonoBehaviour
 {
     [SerializeField] Image blackScreen;
     [SerializeField] float screenFadeSpeed;
+    [SerializeField] bool hasPlayedInitialCutscene = false;
 
     public static Action<bool> initialCutscene;
     public static Action<bool> endInitialCutscene;
-    bool hasPlayedInitialCutscene = false;
 
     Animator anim;
     float alpha = 0;
