@@ -115,7 +115,13 @@ public class Weapon_Base : MonoBehaviour {
             if (hit.collider.CompareTag("Enemy")) {
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
+                {
                     e.Hit(damage);
+                    if (e.GetHealth() <= 0)
+                    {
+                        e.GetRigidBody().AddForceAtPosition((hit.transform.position - transform.position).normalized * 5, hit.transform.position, ForceMode.VelocityChange);
+                    }
+                }
             }
             else if (hit.collider.CompareTag("Map")) {
                 GameObject hole = Instantiate(shootImpactHole, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));

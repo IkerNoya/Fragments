@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] NavMeshAgent navMesh;
     PlayerController player;
+    Rigidbody rb;
 
     bool gamePaused = false;
 
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         navMesh.SetDestination(player.transform.position);
         deathEffect = meshRenderer.material;
         deathValue = deathEffect.GetFloat("_DissolveY");
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnDestroy() {
@@ -64,14 +66,15 @@ public class Enemy : MonoBehaviour
     public void Hit(float dmg) {
         if (isDead)
             return;
-
         health -= dmg;
         if(health <= 0) {
             navMesh.enabled = false;
+            rb.isKinematic = false;
+            rb.useGravity = true;
             source.PlayOneShot(deathSound);
             isDead = true;
             Destroy(this.gameObject, 10f);
-            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporar hasta lograr que se casteen sombras del shader
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
             StartCoroutine(DissolveEffect());
         }
     }
@@ -90,4 +93,13 @@ public class Enemy : MonoBehaviour
         gamePaused = value;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public Rigidbody GetRigidBody() // cambiar nombre despues
+    {
+        return rb;
+    }
 }
