@@ -51,13 +51,22 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        if (weapon)
+        {
+            if (weapon.GetIsSemiAutomatic())
+            {
+                if (Input.GetKeyDown(keyToShoot))
+                    weapon.Shoot();
+            }
+            else
+            {
+                if (Input.GetKey(keyToShoot))
+                    weapon.Shoot();
+            }
 
-        if (Input.GetKeyDown(keyToShoot))
-            if (weapon)
-                weapon.Shoot();
-        if (Input.GetKeyDown(keyToReload))
-            if (weapon)
+            if (Input.GetKeyDown(keyToReload))
                 weapon.StartReload();
+        }
 
         TryPickUpObject();
         TryInteractWithDoor();
