@@ -29,14 +29,17 @@ public class Weapon_Base : MonoBehaviour {
 
     public static Action AmmoChanged;
 
+    FPSController fpsController;
+
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;
         reloading = false;
         timerReloading = 0f;
+        fpsController = GetComponentInParent<FPSController>();
     }
 
     protected virtual void Update() {
-        if (!reloading)
+        if (!reloading || !fpsController.GetPauseState())
             return;
 
         timerReloading += Time.deltaTime;
@@ -61,7 +64,7 @@ public class Weapon_Base : MonoBehaviour {
     }
 
     public virtual void Shoot() {
-        if (reloading)
+        if (reloading || fpsController.GetPauseState())
             return;
 
         if (actualAmmo <= 0) {

@@ -235,6 +235,10 @@ public class FPSController : MonoBehaviour {
     public MovementState GetMovementState() {
         return movementState;
     }
+    public bool GetPauseState()
+    {
+        return gamePaused;
+    }
     #endregion
 
     #region Setters
