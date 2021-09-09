@@ -64,7 +64,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DissolveSize: 5
-    - _DissolveY: 15
+    - _DissolveY: 30
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
