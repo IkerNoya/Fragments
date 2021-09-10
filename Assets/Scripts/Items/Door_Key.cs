@@ -5,6 +5,7 @@ using System;
 public class Door_Key : MonoBehaviour {
     [SerializeField] bool canUseKey = true;
     [SerializeField] bool canPickUp = true;
+    [SerializeField] AudioSource audio;
     public UI_InventoryItem itemUI;
 
     public static Action<GameObject> UsedKey;
@@ -23,6 +24,7 @@ public class Door_Key : MonoBehaviour {
     public Door_Key PickUpItem() {
         transform.position = new Vector3(0, -999, 0);
         canPickUp = false;
+        audio.Play();
         return this;
     }
 }
