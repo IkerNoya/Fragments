@@ -47,7 +47,6 @@ public class FPSController : MonoBehaviour {
     float timeWalking;
 
     bool isRunning = false;
-    bool isCrouching = false;
     bool isWalking = false;
     bool isGrounded;
     bool canMove = true;
@@ -105,9 +104,6 @@ public class FPSController : MonoBehaviour {
             case MovementState.sprinting:
                 currentSpeed = sprintingSpeed;
                 break;
-            case MovementState.crouching:
-                currentSpeed = crouchSpeed;
-                break;
         }
 
         if (isGrounded) {
@@ -152,46 +148,28 @@ public class FPSController : MonoBehaviour {
                 loopedSoundsSource.clip = runSound;
                 isRunning = true;
                 isWalking = false;
-                isCrouching = false;
             }
             else if (Input.GetKeyUp(sprintKey)) {
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
-                isCrouching = false;
-            }
-
-            if (Input.GetKeyDown(crouchKey) && !isCrouching) {
-                loopedSoundsSource.clip = walkSound;
-                isRunning = false;
-                isWalking = false;
-                isCrouching = true;
-            }
-            else if (Input.GetKeyDown(crouchKey) && isCrouching) {
-                loopedSoundsSource.clip = jogSound;
-                isRunning = false;
-                isWalking = false;
-                isCrouching = false;
             }
 
             if (Input.GetKey(walkKey)) {
                 loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = true;
-                isCrouching = false;
             }
             else if (Input.GetKeyUp(walkKey)) {
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
-                isCrouching = false;
             }
 
             if (Input.GetKeyDown(jumpKey)) {
                 sfxSource.Play();
                 isRunning = false;
                 isWalking = false;
-                isCrouching = false;
                 isJumping = true;
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
@@ -199,24 +177,18 @@ public class FPSController : MonoBehaviour {
 
     }
     void SetMovementState() {
-        if (!isCrouching && !isWalking && !isRunning) {
+        if (!isWalking && !isRunning) {
             movementState = MovementState.jogging;
         }
-        else if (isCrouching && !isWalking && !isRunning) {
-            movementState = MovementState.crouching;
-        }
-        else if (!isCrouching && isWalking && !isRunning) {
+        else if (isWalking && !isRunning) {
             movementState = MovementState.walking;
         }
-        else if (!isCrouching && !isWalking && isRunning) {
+        else if (!isWalking && isRunning) {
             movementState = MovementState.sprinting;
         }
     }
 
     #region GETTERS
-    public bool GetIsCrouching() {
-        return isCrouching;
-    }
     public bool GetIsRunning() {
         return isRunning;
     }
@@ -242,9 +214,6 @@ public class FPSController : MonoBehaviour {
     #endregion
 
     #region Setters
-    public void SetIsCrounching(bool value) {
-        isCrouching = value;
-    }
     public void SetCanMove(bool value) {
         canMove = value;
     }
