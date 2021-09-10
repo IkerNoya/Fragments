@@ -8788,11 +8788,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2561618473540768732, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: noAmmoSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1eb5385b3ca3c3a4f8c244666d77fbb8, type: 3}
+    - target: {fileID: 2561618473540768732, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: shootSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b0563cb902e80824bbff708f35efc3e6, type: 3}
+    - target: {fileID: 2561618473540768732, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: shootSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 237608208ee8edc4cb6850b75d1428cf, type: 3}
     - target: {fileID: 4921382373780152697, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5446929557316321859, guid: baa488c0a985e4d45b3d6e8d200a3cfe,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 5c3ff817a57ad6342b3c9a85ae77fc28,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa488c0a985e4d45b3d6e8d200a3cfe, type: 3}
 --- !u!23 &1506305488212442601
