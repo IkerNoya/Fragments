@@ -38,6 +38,7 @@ public class Weapon_Base : MonoBehaviour {
 
     bool canShoot = true;
     float shootTimer = 0;
+    
 
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;

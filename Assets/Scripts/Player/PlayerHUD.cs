@@ -13,9 +13,11 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] GameObject lowAmmoTextObj;
     [SerializeField] TextMeshProUGUI lowAmmoText;
     [SerializeField] GameObject ReloadText;
-    [SerializeField] GameObject ReloadButtonText;
     [SerializeField] GameObject crosshair;
 
+    PlayerController player; // TEMPORAL; QUITAR DESPUES PORFAVOR ES URGENTE EL QUITAR ESTO; NO DEJAR ACA
+
+    bool isAboutToInteract = false;
     private void Start() {
         SetDoorTextActive(false);
         SetPickupTextActive(false);
@@ -36,8 +38,10 @@ public class PlayerHUD : MonoBehaviour
             lowAmmoText.text = "LOW AMMO";
             if (actualAmmo <= 0) {
                 crosshair.SetActive(false);
-                ReloadText.SetActive(true);
-                ReloadButtonText.SetActive(true);
+                if (!isAboutToInteract)
+                {
+                    ReloadText.SetActive(true);
+                }
                 lowAmmoText.text = "NO AMMO";
             }
         }
@@ -45,8 +49,15 @@ public class PlayerHUD : MonoBehaviour
             lowAmmoTextObj.SetActive(false);
             crosshair.SetActive(true);
             ReloadText.SetActive(false);
-            ReloadButtonText.SetActive(false);
         }
+    }
+    public bool GetInteractBool()
+    {
+        return isAboutToInteract;
+    }
+    public void SetInteractBool(bool value)
+    {
+        isAboutToInteract = value;
     }
 
 }

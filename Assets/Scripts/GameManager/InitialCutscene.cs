@@ -41,4 +41,5 @@ public class InitialCutscene : MonoBehaviour
     {
         endInitialCutscene?.Invoke(true);
     }
+
 }
