@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         navMesh.SetDestination(player.transform.position);
         deathEffect = meshRenderer.material;
-        deathValue = deathEffect.GetFloat("_DissolveY");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -80,9 +79,12 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator DissolveEffect() {
-        while (deathValue >= 0) {
+        deathEffect.SetFloat("_DissolveY", transform.position.y + 10);
+        deathValue = deathEffect.GetFloat("_DissolveY");
+        while (deathValue > -1) {
             deathValue -= Time.deltaTime * dissolveSpeed;
             deathEffect.SetFloat("_DissolveY", deathValue);
+            Debug.Log(deathValue);
             yield return null;
         }
 
