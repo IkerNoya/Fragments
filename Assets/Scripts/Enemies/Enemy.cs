@@ -50,6 +50,11 @@ public class Enemy : MonoBehaviour
         }
 
         navMesh.enabled = true;
+
+        //if (navMesh.isOnOffMeshLink)
+        //    navMesh.updateRotation = false;
+        //else 
+        //    navMesh.updateRotation = true;
     }
 
     private void FixedUpdate() {
@@ -58,8 +63,8 @@ public class Enemy : MonoBehaviour
 
         if (isDead)
             return;
-
-        navMesh.SetDestination(player.transform.position);
+        if(navMesh.CalculatePath(player.transform.position, navMesh.path))
+            navMesh.SetDestination(player.transform.position);
     }
 
     public void Hit(float dmg) {
