@@ -51,10 +51,6 @@ public class Enemy : MonoBehaviour
 
         navMesh.enabled = true;
 
-        //if (navMesh.isOnOffMeshLink)
-        //    navMesh.updateRotation = false;
-        //else 
-        //    navMesh.updateRotation = true;
     }
 
     private void FixedUpdate() {
@@ -89,7 +85,6 @@ public class Enemy : MonoBehaviour
         while (deathValue > -1) {
             deathValue -= Time.deltaTime * dissolveSpeed;
             deathEffect.SetFloat("_DissolveY", deathValue);
-            Debug.Log(deathValue);
             yield return null;
         }
 

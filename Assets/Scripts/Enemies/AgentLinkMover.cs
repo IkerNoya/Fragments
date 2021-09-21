@@ -45,7 +45,6 @@ public class AgentLinkMover : MonoBehaviour
         if (!isRotating)
             return;
         timer += Time.deltaTime;
-        Debug.Log(timer);
     }
 
     IEnumerator Walk(NavMeshAgent agent)
