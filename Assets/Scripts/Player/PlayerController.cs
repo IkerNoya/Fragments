@@ -86,8 +86,10 @@ public class PlayerController : MonoBehaviour {
                     if (d != null) {
                         List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
                         if (d.GetClosedDoor()) {
+                            d.SetLockedSound();
                             for (int i = 0; i < keyListAux.Count; i++)
                                 if (d.TryOpenDoor(keyListAux[i])) {
+                                    d.SetUnlockedDoorSound();
                                     d.OpenDoor();
                                     keyListAux[i].UseKey();
                                     keyListAux.RemoveAt(i);

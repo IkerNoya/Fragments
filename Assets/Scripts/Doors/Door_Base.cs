@@ -11,20 +11,26 @@ public class Door_Base : MonoBehaviour {
     [SerializeField] AudioClip openDoor;
     [SerializeField] AudioClip lockedDoor;
     [SerializeField] AudioSource source;
-
+    [Header("Meme")]
+    [SerializeField] bool cursedDoor = false;
     Quaternion newRotation = Quaternion.identity;
+
+
 
     bool isDoorOpening = false;
     void Start()
     {
-        newRotation = Quaternion.Euler(transform.parent.rotation.x, doorRotation, transform.parent.rotation.z);
+        newRotation = Quaternion.Euler(transform.rotation.x, doorRotation, transform.rotation.z);
     }
     void Update()
     {
         if (!isDoorOpening)
             return;
+        if(!cursedDoor)
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * openingSpeed);
+        else
+            transform.parent.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * openingSpeed);
 
-        transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, newRotation, Time.deltaTime * openingSpeed);
 
     }
     public bool TryOpenDoor(Door_Key key) {
@@ -40,7 +46,11 @@ public class Door_Base : MonoBehaviour {
     }
 
     public void OpenDoor() {
-        source.clip = openDoor;
+        if (keyNecesaryToOpenDoor)
+            source.clip = openDoor;
+        else
+            source.clip = lockedDoor;
+
         source.Play();
         closedDoor = false;
         isDoorOpening = true;
@@ -56,5 +66,12 @@ public class Door_Base : MonoBehaviour {
     {
         source.Play();
     }
-
+    public void SetLockedSound()
+    {
+        source.clip = lockedDoor;
+    }
+    public void SetUnlockedDoorSound()
+    {
+        source.clip = openDoor;
+    }
 }

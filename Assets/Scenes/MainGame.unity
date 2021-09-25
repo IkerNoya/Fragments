@@ -283,6 +283,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1058473754}
+  cursedDoor: 0
 --- !u!1001 &18683188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1429,7 +1430,7 @@ GameObject:
   - component: {fileID: 154297669}
   - component: {fileID: 154297671}
   m_Layer: 11
-  m_Name: Door_Right
+  m_Name: Door_Left
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1566,6 +1567,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1118739922}
+  cursedDoor: 0
 --- !u!65 &154297671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2545,6 +2547,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 417574345}
+  cursedDoor: 0
 --- !u!64 &422708852
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3258,6 +3261,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 417574345}
+  cursedDoor: 0
 --- !u!1 &484289696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5940,6 +5944,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1058473754}
+  cursedDoor: 0
 --- !u!1 &1064761238
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,7 +6269,7 @@ GameObject:
   - component: {fileID: 1118739922}
   - component: {fileID: 1118739924}
   m_Layer: 11
-  m_Name: Door_Left
+  m_Name: Door_Right
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6401,6 +6406,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1118739922}
+  cursedDoor: 0
 --- !u!65 &1118739924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6602,6 +6608,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1139245348}
+  cursedDoor: 0
 --- !u!65 &1139245347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8182,6 +8189,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 417574345}
+  cursedDoor: 0
 --- !u!1001 &1672671114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10098,6 +10106,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1139245348}
+  cursedDoor: 0
 --- !u!65 &2011124662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10772,6 +10781,7 @@ MonoBehaviour:
   openDoor: {fileID: 8300000, guid: 8579a835b3df25f4596e1f5eb3e81ba0, type: 3}
   lockedDoor: {fileID: 8300000, guid: 26c8bf852a337724d9e57f001f2b85d8, type: 3}
   source: {fileID: 1058473754}
+  cursedDoor: 0
 --- !u!64 &2105117275
 MeshCollider:
   m_ObjectHideFlags: 0
