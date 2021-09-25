@@ -23942,11 +23942,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  stairMask:
+    serializedVersion: 2
+    m_Bits: 0
   groundDistance: 0.4
   standardSpeed: 4
   walkingSpeed: 3
-  crouchSpeed: 2
   sprintingSpeed: 7
+  acceleration: 10
   jumpForce: 7
   gravity: -9.8
   gravityScale: 2

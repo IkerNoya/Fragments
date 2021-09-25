@@ -8,12 +8,13 @@ public class FPSController : MonoBehaviour {
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask stairMask;
     [SerializeField] float groundDistance;
     [Header("Movement Data")]
     [SerializeField] float standardSpeed;
     [SerializeField] float walkingSpeed;
-    [SerializeField] float crouchSpeed;
     [SerializeField] float sprintingSpeed;
+    [SerializeField] float acceleration;
     [Header("Jump Data")]
     [SerializeField] float jumpForce;
     [Header("Physics Data")]
@@ -36,7 +37,7 @@ public class FPSController : MonoBehaviour {
     AudioClip currentMovementAudio;
 
     public enum MovementState {
-        jogging, walking, crouching, sprinting
+        jogging, walking, sprinting, inAir
     }
 
     Rigidbody rb;
@@ -44,13 +45,18 @@ public class FPSController : MonoBehaviour {
     MovementState movementState;
 
     float currentSpeed;
+    float lastSpeed;
+    float startTime;
     float timeWalking;
+    float accelerationTime = 0;
 
     bool isRunning = false;
     bool isWalking = false;
     bool isGrounded;
+    bool isInStair;
     bool canMove = true;
     bool isJumping = false; // tal vez lo usemos despues
+    bool setStartTimeAndSpeed = false;
 
     Vector2 xMovement = Vector2.zero;
     Vector2 zMovement = Vector2.zero;
@@ -89,32 +95,38 @@ public class FPSController : MonoBehaviour {
 
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isInStair = Physics.CheckSphere(groundCheck.position, groundDistance, stairMask);
 
         if (!canMove)
             return;
 
+        SetSpeedFromMovementState();
 
-        switch (movementState) {
-            case MovementState.jogging:
-                currentSpeed = standardSpeed;
-                break;
-            case MovementState.walking:
-                currentSpeed = walkingSpeed;
-                break;
-            case MovementState.sprinting:
-                currentSpeed = sprintingSpeed;
-                break;
-        }
-
-        if (isGrounded) {
+        if (isGrounded)
+        {
             isJumping = false;
             xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
             zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
         }
 
+        if(isGrounded && ((Mathf.Abs(xMovement.x) > 0  || Mathf.Abs(xMovement.y) > 0) || (Mathf.Abs(zMovement.x) > 0 || Mathf.Abs(zMovement.y) > 0)))
+            accelerationTime += Time.deltaTime;
+        else if(isGrounded && !((Mathf.Abs(xMovement.x) > 0 || Mathf.Abs(xMovement.y) > 0) || (Mathf.Abs(zMovement.x) > 0 || Mathf.Abs(zMovement.y) > 0)))
+        {
+            accelerationTime = 0;
+            currentSpeed = 0;
+            lastSpeed = 0;
+            startTime = 0;
+        }
+
+        if(currentSpeed < 0.5f)
+        {
+            lastSpeed = 0;
+            startTime = 0;
+        }
+        
         velocity = (xMovement + zMovement).normalized * currentSpeed;
 
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
 
         if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded) {
             loopedSoundsSource.Play();
@@ -136,31 +148,53 @@ public class FPSController : MonoBehaviour {
         if (gamePaused)
             return;
 
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
+
         if (!isGrounded) {
             Vector3 gravity = this.gravity * gravityScale * Vector3.up;
             rb.AddForce(gravity, ForceMode.Acceleration);
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+    }
+
     void Inputs() {
         if (isGrounded) {
-            if (Input.GetKey(sprintKey)) {
+
+            //Check if i just pressed the button once to set physics values
+            if (Input.GetKeyDown(sprintKey))
+            {
                 loopedSoundsSource.clip = runSound;
+                setStartTimeAndSpeed = false;
+            }
+            if (Input.GetKeyDown(walkKey))
+            {
+                loopedSoundsSource.clip = walkSound;
+                setStartTimeAndSpeed = false;
+            }
+
+
+            if (Input.GetKey(sprintKey)) {
                 isRunning = true;
                 isWalking = false;
             }
             else if (Input.GetKeyUp(sprintKey)) {
+                setStartTimeAndSpeed = false;
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
             }
 
             if (Input.GetKey(walkKey)) {
-                loopedSoundsSource.clip = walkSound;
                 isRunning = false;
                 isWalking = true;
             }
             else if (Input.GetKeyUp(walkKey)) {
+                setStartTimeAndSpeed = false;
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
                 isWalking = false;
@@ -176,6 +210,63 @@ public class FPSController : MonoBehaviour {
         }
 
     }
+
+    void SetSpeedFromMovementState()
+    {
+        //MRUV / UAM Formula = vf = am * (tf - ti) + vi
+
+        switch (movementState)
+        {
+            case MovementState.jogging:
+                if (!setStartTimeAndSpeed)
+                {
+                    startTime = accelerationTime;
+                    lastSpeed = currentSpeed;
+                    setStartTimeAndSpeed = true;
+                }
+
+                if (currentSpeed < standardSpeed - 0.3f)
+                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
+                else if (currentSpeed > standardSpeed + 0.5f)
+                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
+                else
+                    currentSpeed = standardSpeed;
+                break;
+
+            case MovementState.walking:
+                if (!setStartTimeAndSpeed)
+                {
+                    startTime = accelerationTime;
+                    lastSpeed = currentSpeed;
+                    setStartTimeAndSpeed = true;
+                }
+
+                if (currentSpeed < walkingSpeed - 0.3f)
+                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
+                else if (currentSpeed > walkingSpeed + 0.5f)
+                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
+                else
+                    currentSpeed = walkingSpeed;
+                break;
+
+            case MovementState.sprinting:
+                if (!setStartTimeAndSpeed)
+                {
+                    startTime = accelerationTime;
+                    lastSpeed = currentSpeed;
+                    setStartTimeAndSpeed = true;
+                }
+
+                if (currentSpeed < sprintingSpeed - 0.3f)
+                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
+                else if (currentSpeed > sprintingSpeed + 0.5f)
+                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
+                else
+                    currentSpeed = sprintingSpeed;
+                break;
+        }
+    }
+
     void SetMovementState() {
         if (!isWalking && !isRunning) {
             movementState = MovementState.jogging;
@@ -186,9 +277,11 @@ public class FPSController : MonoBehaviour {
         else if (!isWalking && isRunning) {
             movementState = MovementState.sprinting;
         }
+        else if(!isGrounded && !isInStair){
+            movementState = MovementState.inAir;
+        }
     }
 
-    #region GETTERS
     public bool GetIsRunning() {
         return isRunning;
     }
@@ -211,15 +304,11 @@ public class FPSController : MonoBehaviour {
     {
         return gamePaused;
     }
-    #endregion
 
-    #region Setters
     public void SetCanMove(bool value) {
         canMove = value;
     }
     void SetGamePause(bool value) {
         gamePaused = value;
     }
-
-    #endregion
 }
