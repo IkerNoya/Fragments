@@ -113,14 +113,6 @@ public class FPSController : MonoBehaviour
         if (isGrounded && velocity.y < 0)
             velocity.y = -2;
 
-        if ((Mathf.Abs(controller.velocity.x) > 0.5f || Mathf.Abs(controller.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded)
-        {
-            loopedSoundsSource.Play();
-        }
-        else if (((Mathf.Abs(controller.velocity.x) <= 0.5f && Mathf.Abs(controller.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded)
-        {
-            loopedSoundsSource.Stop();
-        }
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
             timeWalking += Time.deltaTime;
@@ -149,21 +141,13 @@ public class FPSController : MonoBehaviour
         SetSpeedFromMovementState();
 
 
-        if (currentSpeed > sprintingSpeed) currentSpeed = sprintingSpeed;
-        if ((isGrounded || isInStair) && ((Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0) || (Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0)))
-            accelerationTime += Time.deltaTime;
-        else if ((isGrounded || isInStair) && !((Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0) || (Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0)))
+        if ((Mathf.Abs(movement.x) > 0.5f || Mathf.Abs(movement.z) > 0.5f) && !loopedSoundsSource.isPlaying && (isGrounded || isInStair))
         {
-            accelerationTime = 0;
-            currentSpeed = 0;
-            lastSpeed = 0;
-            startTime = 0;
+            loopedSoundsSource.Play();
         }
-
-        if (currentSpeed < 0.5f)
+        else if (((Mathf.Abs(movement.x) <= 0.5f && Mathf.Abs(movement.z) <= 0.5f) && loopedSoundsSource.isPlaying) || (!isGrounded && !isInStair))
         {
-            lastSpeed = 0;
-            startTime = 0;
+            loopedSoundsSource.Stop();
         }
 
         controller.Move(movement.normalized * Mathf.Abs(currentSpeed) * Time.deltaTime);
@@ -224,11 +208,13 @@ public class FPSController : MonoBehaviour
         switch (movementState)
         {
             case MovementState.jogging:
-                    currentSpeed = standardSpeed;
+                if (!isInStair) currentSpeed = standardSpeed;
+                else currentSpeed = standardSpeed * 0.5f;
                 break;
 
             case MovementState.sprinting:
-                    currentSpeed = sprintingSpeed;
+                if (!isInStair) currentSpeed = sprintingSpeed;
+                else currentSpeed = sprintingSpeed * 0.5f;
                 break;
         }
     }
@@ -274,6 +260,10 @@ public class FPSController : MonoBehaviour
     {
         return canMove;
     }
+    public bool GetIsInStair()
+    {
+        return isInStair;
+    }
     public float GetTimeWalking()
     {
         return timeWalking;
@@ -296,9 +286,4 @@ public class FPSController : MonoBehaviour
         gamePaused = value;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
-    }
 }
