@@ -6973,10 +6973,10 @@ MonoBehaviour:
   minimumHeadHeight: {fileID: 1864305397}
   defaultColliderHeight: 1.8
   headBobbingIntensity: 0.1
-  walkingHeadBobFrequency: 5
   joggingHeadBobFrequency: 7
   sprintingHeadBobFrequency: 8
   standingHeadBobVerticalAmplitude: 0.05
+  stairsHeadBobAmplitude: 0.15
   mouseLook: {fileID: 1020802206}
 --- !u!114 &1402661193
 MonoBehaviour:
