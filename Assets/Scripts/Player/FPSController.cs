@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Forces unity to create a rigidbody into object if missing
-[RequireComponent(typeof(Rigidbody))]
-public class FPSController : MonoBehaviour {
+public class FPSController : MonoBehaviour
+{
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask stairMask;
     [SerializeField] float groundDistance;
+    [SerializeField] float slopeDistance;
     [Header("Movement Data")]
+    [SerializeField] Transform orientation;
     [SerializeField] float standardSpeed;
-    [SerializeField] float walkingSpeed;
     [SerializeField] float sprintingSpeed;
     [SerializeField] float acceleration;
+    [SerializeField] float slopeForce;
     [Header("Jump Data")]
-    [SerializeField] float jumpForce;
+    [SerializeField] float jumpHeight;
     [Header("Physics Data")]
     [SerializeField] float gravity;
     [SerializeField] float gravityScale;
     [Header("Input Data")]
     [SerializeField] KeyCode jumpKey;
-    [SerializeField] KeyCode crouchKey;
-    [SerializeField] KeyCode walkKey;
     [SerializeField] KeyCode sprintKey;
     [Header("Audio Data")]
-    [SerializeField] AudioClip walkSound;
     [SerializeField] AudioClip jogSound;
     [SerializeField] AudioClip runSound;
     [SerializeField] AudioClip jumpSound;
@@ -36,11 +35,13 @@ public class FPSController : MonoBehaviour {
 
     AudioClip currentMovementAudio;
 
-    public enum MovementState {
-        jogging, walking, sprinting, inAir
+    public enum MovementState
+    {
+        jogging, sprinting, inAir
     }
 
-    Rigidbody rb;
+   // Rigidbody rb;
+    CharacterController controller;
 
     MovementState movementState;
 
@@ -49,89 +50,75 @@ public class FPSController : MonoBehaviour {
     float startTime;
     float timeWalking;
     float accelerationTime = 0;
+    float verticalInput;
+    float horizontalInput;
 
     bool isRunning = false;
-    bool isWalking = false;
     bool isGrounded;
     bool isInStair;
     bool canMove = true;
     bool isJumping = false; // tal vez lo usemos despues
     bool setStartTimeAndSpeed = false;
 
-    Vector2 xMovement = Vector2.zero;
-    Vector2 zMovement = Vector2.zero;
-    Vector2 velocity = Vector2.zero;
+    Vector3 forwardMovement = Vector3.zero;
+    Vector3 rightMovement = Vector3.zero;
+    Vector3 velocity = Vector3.zero;
+    Vector3 movement = Vector3.zero;
+    RaycastHit slopeHit;
+
 
     bool gamePaused = false;
 
     void Awake()
     {
-        InitialCutscene.initialCutscene += SetCanMove;    
-        InitialCutscene.endInitialCutscene += SetCanMove;    
+        InitialCutscene.initialCutscene += SetCanMove;
+        InitialCutscene.endInitialCutscene += SetCanMove;
         PauseController.SetPause += SetGamePause;
     }
 
 
-    void Start() {
-        rb = GetComponent<Rigidbody>();
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
         currentMovementAudio = jogSound;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         PauseController.SetPause -= SetGamePause;
         InitialCutscene.initialCutscene -= SetCanMove;
         InitialCutscene.endInitialCutscene -= SetCanMove;
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         PauseController.SetPause -= SetGamePause;
     }
 
-    void Update() {
-        if (gamePaused) {
+    void Update()
+    {
+        if (gamePaused)
+        {
             loopedSoundsSource.Stop();
             return;
         }
 
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isInStair = Physics.CheckSphere(groundCheck.position, groundDistance, stairMask);
+
 
         if (!canMove)
             return;
 
-        SetSpeedFromMovementState();
+        if (isGrounded && velocity.y < 0)
+            velocity.y = -2;
 
-        if (isGrounded)
+        if ((Mathf.Abs(controller.velocity.x) > 0.5f || Mathf.Abs(controller.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded)
         {
-            isJumping = false;
-            xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
-            zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
-        }
-
-        if(isGrounded && ((Mathf.Abs(xMovement.x) > 0  || Mathf.Abs(xMovement.y) > 0) || (Mathf.Abs(zMovement.x) > 0 || Mathf.Abs(zMovement.y) > 0)))
-            accelerationTime += Time.deltaTime;
-        else if(isGrounded && !((Mathf.Abs(xMovement.x) > 0 || Mathf.Abs(xMovement.y) > 0) || (Mathf.Abs(zMovement.x) > 0 || Mathf.Abs(zMovement.y) > 0)))
-        {
-            accelerationTime = 0;
-            currentSpeed = 0;
-            lastSpeed = 0;
-            startTime = 0;
-        }
-
-        if(currentSpeed < 0.5f)
-        {
-            lastSpeed = 0;
-            startTime = 0;
-        }
-        
-        velocity = (xMovement + zMovement).normalized * currentSpeed;
-
-
-        if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded) {
             loopedSoundsSource.Play();
         }
-        else if (((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded) {
+        else if (((Mathf.Abs(controller.velocity.x) <= 0.5f && Mathf.Abs(controller.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded)
+        {
             loopedSoundsSource.Stop();
         }
 
@@ -140,30 +127,58 @@ public class FPSController : MonoBehaviour {
         else
             timeWalking = 0;
 
+
+
+
+
         SetMovementState();
         Inputs();
+        Move();
     }
 
-    void FixedUpdate() {
-        if (gamePaused)
-            return;
-
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
-
-        if (!isGrounded) {
-            Vector3 gravity = this.gravity * gravityScale * Vector3.up;
-            rb.AddForce(gravity, ForceMode.Acceleration);
-        }
-    }
-
-    private void OnDrawGizmos()
+    void Move()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+        if (isGrounded || isInStair)
+        {
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            if(velocity.y <= 0) isJumping = false;
+        }
+
+        movement = transform.right * horizontalInput + transform.forward * verticalInput;
+        SetSpeedFromMovementState();
+
+
+        if (currentSpeed > sprintingSpeed) currentSpeed = sprintingSpeed;
+        if ((isGrounded || isInStair) && ((Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0) || (Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0)))
+            accelerationTime += Time.deltaTime;
+        else if ((isGrounded || isInStair) && !((Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0) || (Mathf.Abs(movement.x) > 0 || Mathf.Abs(movement.z) > 0)))
+        {
+            accelerationTime = 0;
+            currentSpeed = 0;
+            lastSpeed = 0;
+            startTime = 0;
+        }
+
+        if (currentSpeed < 0.5f)
+        {
+            lastSpeed = 0;
+            startTime = 0;
+        }
+
+        controller.Move(movement.normalized * Mathf.Abs(currentSpeed) * Time.deltaTime);
+
+        if (!isJumping && (verticalInput != 0 || horizontalInput != 0) && OnSlope())
+            controller.Move(Vector3.down * controller.height / 2 * slopeForce * Time.deltaTime);
+
+        velocity.y += (gravity * gravityScale) * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
-    void Inputs() {
-        if (isGrounded) {
+    void Inputs()
+    {
+        if (isGrounded || isInStair)
+        {
 
             //Check if i just pressed the button once to set physics values
             if (Input.GetKeyDown(sprintKey))
@@ -171,133 +186,100 @@ public class FPSController : MonoBehaviour {
                 loopedSoundsSource.clip = runSound;
                 setStartTimeAndSpeed = false;
             }
-            if (Input.GetKeyDown(walkKey))
+            if (Input.GetKey(sprintKey))
             {
-                loopedSoundsSource.clip = walkSound;
-                setStartTimeAndSpeed = false;
-            }
-
-
-            if (Input.GetKey(sprintKey)) {
                 isRunning = true;
-                isWalking = false;
             }
-            else if (Input.GetKeyUp(sprintKey)) {
+            else if (Input.GetKeyUp(sprintKey))
+            {
                 setStartTimeAndSpeed = false;
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
-                isWalking = false;
             }
 
-            if (Input.GetKey(walkKey)) {
-                isRunning = false;
-                isWalking = true;
-            }
-            else if (Input.GetKeyUp(walkKey)) {
-                setStartTimeAndSpeed = false;
-                loopedSoundsSource.clip = jogSound;
-                isRunning = false;
-                isWalking = false;
-            }
-
-            if (Input.GetKeyDown(jumpKey)) {
-                sfxSource.Play();
-                isRunning = false;
-                isWalking = false;
-                isJumping = true;
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            if (Input.GetKeyDown(jumpKey))
+            {
+                Jump();
             }
         }
 
     }
 
+    void Jump()
+    {
+        if (Input.GetKeyDown(jumpKey) && !isJumping)
+        {
+            sfxSource.Play();
+            isRunning = false;
+            isJumping = true;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * (gravity * gravityScale)); // result = sqrt(h * -2 * g)
+        }
+    }
+
+
+
     void SetSpeedFromMovementState()
     {
-        //MRUV / UAM Formula = vf = am * (tf - ti) + vi
 
         switch (movementState)
         {
             case MovementState.jogging:
-                if (!setStartTimeAndSpeed)
-                {
-                    startTime = accelerationTime;
-                    lastSpeed = currentSpeed;
-                    setStartTimeAndSpeed = true;
-                }
-
-                if (currentSpeed < standardSpeed - 0.3f)
-                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
-                else if (currentSpeed > standardSpeed + 0.5f)
-                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
-                else
                     currentSpeed = standardSpeed;
                 break;
 
-            case MovementState.walking:
-                if (!setStartTimeAndSpeed)
-                {
-                    startTime = accelerationTime;
-                    lastSpeed = currentSpeed;
-                    setStartTimeAndSpeed = true;
-                }
-
-                if (currentSpeed < walkingSpeed - 0.3f)
-                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
-                else if (currentSpeed > walkingSpeed + 0.5f)
-                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
-                else
-                    currentSpeed = walkingSpeed;
-                break;
-
             case MovementState.sprinting:
-                if (!setStartTimeAndSpeed)
-                {
-                    startTime = accelerationTime;
-                    lastSpeed = currentSpeed;
-                    setStartTimeAndSpeed = true;
-                }
-
-                if (currentSpeed < sprintingSpeed - 0.3f)
-                    currentSpeed = acceleration * (accelerationTime - startTime) + lastSpeed;
-                else if (currentSpeed > sprintingSpeed + 0.5f)
-                    currentSpeed = -acceleration * (accelerationTime - startTime) + lastSpeed;
-                else
                     currentSpeed = sprintingSpeed;
                 break;
         }
     }
 
-    void SetMovementState() {
-        if (!isWalking && !isRunning) {
+    void SetMovementState()
+    {
+        if (!isRunning)
+        {
             movementState = MovementState.jogging;
         }
-        else if (isWalking && !isRunning) {
-            movementState = MovementState.walking;
-        }
-        else if (!isWalking && isRunning) {
+        else if (isRunning)
+        {
             movementState = MovementState.sprinting;
         }
-        else if(!isGrounded && !isInStair){
+        else if (!isGrounded && !isInStair)
+        {
             movementState = MovementState.inAir;
         }
     }
 
-    public bool GetIsRunning() {
+    bool OnSlope()
+    {
+        if (isJumping) return false;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (controller.height * 0.5f) * slopeDistance))
+        {
+            if (slopeHit.normal != Vector3.up)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool GetIsRunning()
+    {
         return isRunning;
     }
-    public bool GetIsWalking() {
-        return isWalking;
-    }
-    public bool GetIsGrounded() {
+    public bool GetIsGrounded()
+    {
         return isGrounded;
     }
-    public bool GetCanMove() {
+    public bool GetCanMove()
+    {
         return canMove;
     }
-    public float GetTimeWalking() {
+    public float GetTimeWalking()
+    {
         return timeWalking;
     }
-    public MovementState GetMovementState() {
+    public MovementState GetMovementState()
+    {
         return movementState;
     }
     public bool GetPauseState()
@@ -305,10 +287,18 @@ public class FPSController : MonoBehaviour {
         return gamePaused;
     }
 
-    public void SetCanMove(bool value) {
+    public void SetCanMove(bool value)
+    {
         canMove = value;
     }
-    void SetGamePause(bool value) {
+    void SetGamePause(bool value)
+    {
         gamePaused = value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 }

@@ -55,7 +55,7 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0, transform.localRotation.eulerAngles.z);
 
         if (body != null)
-            body.Rotate(Vector3.up * mouseX);
+            body.Rotate(Vector3.up * mouseX);   
     }
     public void AddRecoil(float vertical, float horizontal)
     {

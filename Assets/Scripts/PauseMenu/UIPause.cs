@@ -21,18 +21,18 @@ public class UIPause : MonoBehaviour
         verticalSensitivity.value = ml.GetVerticalSensitivity();
         horizontalSensitivity.value = ml.GetHorizontalSensitivity();
 
-        verticalValue.text = ((int)ml.GetVerticalSensitivity() / 10).ToString();
-        horizontalValue.text = ((int)ml.GetHorizontalSensitivity() / 10).ToString();
+        verticalValue.text = ((int)ml.GetVerticalSensitivity()).ToString();
+        horizontalValue.text = ((int)ml.GetHorizontalSensitivity()).ToString();
     }
     public void OnVerticalSliderValueChange()
     {
         ml.SetVerticalSensitivity(verticalSensitivity.value);
-        verticalValue.text = ((int)ml.GetVerticalSensitivity() / 10).ToString();
+        verticalValue.text = ((int)ml.GetVerticalSensitivity()).ToString();
     }
     public void OnHorizontalSliderValueChange()
     {
         ml.SetHorizontalSensitivity(horizontalSensitivity.value);
-        horizontalValue.text = ((int)ml.GetHorizontalSensitivity() / 10).ToString();
+        horizontalValue.text = ((int)ml.GetHorizontalSensitivity()).ToString();
     }
     public void OnClickOptions()
     {

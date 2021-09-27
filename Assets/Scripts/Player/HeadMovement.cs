@@ -72,10 +72,6 @@ public class HeadMovement : MonoBehaviour
 
         switch (player.GetMovementState())
         {
-            case FPSController.MovementState.walking:
-                hBobFrequency = walkingHeadBobFrequency;
-                hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
-                break;
             case FPSController.MovementState.jogging:
                 hBobFrequency = joggingHeadBobFrequency;
                 hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
