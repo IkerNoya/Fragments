@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip deathSound;
+    [SerializeField] ParticleSystem hitParticles;
 
     [SerializeField] float health;
     [SerializeField] float speed;
@@ -63,17 +64,23 @@ public class Enemy : MonoBehaviour
             navMesh.SetDestination(player.transform.position);
     }
 
-    public void Hit(float dmg) {
+    public void Hit(float dmg, Vector3 hitPos, Vector3 attackerPos) {
+        hitParticles.transform.position = hitPos;
+        hitParticles.transform.LookAt(attackerPos);
+        hitParticles.Play();
+
         if (isDead)
             return;
         health -= dmg;
+
+
         if(health <= 0) {
             navMesh.enabled = false;
             rb.isKinematic = false;
             rb.useGravity = true;
             source.PlayOneShot(deathSound);
             isDead = true;
-            Destroy(this.gameObject, 10f);
+            Destroy(this.gameObject, 6.73f);
             meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
             StartCoroutine(DissolveEffect());
         }

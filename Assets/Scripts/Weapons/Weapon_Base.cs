@@ -117,7 +117,7 @@ public class Weapon_Base : MonoBehaviour {
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
                 {
-                    e.Hit(damage);
+                    e.Hit(damage, hit.point + (hit.normal * 0.1f), transform.position);
                     if (e.GetHealth() <= 0)
                     {
                         e.GetRigidBody().AddForceAtPosition((hit.transform.position - transform.position).normalized * 5, hit.transform.position, ForceMode.VelocityChange);
