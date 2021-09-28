@@ -1996,8 +1996,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -3913,6 +3913,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 3107414238760168769, guid: d1591c282a649b143a1bf507395b2106,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 922a76c13a8153f4fbfd323c66e92b17, type: 2}
     - target: {fileID: 3305541962941821760, guid: d1591c282a649b143a1bf507395b2106,
         type: 3}
       propertyPath: m_Layer
@@ -3923,6 +3928,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4483929392478187706, guid: d1591c282a649b143a1bf507395b2106,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 922a76c13a8153f4fbfd323c66e92b17, type: 2}
     - target: {fileID: 7108007954183848480, guid: d1591c282a649b143a1bf507395b2106,
         type: 3}
       propertyPath: m_Layer
@@ -3932,7 +3942,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 95a903870016f4b468ea3abc323d6f81, type: 2}
+      objectReference: {fileID: 2100000, guid: 922a76c13a8153f4fbfd323c66e92b17, type: 2}
+    - target: {fileID: 7934364880269837382, guid: d1591c282a649b143a1bf507395b2106,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 922a76c13a8153f4fbfd323c66e92b17, type: 2}
     - target: {fileID: 8664474423771359560, guid: d1591c282a649b143a1bf507395b2106,
         type: 3}
       propertyPath: m_Layer
@@ -9250,8 +9265,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
