@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3679733398222391277}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: silla_Victoriana01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7000295677639405313}
   - component: {fileID: 293514471156979318}
   - component: {fileID: 3072972859714112027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tablones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1422105163077721290}
   - component: {fileID: 5289317441321006729}
   - component: {fileID: 1276792944029507133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: espalda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 8393728524681664215}
   - component: {fileID: 4475257585372504324}
   - component: {fileID: 6070371578988802002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tabla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 6425003706467094753}
   - component: {fileID: 4173084863610503209}
   - component: {fileID: 7938288134125906152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: patas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,9 +401,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199768807414597931}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Silla01_GEO
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

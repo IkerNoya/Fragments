@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6110295799990227615}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sillon_individual01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,9 +43,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5909206261652339559}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Sillon03_GEO
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6434068705318887901}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.17, y: 0.42, z: 9.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5347847250195435060}
   - component: {fileID: 6694528483374785400}
   - component: {fileID: 7047500248685979671}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: almohadones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,8 @@ GameObject:
   - component: {fileID: 2114505195726035357}
   - component: {fileID: 7861205910776226151}
   - component: {fileID: 2052034027872904049}
-  m_Layer: 0
+  - component: {fileID: 1546865817}
+  m_Layer: 8
   m_Name: almohadon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,6 +224,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1546865817
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455839694114563492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1056490908694751659, guid: 5b6f7198a723a4d4a990894b649485e1, type: 3}
 --- !u!1 &8503889289150302777
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +249,7 @@ GameObject:
   - component: {fileID: 1382797108428287376}
   - component: {fileID: 3266919852141774613}
   - component: {fileID: 8060680717108927648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: patas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +328,8 @@ GameObject:
   - component: {fileID: 8749520702614953523}
   - component: {fileID: 7195345456518403567}
   - component: {fileID: 2437041402712372415}
-  m_Layer: 0
+  - component: {fileID: 1546865816}
+  m_Layer: 8
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,3 +397,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1546865816
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611976631445766924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1388485733357891733, guid: 5b6f7198a723a4d4a990894b649485e1, type: 3}

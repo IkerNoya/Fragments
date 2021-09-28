@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2539108199119826804}
   - component: {fileID: 3859645071360150857}
   - component: {fileID: 6970229331235689550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: respaldo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3547786809200016428}
   - component: {fileID: 1753106526284175795}
   - component: {fileID: 4793439450123137262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,9 +167,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3265424093361405270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Sillon01_GEO
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 7342193308958085182}
   - component: {fileID: 8944748652029170235}
   - component: {fileID: 9105728990739863309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: almohada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 7345682153183003616}
   - component: {fileID: 1445468673037810981}
   - component: {fileID: 3234676570114882371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: patas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 7664785346201073075}
   - component: {fileID: 2531177060157313903}
   - component: {fileID: 2712002164874621382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: almoadon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8854370765811102960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sillon_victoriano01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
