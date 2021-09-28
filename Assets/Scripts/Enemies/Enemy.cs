@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
             rb.useGravity = true;
             source.PlayOneShot(deathSound);
             isDead = true;
-            Destroy(this.gameObject, 10f);
+            Destroy(this.gameObject, 6.73f);
             meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
             StartCoroutine(DissolveEffect());
         }
