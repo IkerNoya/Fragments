@@ -19,14 +19,23 @@ public class HeadMovement : MonoBehaviour
     [SerializeField] MouseLook mouseLook;
 
     FPSController player;
+    Animator anim;
 
     float hBobFrequency;
     float hBobVerticalAmplitude;
     float axisDifference = 0.001f;
+    bool landing = false;
 
+
+    private void Awake()
+    {
+        FPSController.Land += Land;
+        HeadAnimationValues.IsLanding += SetLandingBool;
+    }
     void Start()
     {
         player = GetComponent<FPSController>();
+        anim = GetComponentInChildren<Animator>();
     }
     void Update()
     {
@@ -44,6 +53,10 @@ public class HeadMovement : MonoBehaviour
 
     void HeadBobbing()
     {
+        if (landing)
+            return;
+        
+
         Vector3 newHeadPosition;
         newHeadPosition = head.position + CalculateHeadBobOffset(player.GetTimeWalking());
 
@@ -96,6 +109,27 @@ public class HeadMovement : MonoBehaviour
         return offset;
     }
 
+    void Land(float value)
+    {
+        anim.SetTrigger("Land");
+        landing = true;
+
+    }
+    void SetLandingBool(bool value)
+    {
+        landing = value;
+    }
+
+    private void OnDisable()
+    {
+        FPSController.Land -= Land;
+        HeadAnimationValues.IsLanding -= SetLandingBool;
+    }
+    private void OnDestroy()
+    {
+        FPSController.Land -= Land;
+        HeadAnimationValues.IsLanding -= SetLandingBool;
+    }
 
 }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 //Forces unity to create a rigidbody into object if missing
@@ -67,6 +66,8 @@ public class FPSController : MonoBehaviour
     RaycastHit slopeHit;
 
 
+    public static event Action<float> Land;
+
     bool gamePaused = false;
 
     void Awake()
@@ -120,9 +121,6 @@ public class FPSController : MonoBehaviour
             timeWalking = 0;
 
 
-
-
-
         SetMovementState();
         Inputs();
         Move();
@@ -134,7 +132,11 @@ public class FPSController : MonoBehaviour
         {
             verticalInput = Input.GetAxisRaw("Vertical");
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            if(velocity.y <= 0) isJumping = false;
+            if (velocity.y <= 0 && isJumping)
+            {
+                Land?.Invoke(velocity.y);
+                isJumping = false;
+            }
         }
 
         movement = transform.right * horizontalInput + transform.forward * verticalInput;
