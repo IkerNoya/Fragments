@@ -1,31 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 //Forces unity to create a rigidbody into object if missing
-[RequireComponent(typeof(Rigidbody))]
-public class FPSController : MonoBehaviour {
+public class FPSController : MonoBehaviour
+{
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask stairMask;
     [SerializeField] float groundDistance;
+    [SerializeField] float slopeDistance;
     [Header("Movement Data")]
+    [SerializeField] Transform orientation;
     [SerializeField] float standardSpeed;
-    [SerializeField] float walkingSpeed;
-    [SerializeField] float crouchSpeed;
     [SerializeField] float sprintingSpeed;
+    [SerializeField] float acceleration;
+    [SerializeField] float slopeForce;
     [Header("Jump Data")]
-    [SerializeField] float jumpForce;
+    [SerializeField] float jumpHeight;
     [Header("Physics Data")]
     [SerializeField] float gravity;
     [SerializeField] float gravityScale;
     [Header("Input Data")]
     [SerializeField] KeyCode jumpKey;
-    [SerializeField] KeyCode crouchKey;
-    [SerializeField] KeyCode walkKey;
     [SerializeField] KeyCode sprintKey;
     [Header("Audio Data")]
-    [SerializeField] AudioClip walkSound;
     [SerializeField] AudioClip jogSound;
     [SerializeField] AudioClip runSound;
     [SerializeField] AudioClip jumpSound;
@@ -35,218 +34,258 @@ public class FPSController : MonoBehaviour {
 
     AudioClip currentMovementAudio;
 
-    public enum MovementState {
-        jogging, walking, crouching, sprinting
+    public enum MovementState
+    {
+        jogging, sprinting, inAir
     }
 
-    Rigidbody rb;
+   // Rigidbody rb;
+    CharacterController controller;
 
     MovementState movementState;
 
     float currentSpeed;
+    float lastSpeed;
+    float startTime;
     float timeWalking;
+    float accelerationTime = 0;
+    float verticalInput;
+    float horizontalInput;
 
     bool isRunning = false;
-    bool isCrouching = false;
-    bool isWalking = false;
     bool isGrounded;
+    bool isInStair;
     bool canMove = true;
     bool isJumping = false; // tal vez lo usemos despues
+    bool setStartTimeAndSpeed = false;
 
-    Vector2 xMovement = Vector2.zero;
-    Vector2 zMovement = Vector2.zero;
-    Vector2 velocity = Vector2.zero;
+    Vector3 forwardMovement = Vector3.zero;
+    Vector3 rightMovement = Vector3.zero;
+    Vector3 velocity = Vector3.zero;
+    Vector3 movement = Vector3.zero;
+    RaycastHit slopeHit;
+
+
+    public static event Action<float> Land;
 
     bool gamePaused = false;
 
     void Awake()
     {
-        InitialCutscene.initialCutscene += SetCanMove;    
-        InitialCutscene.endInitialCutscene += SetCanMove;    
+        InitialCutscene.initialCutscene += SetCanMove;
+        InitialCutscene.endInitialCutscene += SetCanMove;
         PauseController.SetPause += SetGamePause;
     }
 
 
-    void Start() {
-        rb = GetComponent<Rigidbody>();
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
         currentMovementAudio = jogSound;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         PauseController.SetPause -= SetGamePause;
         InitialCutscene.initialCutscene -= SetCanMove;
         InitialCutscene.endInitialCutscene -= SetCanMove;
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         PauseController.SetPause -= SetGamePause;
     }
 
-    void Update() {
-        if (gamePaused) {
+    void Update()
+    {
+        if (gamePaused)
+        {
             loopedSoundsSource.Stop();
             return;
         }
 
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isInStair = Physics.CheckSphere(groundCheck.position, groundDistance, stairMask);
+
 
         if (!canMove)
             return;
 
+        if (isGrounded && velocity.y < 0)
+            velocity.y = -2;
 
-        switch (movementState) {
-            case MovementState.jogging:
-                currentSpeed = standardSpeed;
-                break;
-            case MovementState.walking:
-                currentSpeed = walkingSpeed;
-                break;
-            case MovementState.sprinting:
-                currentSpeed = sprintingSpeed;
-                break;
-            case MovementState.crouching:
-                currentSpeed = crouchSpeed;
-                break;
-        }
-
-        if (isGrounded) {
-            isJumping = false;
-            xMovement = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
-            zMovement = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
-        }
-
-        velocity = (xMovement + zMovement).normalized * currentSpeed;
-
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
-
-        if ((Mathf.Abs(rb.velocity.x) > 0.5f || Mathf.Abs(rb.velocity.z) > 0.5f) && !loopedSoundsSource.isPlaying && isGrounded) {
-            loopedSoundsSource.Play();
-        }
-        else if (((Mathf.Abs(rb.velocity.x) <= 0.5f && Mathf.Abs(rb.velocity.z) <= 0.5f) && loopedSoundsSource.isPlaying) || !isGrounded) {
-            loopedSoundsSource.Stop();
-        }
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
             timeWalking += Time.deltaTime;
         else
             timeWalking = 0;
 
+
         SetMovementState();
         Inputs();
+        Move();
     }
 
-    void FixedUpdate() {
-        if (gamePaused)
-            return;
-
-        if (!isGrounded) {
-            Vector3 gravity = this.gravity * gravityScale * Vector3.up;
-            rb.AddForce(gravity, ForceMode.Acceleration);
+    void Move()
+    {
+        if (isGrounded || isInStair)
+        {
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (velocity.y <= 0 && isJumping)
+            {
+                Land?.Invoke(velocity.y);
+                isJumping = false;
+            }
         }
+
+        movement = transform.right * horizontalInput + transform.forward * verticalInput;
+        SetSpeedFromMovementState();
+
+
+        if ((Mathf.Abs(movement.x) > 0.5f || Mathf.Abs(movement.z) > 0.5f) && !loopedSoundsSource.isPlaying && (isGrounded || isInStair))
+        {
+            loopedSoundsSource.Play();
+        }
+        else if (((Mathf.Abs(movement.x) <= 0.5f && Mathf.Abs(movement.z) <= 0.5f) && loopedSoundsSource.isPlaying) || (!isGrounded && !isInStair))
+        {
+            loopedSoundsSource.Stop();
+        }
+
+        controller.Move(movement.normalized * Mathf.Abs(currentSpeed) * Time.deltaTime);
+
+        if (!isJumping && (verticalInput != 0 || horizontalInput != 0) && OnSlope())
+            controller.Move(Vector3.down * controller.height / 2 * slopeForce * Time.deltaTime);
+
+        velocity.y += (gravity * gravityScale) * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
-    void Inputs() {
-        if (isGrounded) {
-            if (Input.GetKey(sprintKey)) {
+    void Inputs()
+    {
+        if (isGrounded || isInStair)
+        {
+
+            //Check if i just pressed the button once to set physics values
+            if (Input.GetKeyDown(sprintKey))
+            {
                 loopedSoundsSource.clip = runSound;
+                setStartTimeAndSpeed = false;
+            }
+            if (Input.GetKey(sprintKey))
+            {
                 isRunning = true;
-                isWalking = false;
-                isCrouching = false;
             }
-            else if (Input.GetKeyUp(sprintKey)) {
+            else if (Input.GetKeyUp(sprintKey))
+            {
+                setStartTimeAndSpeed = false;
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
-                isWalking = false;
-                isCrouching = false;
             }
 
-            if (Input.GetKeyDown(crouchKey) && !isCrouching) {
-                loopedSoundsSource.clip = walkSound;
-                isRunning = false;
-                isWalking = false;
-                isCrouching = true;
-            }
-            else if (Input.GetKeyDown(crouchKey) && isCrouching) {
-                loopedSoundsSource.clip = jogSound;
-                isRunning = false;
-                isWalking = false;
-                isCrouching = false;
-            }
-
-            if (Input.GetKey(walkKey)) {
-                loopedSoundsSource.clip = walkSound;
-                isRunning = false;
-                isWalking = true;
-                isCrouching = false;
-            }
-            else if (Input.GetKeyUp(walkKey)) {
-                loopedSoundsSource.clip = jogSound;
-                isRunning = false;
-                isWalking = false;
-                isCrouching = false;
-            }
-
-            if (Input.GetKeyDown(jumpKey)) {
-                sfxSource.Play();
-                isRunning = false;
-                isWalking = false;
-                isCrouching = false;
-                isJumping = true;
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            if (Input.GetKeyDown(jumpKey))
+            {
+                Jump();
             }
         }
 
     }
-    void SetMovementState() {
-        if (!isCrouching && !isWalking && !isRunning) {
+
+    void Jump()
+    {
+        if (Input.GetKeyDown(jumpKey) && !isJumping)
+        {
+            sfxSource.Play();
+            isRunning = false;
+            isJumping = true;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * (gravity * gravityScale)); // result = sqrt(h * -2 * g)
+        }
+    }
+
+
+
+    void SetSpeedFromMovementState()
+    {
+
+        switch (movementState)
+        {
+            case MovementState.jogging:
+                if (!isInStair) currentSpeed = standardSpeed;
+                else currentSpeed = standardSpeed * 0.5f;
+                break;
+
+            case MovementState.sprinting:
+                if (!isInStair) currentSpeed = sprintingSpeed;
+                else currentSpeed = sprintingSpeed * 0.5f;
+                break;
+        }
+    }
+
+    void SetMovementState()
+    {
+        if (!isRunning)
+        {
             movementState = MovementState.jogging;
         }
-        else if (isCrouching && !isWalking && !isRunning) {
-            movementState = MovementState.crouching;
-        }
-        else if (!isCrouching && isWalking && !isRunning) {
-            movementState = MovementState.walking;
-        }
-        else if (!isCrouching && !isWalking && isRunning) {
+        else if (isRunning)
+        {
             movementState = MovementState.sprinting;
         }
+        else if (!isGrounded && !isInStair)
+        {
+            movementState = MovementState.inAir;
+        }
     }
 
-    #region GETTERS
-    public bool GetIsCrouching() {
-        return isCrouching;
+    bool OnSlope()
+    {
+        if (isJumping) return false;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (controller.height * 0.5f) * slopeDistance))
+        {
+            if (slopeHit.normal != Vector3.up)
+                return true;
+        }
+
+        return false;
     }
-    public bool GetIsRunning() {
+
+    public bool GetIsRunning()
+    {
         return isRunning;
     }
-    public bool GetIsWalking() {
-        return isWalking;
-    }
-    public bool GetIsGrounded() {
+    public bool GetIsGrounded()
+    {
         return isGrounded;
     }
-    public bool GetCanMove() {
+    public bool GetCanMove()
+    {
         return canMove;
     }
-    public float GetTimeWalking() {
+    public bool GetIsInStair()
+    {
+        return isInStair;
+    }
+    public float GetTimeWalking()
+    {
         return timeWalking;
     }
-    public MovementState GetMovementState() {
+    public MovementState GetMovementState()
+    {
         return movementState;
     }
-    #endregion
-
-    #region Setters
-    public void SetIsCrounching(bool value) {
-        isCrouching = value;
+    public bool GetPauseState()
+    {
+        return gamePaused;
     }
-    public void SetCanMove(bool value) {
+
+    public void SetCanMove(bool value)
+    {
         canMove = value;
     }
-    void SetGamePause(bool value) {
+    void SetGamePause(bool value)
+    {
         gamePaused = value;
     }
 
-    #endregion
 }

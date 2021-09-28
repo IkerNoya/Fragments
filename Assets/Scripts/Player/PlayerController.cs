@@ -51,13 +51,22 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        if (weapon)
+        {
+            if (weapon.GetIsSemiAutomatic())
+            {
+                if (Input.GetKeyDown(keyToShoot))
+                    weapon.Shoot();
+            }
+            else
+            {
+                if (Input.GetKey(keyToShoot))
+                    weapon.Shoot();
+            }
 
-        if (Input.GetKeyDown(keyToShoot))
-            if (weapon)
-                weapon.Shoot();
-        if (Input.GetKeyDown(keyToReload))
-            if (weapon)
+            if (Input.GetKeyDown(keyToReload))
                 weapon.StartReload();
+        }
 
         TryPickUpObject();
         TryInteractWithDoor();
@@ -77,8 +86,10 @@ public class PlayerController : MonoBehaviour {
                     if (d != null) {
                         List<Door_Key> keyListAux = playerInventory.GetInventoryKeysList();
                         if (d.GetClosedDoor()) {
+                            d.SetLockedSound();
                             for (int i = 0; i < keyListAux.Count; i++)
                                 if (d.TryOpenDoor(keyListAux[i])) {
+                                    d.SetUnlockedDoorSound();
                                     d.OpenDoor();
                                     keyListAux[i].UseKey();
                                     keyListAux.RemoveAt(i);
@@ -104,6 +115,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, 3)) {
             if (layerKeys == (layerKeys | (1 << hit.transform.gameObject.layer))) {
+                hud.SetInteractBool(true);
                 hud.SetPickupTextActive(true);
 
                 if (Input.GetKeyDown(keyToPickUpItem)) {
@@ -117,7 +129,10 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else
+        {
             hud.SetPickupTextActive(false);
+            hud.SetInteractBool(false);
+        }
     }
 
     void WeaponAmmoChanged() {
@@ -127,5 +142,7 @@ public class PlayerController : MonoBehaviour {
     void SetGamePause(bool value) {
         gamePaused = value;
     }
+
+
 
 }

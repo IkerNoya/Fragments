@@ -9,43 +9,39 @@ public class HeadMovement : MonoBehaviour
     [SerializeField] Transform minimumHeadHeight;
     [Space]
     [SerializeField] float defaultColliderHeight;
-    [SerializeField] float crouchColliderHeight;
     [Space]
     [SerializeField] float headBobbingIntensity;
-    [SerializeField] float walkingHeadBobFrequency;
     [SerializeField] float joggingHeadBobFrequency;
     [SerializeField] float sprintingHeadBobFrequency;
-    [SerializeField] float crouchingHeadVerticalAmplitude;
     [SerializeField] float standingHeadBobVerticalAmplitude;
-    [SerializeField] float crouchingSpeed;
+    [SerializeField] float stairsHeadBobAmplitude;
     [Space]
     [SerializeField] MouseLook mouseLook;
 
-    CapsuleCollider CapsuleColl;
     FPSController player;
+    Animator anim;
 
     float hBobFrequency;
     float hBobVerticalAmplitude;
     float axisDifference = 0.001f;
+    bool landing = false;
 
+
+    private void Awake()
+    {
+        FPSController.Land += Land;
+        HeadAnimationValues.IsLanding += SetLandingBool;
+    }
     void Start()
     {
         player = GetComponent<FPSController>();
-        CapsuleColl = GetComponent<CapsuleCollider>();
+        anim = GetComponentInChildren<Animator>();
     }
     void Update()
     {
         if (!player.GetCanMove())
             return;
 
-        if (!player.GetIsCrouching())
-        {
-            CapsuleColl.height = defaultColliderHeight;
-        }
-        else
-        {
-            CapsuleColl.height = crouchColliderHeight;
-        }
     }
     void LateUpdate()
     {
@@ -54,42 +50,41 @@ public class HeadMovement : MonoBehaviour
         //Crouch();
         HeadBobbing();
     }
-    void Crouch()
-    {
-        float height = cam.position.y;
-        if (player.GetIsCrouching() && height > minimumHeadHeight.position.y + 0.5f)
-        {
-            height -= Time.deltaTime * crouchingSpeed;
-        }
-
-        cam.position = new Vector3(cam.position.x, height, cam.position.z);
-    }
 
     void HeadBobbing()
     {
+        if (landing)
+            return;
+        
+
         Vector3 newHeadPosition;
-        if (!player.GetIsCrouching())
-            newHeadPosition = head.position + CalculateHeadBobOffset(player.GetTimeWalking());
-        else
-            newHeadPosition = minimumHeadHeight.position + CalculateHeadBobOffset(player.GetTimeWalking());
+        newHeadPosition = head.position + CalculateHeadBobOffset(player.GetTimeWalking());
 
         switch (player.GetMovementState())
         {
-            case FPSController.MovementState.walking:
-                hBobFrequency = walkingHeadBobFrequency;
-                hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
-                break;
             case FPSController.MovementState.jogging:
-                hBobFrequency = joggingHeadBobFrequency;
-                hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
+                if (player.GetIsInStair())
+                {
+                    hBobFrequency = joggingHeadBobFrequency;
+                    hBobVerticalAmplitude = stairsHeadBobAmplitude;
+                }
+                else
+                {
+                    hBobFrequency = joggingHeadBobFrequency;
+                    hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
+                }
                 break;
             case FPSController.MovementState.sprinting:
-                hBobFrequency = sprintingHeadBobFrequency;
-                hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
-                break;
-            case FPSController.MovementState.crouching:
-                hBobFrequency = walkingHeadBobFrequency;
-                hBobVerticalAmplitude = crouchingHeadVerticalAmplitude;
+                if (player.GetIsInStair())
+                {
+                    hBobFrequency = sprintingHeadBobFrequency;
+                    hBobVerticalAmplitude = stairsHeadBobAmplitude;
+                }
+                else
+                {
+                    hBobFrequency = sprintingHeadBobFrequency;
+                    hBobVerticalAmplitude = standingHeadBobVerticalAmplitude;
+                }
                 break;
         }
         if (player.GetIsGrounded())
@@ -108,15 +103,33 @@ public class HeadMovement : MonoBehaviour
         if (value > 0)
         {
             movement = Mathf.Sin(value * hBobFrequency * 2) * hBobVerticalAmplitude;
-            if (!player.GetIsCrouching())
-                offset = head.transform.up * movement;
-            else
-                offset = minimumHeadHeight.transform.up * movement;
+            offset = head.transform.up * movement;
         }
 
         return offset;
     }
 
+    void Land(float value)
+    {
+        anim.SetTrigger("Land");
+        landing = true;
+
+    }
+    void SetLandingBool(bool value)
+    {
+        landing = value;
+    }
+
+    private void OnDisable()
+    {
+        FPSController.Land -= Land;
+        HeadAnimationValues.IsLanding -= SetLandingBool;
+    }
+    private void OnDestroy()
+    {
+        FPSController.Land -= Land;
+        HeadAnimationValues.IsLanding -= SetLandingBool;
+    }
 
 }
 

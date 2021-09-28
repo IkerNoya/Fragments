@@ -4,15 +4,20 @@ using UnityEngine;
 using TMPro;
 public class PlayerHUD : MonoBehaviour
 {
+    [Header("Interactions")]
     [SerializeField] GameObject openDoorText;
     [SerializeField] GameObject pickUpText;
     [SerializeField] GameObject blackScreen;
-
+    [Header("Ammo")]
     [SerializeField] TextMeshProUGUI ammoText;
-    [SerializeField] GameObject lowAmmoText;
-    [SerializeField] GameObject noAmmoText;
+    [SerializeField] GameObject lowAmmoTextObj;
+    [SerializeField] TextMeshProUGUI lowAmmoText;
+    [SerializeField] GameObject ReloadText;
     [SerializeField] GameObject crosshair;
 
+    PlayerController player; // TEMPORAL; QUITAR DESPUES PORFAVOR ES URGENTE EL QUITAR ESTO; NO DEJAR ACA
+
+    bool isAboutToInteract = false;
     private void Start() {
         SetDoorTextActive(false);
         SetPickupTextActive(false);
@@ -29,17 +34,30 @@ public class PlayerHUD : MonoBehaviour
     public void ChangeAmmoText(int actualAmmo, int ammoPerMagazine, int maxAmmo) {
         ammoText.text = actualAmmo + " / " + maxAmmo;
         if (((float)actualAmmo / (float)ammoPerMagazine) <= 0.25f) {
-            lowAmmoText.SetActive(true);
+            lowAmmoTextObj.SetActive(true);
+            lowAmmoText.text = "LOW AMMO";
             if (actualAmmo <= 0) {
                 crosshair.SetActive(false);
-                noAmmoText.SetActive(true);
+                if (!isAboutToInteract)
+                {
+                    ReloadText.SetActive(true);
+                }
+                lowAmmoText.text = "NO AMMO";
             }
         }
         else {
-            lowAmmoText.SetActive(false);
+            lowAmmoTextObj.SetActive(false);
             crosshair.SetActive(true);
-            noAmmoText.SetActive(false);
+            ReloadText.SetActive(false);
         }
+    }
+    public bool GetInteractBool()
+    {
+        return isAboutToInteract;
+    }
+    public void SetInteractBool(bool value)
+    {
+        isAboutToInteract = value;
     }
 
 }

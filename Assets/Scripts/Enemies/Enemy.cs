@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] NavMeshAgent navMesh;
     PlayerController player;
+    Rigidbody rb;
 
     bool gamePaused = false;
 
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         navMesh.SetDestination(player.transform.position);
         deathEffect = meshRenderer.material;
-        deathValue = deathEffect.GetFloat("_DissolveY");
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnDestroy() {
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
         }
 
         navMesh.enabled = true;
+
     }
 
     private void FixedUpdate() {
@@ -57,27 +59,30 @@ public class Enemy : MonoBehaviour
 
         if (isDead)
             return;
-
-        navMesh.SetDestination(player.transform.position);
+        if(navMesh.CalculatePath(player.transform.position, navMesh.path))
+            navMesh.SetDestination(player.transform.position);
     }
 
     public void Hit(float dmg) {
         if (isDead)
             return;
-
         health -= dmg;
         if(health <= 0) {
             navMesh.enabled = false;
+            rb.isKinematic = false;
+            rb.useGravity = true;
             source.PlayOneShot(deathSound);
             isDead = true;
             Destroy(this.gameObject, 10f);
-            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporar hasta lograr que se casteen sombras del shader
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
             StartCoroutine(DissolveEffect());
         }
     }
 
     IEnumerator DissolveEffect() {
-        while (deathValue >= 0) {
+        deathEffect.SetFloat("_DissolveY", transform.position.y + 10);
+        deathValue = deathEffect.GetFloat("_DissolveY");
+        while (deathValue > -1) {
             deathValue -= Time.deltaTime * dissolveSpeed;
             deathEffect.SetFloat("_DissolveY", deathValue);
             yield return null;
@@ -90,4 +95,13 @@ public class Enemy : MonoBehaviour
         gamePaused = value;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public Rigidbody GetRigidBody() // cambiar nombre despues
+    {
+        return rb;
+    }
 }

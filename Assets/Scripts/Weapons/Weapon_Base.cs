@@ -9,6 +9,10 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] float damage;
     [SerializeField] ParticleSystem shootParticles;
     [SerializeField] GameObject shootImpactHole;
+    [SerializeField] float fireRate;
+    [SerializeField] float horizontalRecoil;
+    [SerializeField] float verticalRecoil;
+    [SerializeField] bool isSemiAutomatic;
 
     [Header("Ammo")]
     [SerializeField] float timeToReload;
@@ -29,13 +33,35 @@ public class Weapon_Base : MonoBehaviour {
 
     public static Action AmmoChanged;
 
+    FPSController fpsController;
+    MouseLook recoil;
+
+    bool canShoot = true;
+    float shootTimer = 0;
+    
+
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;
         reloading = false;
         timerReloading = 0f;
+        fpsController = GetComponentInParent<FPSController>();
+        recoil = GetComponentInParent<MouseLook>();
+        AmmoChanged?.Invoke();
     }
 
     protected virtual void Update() {
+
+        if (shootTimer < fireRate)
+        {
+            canShoot = false;
+            shootTimer += Time.deltaTime;
+        }
+        else
+        {
+            canShoot = true;
+        }
+
+
         if (!reloading)
             return;
 
@@ -55,14 +81,24 @@ public class Weapon_Base : MonoBehaviour {
             else 
                 actualAmmo = ammoPerMagazine;
 
+            shootTimer = fireRate;
             AmmoChanged?.Invoke();
         }
 
     }
 
     public virtual void Shoot() {
-        if (reloading)
+        if (reloading || fpsController.GetPauseState() || !canShoot)
             return;
+
+        shootTimer = 0;
+
+        if (actualAmmo > 0)
+        {
+            animator.SetTrigger("Shoot");
+            if (recoil)
+                recoil.AddRecoil(verticalRecoil, UnityEngine.Random.Range(-horizontalRecoil, horizontalRecoil));
+        }
 
         if (actualAmmo <= 0) {
             source.PlayOneShot(noAmmoSound);
@@ -80,7 +116,13 @@ public class Weapon_Base : MonoBehaviour {
             if (hit.collider.CompareTag("Enemy")) {
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
+                {
                     e.Hit(damage);
+                    if (e.GetHealth() <= 0)
+                    {
+                        e.GetRigidBody().AddForceAtPosition((hit.transform.position - transform.position).normalized * 5, hit.transform.position, ForceMode.VelocityChange);
+                    }
+                }
             }
             else if (hit.collider.CompareTag("Map")) {
                 GameObject hole = Instantiate(shootImpactHole, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
@@ -96,7 +138,7 @@ public class Weapon_Base : MonoBehaviour {
         if (reloading || actualAmmo == ammoPerMagazine || totalAmmo <= 0)
             return;
 
-        animator.Play("Reload");
+        animator.SetTrigger("Reload");
         source.PlayOneShot(reloadingSound);
         reloading = true;
     }
@@ -109,6 +151,10 @@ public class Weapon_Base : MonoBehaviour {
     }
     public int GetAmmoPerMagazine() {
         return ammoPerMagazine;
+    }
+    public bool GetIsSemiAutomatic()
+    {
+        return isSemiAutomatic;
     }
 
 }

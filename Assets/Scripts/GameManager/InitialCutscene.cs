@@ -7,6 +7,8 @@ public class InitialCutscene : MonoBehaviour
     [SerializeField] Image blackScreen;
     [SerializeField] float screenFadeSpeed;
     [SerializeField] bool hasPlayedInitialCutscene = false;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip dialogue;
 
     public static Action<bool> initialCutscene;
     public static Action<bool> endInitialCutscene;
@@ -17,6 +19,8 @@ public class InitialCutscene : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        audioSource = GetComponentInParent<AudioSource>();
 
         if (!hasPlayedInitialCutscene)
         {
@@ -37,8 +41,14 @@ public class InitialCutscene : MonoBehaviour
         }
     }
 
+    public void PlayAudio()
+    {
+        audioSource.PlayOneShot(dialogue);
+    }
+
     public void InitialCutsceneHasEnded()
     {
         endInitialCutscene?.Invoke(true);
     }
+
 }
