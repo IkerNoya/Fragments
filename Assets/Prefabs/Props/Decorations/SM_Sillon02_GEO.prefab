@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7198109399552643146}
   - component: {fileID: 8969816930955781266}
   - component: {fileID: 750715687449377603}
-  m_Layer: 0
+  - component: {fileID: 1634900528}
+  m_Layer: 8
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1634900528
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5478301396871168603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1388485733357891733, guid: 01f9bb372d1cd7641a11ae39e4ec5dd2, type: 3}
 --- !u!1 &5618675537912977178
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +105,7 @@ GameObject:
   - component: {fileID: 531607586133296993}
   - component: {fileID: 8337601420662398986}
   - component: {fileID: 2634164009217617604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: almohadones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4296874909404979834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sillon_victoriano02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +218,8 @@ GameObject:
   - component: {fileID: 6187353520893785429}
   - component: {fileID: 6979979997292617495}
   - component: {fileID: 6609664158480962500}
-  m_Layer: 0
+  - component: {fileID: 1634900529}
+  m_Layer: 8
   m_Name: almohadon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,6 +287,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1634900529
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514497400880294684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1056490908694751659, guid: 01f9bb372d1cd7641a11ae39e4ec5dd2, type: 3}
 --- !u!1 &9110954218250549787
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +312,7 @@ GameObject:
   - component: {fileID: 1766711864181414927}
   - component: {fileID: 7780518973725301650}
   - component: {fileID: 3581105747511422140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: patas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,9 +389,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8490340103084610531}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Sillon02_GEO
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122164171485268313}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.31724143, y: 0.42, z: 12.207409}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

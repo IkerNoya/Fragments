@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6441210293191923487}
   - component: {fileID: 6969349587351333704}
   - component: {fileID: 7934364880269837382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sostendeor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,9 +88,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313117840536382956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Mesa02_GEO
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3992839536997725159}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mesa_victoriana02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8890635185744171172}
   - component: {fileID: 4483929392478187706}
   - component: {fileID: 1128004879}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: patas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 925938579413829811}
   - component: {fileID: 7360456879202436946}
   - component: {fileID: 316571481}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mesa_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 3710484043615632873}
   - component: {fileID: 7146575658118454140}
   - component: {fileID: 3107414238760168769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: adornos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
