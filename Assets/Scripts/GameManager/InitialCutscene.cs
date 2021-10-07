@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class InitialCutscene : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class InitialCutscene : MonoBehaviour
 
     public static Action<bool> initialCutscene;
     public static Action<bool> endInitialCutscene;
+    public UnityEvent activateInitialQuest;
 
     Animator anim;
     float alpha = 0;
@@ -49,6 +51,7 @@ public class InitialCutscene : MonoBehaviour
     public void InitialCutsceneHasEnded()
     {
         endInitialCutscene?.Invoke(true);
+        activateInitialQuest?.Invoke();
     }
 
 }
