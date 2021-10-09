@@ -10,21 +10,42 @@ public class QuestSystem : MonoBehaviour
     public PlayerController player;
     [Header("Window")]
     [SerializeField] GameObject missionsWindow;
+    [SerializeField] GameObject header;
+    [SerializeField] GameObject objectiveContainer;
     [Header("Font")]
     [SerializeField] Font font;
     [SerializeField] int titleFontSize;
     [SerializeField] int descriptionFontSize;
+    
+
+    LayoutElement le;
+    CanvasGroup cg;
+
     Text title;
     Text description;
 
-    float textWidth = 600;
-    float textHeight = 92;
+    RectTransform headerRectTransform;
+
+    Coroutine animationCoroutine;
 
     public void ShowActiveMission()
     {
         missionsWindow.SetActive(true);
-        title.text = mission.title;
-        description.text = mission.description;
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+        }
+
+        animationCoroutine = StartCoroutine(MissionAnimation(true, 1, null));
+    }
+    public void HideActiveMission(System.Action onComplete)
+    {
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+        }
+
+        animationCoroutine = StartCoroutine(MissionAnimation(false, 1, onComplete));
     }
     public void ActivateMission()
     {
@@ -37,28 +58,72 @@ public class QuestSystem : MonoBehaviour
 
     void CreateTitle()
     {
-        GameObject title = new GameObject("Title");
-        title.AddComponent<Text>();
-        title.transform.SetParent(missionsWindow.transform);
-        title.transform.position = Vector3.zero;
-        title.transform.localScale = Vector3.one;
-        this.title = title.GetComponent<Text>();
-        this.title.rectTransform.sizeDelta = new Vector2(textWidth, textHeight);
-        this.title.fontSize = titleFontSize;
-        this.title.font = new Font();
-        this.title.font = font;
+        GameObject header = GameObject.Instantiate(this.header, missionsWindow.transform, false);
+        title = header.GetComponent<Text>();
+        title.text = mission.title;
+        headerRectTransform = title.transform as RectTransform;
+        Canvas.ForceUpdateCanvases();
+        
     }
+
     void CreateDescription()
     {
-        GameObject description = new GameObject("Description");
-        description.AddComponent<Text>();
-        description.transform.SetParent(missionsWindow.transform);
-        description.transform.position = Vector3.zero;
-        description.transform.localScale = Vector3.one;
-        this.description = description.GetComponent<Text>();
-        this.description.rectTransform.sizeDelta = new Vector2(textWidth, textHeight);
-        this.description.fontSize = descriptionFontSize;
-        this.description.font = new Font();
-        this.description.font = font;
+        GameObject objective = GameObject.Instantiate(objectiveContainer, missionsWindow.transform, false);
+        description = objective.GetComponentInChildren<Text>();
+        le = objective.GetComponent<LayoutElement>();
+        cg = objective.GetComponent<CanvasGroup>();
+        description.text = mission.objective[0];
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+        }
+
+        animationCoroutine = StartCoroutine(MissionAnimation(true, 2, null));
+    }
+
+    IEnumerator MissionAnimation(bool show, float duration, System.Action onComplete)
+    {
+        float startHeight = 0f;
+        float endHeight = 0f;
+        float startWidth = 0f;
+        float endWidth = 0f;
+        if (show)
+        {
+            startHeight = description.rectTransform.rect.height;
+            endHeight = headerRectTransform.rect.height;
+            startWidth = description.rectTransform.rect.width; 
+            endWidth = headerRectTransform.rect.width;
+        }
+        else
+        {
+            startHeight = description.rectTransform.rect.height;
+            endHeight = 0f;
+            startWidth = description.rectTransform.rect.width;
+            endWidth = 0f;
+        }
+
+        float time = 0.0f;
+        while (time < duration)
+        {
+            le.preferredHeight = EaseInOut(startHeight, endHeight, time, duration);
+            le.preferredWidth = EaseInOut(startWidth, endWidth, time, duration);
+            Debug.Log(le.preferredWidth);
+            yield return null;
+            time += Time.deltaTime;
+        }
+        if (!show) missionsWindow.SetActive(false);
+
+        le.preferredHeight = endHeight;
+        le.preferredWidth = endWidth;
+
+        onComplete?.Invoke();
+    }
+    float EaseInOut(float initial, float final, float time, float duration)
+    {
+        float change = final - initial;
+        time /= duration / 2;
+        if (time < 1f) return change / 2 * time * time + initial;
+        time--;
+        return -change / 2 * (time * (time - 2) - 1) + initial;
     }
 }
