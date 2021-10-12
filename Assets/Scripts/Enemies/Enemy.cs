@@ -66,9 +66,18 @@ public class Enemy : MonoBehaviour
         if (gamePaused || !canMove || isDead)
             return;
 
-        if(navMesh.CalculatePath(player.transform.position, navMesh.path))
-            navMesh.SetDestination(player.transform.position);
-
+        
+        if(navMesh.path != null)
+        {
+            if(navMesh.isOnNavMesh)
+                navMesh.SetDestination(player.transform.position);
+        }
+        else
+        {
+            navMesh.path = new NavMeshPath();
+            if (navMesh.isOnNavMesh)
+                navMesh.SetDestination(player.transform.position);
+        }
     }
 
     public void Hit(float dmg, Vector3 hitPos, Vector3 attackerPos) {

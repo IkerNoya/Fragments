@@ -19128,7 +19128,7 @@ PrefabInstance:
     - target: {fileID: 1631931124061167046, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1631931124061167046, guid: cc0b4ecb2e6303b4a8b71ec37e4fccd0,
         type: 3}
@@ -19412,12 +19412,14 @@ MonoBehaviour:
   mission:
     isActive: 0
     title: Escape the Mansion
-    description: Find a way to escape
+    objective:
+    - Find the Key
   player: {fileID: 1402661194}
   missionsWindow: {fileID: 1299363001}
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  titleFontSize: 40
-  descriptionFontSize: 30
+  header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
+  objectiveContainer: {fileID: 4198878727883338874, guid: 2cde2bbce1329034db78dd930c1fa957,
+    type: 3}
+  cg: {fileID: 1299363007}
 --- !u!1001 &1281822945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19675,6 +19677,7 @@ GameObject:
   - component: {fileID: 1299363005}
   - component: {fileID: 1299363003}
   - component: {fileID: 1299363004}
+  - component: {fileID: 1299363007}
   m_Layer: 9
   m_Name: MissionsUI
   m_TagString: Untagged
@@ -19761,7 +19764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
+  m_Color: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19777,6 +19780,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1299363007
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299363001}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1300458778
 GameObject:
   m_ObjectHideFlags: 0

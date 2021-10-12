@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour {
     FPSController fPSController;
     bool gamePaused = false;
 
+    public static event Action ShowObjective;
+
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
         PauseController.SetPause += SetGamePause;
@@ -70,6 +72,10 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(keyToReload))
                 weapon.StartReload();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ShowObjective?.Invoke();
         }
 
         TryPickUpObject();

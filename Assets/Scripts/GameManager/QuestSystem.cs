@@ -12,14 +12,11 @@ public class QuestSystem : MonoBehaviour
     [SerializeField] GameObject missionsWindow;
     [SerializeField] GameObject header;
     [SerializeField] GameObject objectiveContainer;
-    [Header("Font")]
-    [SerializeField] Font font;
-    [SerializeField] int titleFontSize;
-    [SerializeField] int descriptionFontSize;
+    [Header("Canvas Group")]
+    [SerializeField] CanvasGroup cg;
     
 
     LayoutElement le;
-    CanvasGroup cg;
 
     Text title;
     Text description;
@@ -28,8 +25,16 @@ public class QuestSystem : MonoBehaviour
 
     Coroutine animationCoroutine;
 
+    bool isMissionOnScreen = false;
+
+    void Start()
+    {
+        PlayerController.ShowObjective += ShowMissionEvent;
+    }
+
     public void ShowActiveMission()
     {
+        isMissionOnScreen = true;
         missionsWindow.SetActive(true);
         if (animationCoroutine != null)
         {
@@ -53,7 +58,7 @@ public class QuestSystem : MonoBehaviour
         player.AddMission(mission);
         CreateTitle();
         CreateDescription();
-        ShowActiveMission();
+        ShowMissionEvent();
     }
 
     void CreateTitle()
@@ -71,14 +76,13 @@ public class QuestSystem : MonoBehaviour
         GameObject objective = GameObject.Instantiate(objectiveContainer, missionsWindow.transform, false);
         description = objective.GetComponentInChildren<Text>();
         le = objective.GetComponent<LayoutElement>();
-        cg = objective.GetComponent<CanvasGroup>();
         description.text = mission.objective[0];
-        if (animationCoroutine != null)
-        {
-            StopCoroutine(animationCoroutine);
-        }
+        //if (animationCoroutine != null)
+        //{
+        //    StopCoroutine(animationCoroutine);
+        //}
 
-        animationCoroutine = StartCoroutine(MissionAnimation(true, 2, null));
+        //animationCoroutine = StartCoroutine(MissionAnimation(true, 2, null));
     }
 
     IEnumerator MissionAnimation(bool show, float duration, System.Action onComplete)
@@ -87,12 +91,16 @@ public class QuestSystem : MonoBehaviour
         float endHeight = 0f;
         float startWidth = 0f;
         float endWidth = 0f;
+        float initialAlpha = 0.0f;
+        float endAlpha = 0.0f;
+
         if (show)
         {
-            startHeight = description.rectTransform.rect.height;
+            startHeight = 0.0f;
             endHeight = headerRectTransform.rect.height;
-            startWidth = description.rectTransform.rect.width; 
+            startWidth = 0.0f; 
             endWidth = headerRectTransform.rect.width;
+            endAlpha = 1.0f;
         }
         else
         {
@@ -100,14 +108,16 @@ public class QuestSystem : MonoBehaviour
             endHeight = 0f;
             startWidth = description.rectTransform.rect.width;
             endWidth = 0f;
+            initialAlpha = 1.0f;
         }
+        cg.alpha = initialAlpha;
 
         float time = 0.0f;
         while (time < duration)
         {
-            le.preferredHeight = EaseInOut(startHeight, endHeight, time, duration);
+            cg.alpha = EaseInOut(initialAlpha, endAlpha, time, duration);
+            le.preferredHeight = EaseInOut(startHeight, endHeight, time, duration); // cambiar a lerp es lo mismo my nword
             le.preferredWidth = EaseInOut(startWidth, endWidth, time, duration);
-            Debug.Log(le.preferredWidth);
             yield return null;
             time += Time.deltaTime;
         }
@@ -115,6 +125,7 @@ public class QuestSystem : MonoBehaviour
 
         le.preferredHeight = endHeight;
         le.preferredWidth = endWidth;
+        cg.alpha = endAlpha;
 
         onComplete?.Invoke();
     }
@@ -125,5 +136,34 @@ public class QuestSystem : MonoBehaviour
         if (time < 1f) return change / 2 * time * time + initial;
         time--;
         return -change / 2 * (time * (time - 2) - 1) + initial;
+    }
+
+    IEnumerator ShowAndHideMission()
+    {
+        ShowActiveMission();
+        yield return new WaitForSeconds(3);
+        HideActiveMission(() =>
+        {
+            if(missionsWindow.activeSelf) 
+                missionsWindow.SetActive(false);
+            isMissionOnScreen = false;
+        });
+    }
+
+    void ShowMissionEvent()
+    {
+        if (!isMissionOnScreen)
+        {
+            StartCoroutine(ShowAndHideMission());
+        }   
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.ShowObjective -= ShowMissionEvent;
+    }
+    private void OnDisable()
+    {
+        isMissionOnScreen = false;
     }
 }
