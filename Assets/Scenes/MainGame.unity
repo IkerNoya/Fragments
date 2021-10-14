@@ -19413,12 +19413,20 @@ MonoBehaviour:
     isActive: 0
     title: Escape the Mansion
     objective:
+    - Survive
     - Find the Key
   player: {fileID: 1402661194}
   missionsWindow: {fileID: 1299363001}
   header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
-  objectiveContainer: {fileID: 4198878727883338874, guid: 2cde2bbce1329034db78dd930c1fa957,
+  objectiveContainer: {fileID: 2658031703832367627, guid: 2cde2bbce1329034db78dd930c1fa957,
     type: 3}
+  objectives:
+  - name: Objective1
+    isCompleted: 0
+    objective: {fileID: 0}
+  - name: Objective2
+    isCompleted: 0
+    objective: {fileID: 0}
   cg: {fileID: 1299363007}
 --- !u!1001 &1281822945
 PrefabInstance:

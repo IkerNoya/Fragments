@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4198878727883338881}
   - component: {fileID: 4198878727883338887}
   - component: {fileID: 4198878727883338884}
+  - component: {fileID: 2899727208992497445}
+  - component: {fileID: 2658031703832367627}
   m_Layer: 9
   m_Name: MissionObjectives
   m_TagString: Untagged
@@ -110,6 +112,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2899727208992497445
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198878727883338874}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2658031703832367627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198878727883338874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c860cebb3cc3fdc4996364503929274c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objective: {fileID: 4198878727966633036}
+  rectTransform: {fileID: 4198878727883338885}
+  le: {fileID: 4198878727883338881}
+  canvasGroup: {fileID: 2899727208992497445}
+  animationDuration: 1
 --- !u!1 &4198878727966633026
 GameObject:
   m_ObjectHideFlags: 0

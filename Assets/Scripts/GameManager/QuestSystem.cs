@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class QuestSystem : MonoBehaviour
 {
+    [System.Serializable]
+    public class Objective
+    {
+        public string name = "Objective Lorem Itsum";
+        public bool isCompleted = false;
+
+        public SingleObjectiveContainer objective = null;
+    }
+
+
     public Mission mission;
 
     public PlayerController player;
     [Header("Window")]
     [SerializeField] GameObject missionsWindow;
     [SerializeField] GameObject header;
-    [SerializeField] GameObject objectiveContainer;
+    [SerializeField] SingleObjectiveContainer objectiveContainer;
+    [SerializeField] List<Objective> objectives;
     [Header("Canvas Group")]
     [SerializeField] CanvasGroup cg;
-    
-
-    LayoutElement le;
 
     Text title;
-    Text description;
 
     RectTransform headerRectTransform;
 
@@ -56,12 +65,12 @@ public class QuestSystem : MonoBehaviour
     {
         mission.isActive = true;
         player.AddMission(mission);
-        CreateTitle();
-        CreateDescription();
+        CreateMission();
+        AddStartingObjectives();
         ShowMissionEvent();
     }
 
-    void CreateTitle()
+    void CreateMission()
     {
         GameObject header = GameObject.Instantiate(this.header, missionsWindow.transform, false);
         title = header.GetComponent<Text>();
@@ -71,43 +80,49 @@ public class QuestSystem : MonoBehaviour
         
     }
 
-    void CreateDescription()
+    public void AddSingleObjective(string name)
     {
-        GameObject objective = GameObject.Instantiate(objectiveContainer, missionsWindow.transform, false);
-        description = objective.GetComponentInChildren<Text>();
-        le = objective.GetComponent<LayoutElement>();
-        description.text = mission.objective[0];
-        //if (animationCoroutine != null)
-        //{
-        //    StopCoroutine(animationCoroutine);
-        //}
+        Objective objective = new Objective();
+        objective.objective = CreateObjective();
+        objectives.Add(objective);
+        objective.objective.SetObjectiveTitle(name);
+        ShowMissionEvent();
+    }
 
-        //animationCoroutine = StartCoroutine(MissionAnimation(true, 2, null));
+    void AddStartingObjectives()
+    {
+        for(int i = 0; i < objectives.Count; i++)
+        {
+            objectives[i].objective = CreateObjective();
+            objectives[i].objective.SetObjectiveTitle(mission.objective[i]);
+        }
+    }
+
+    public SingleObjectiveContainer CreateObjective()
+    {
+        SingleObjectiveContainer objective = Instantiate<SingleObjectiveContainer>(objectiveContainer, missionsWindow.transform, false);
+        return objective;
+    }
+
+    public void RemoveObjective(SingleObjectiveContainer objective)
+    {
+        objective.Hide(() =>
+        {
+            Destroy(objective.gameObject);
+        });
     }
 
     IEnumerator MissionAnimation(bool show, float duration, System.Action onComplete)
     {
-        float startHeight = 0f;
-        float endHeight = 0f;
-        float startWidth = 0f;
-        float endWidth = 0f;
         float initialAlpha = 0.0f;
         float endAlpha = 0.0f;
 
         if (show)
         {
-            startHeight = 0.0f;
-            endHeight = headerRectTransform.rect.height;
-            startWidth = 0.0f; 
-            endWidth = headerRectTransform.rect.width;
             endAlpha = 1.0f;
         }
         else
         {
-            startHeight = description.rectTransform.rect.height;
-            endHeight = 0f;
-            startWidth = description.rectTransform.rect.width;
-            endWidth = 0f;
             initialAlpha = 1.0f;
         }
         cg.alpha = initialAlpha;
@@ -116,15 +131,11 @@ public class QuestSystem : MonoBehaviour
         while (time < duration)
         {
             cg.alpha = EaseInOut(initialAlpha, endAlpha, time, duration);
-            le.preferredHeight = EaseInOut(startHeight, endHeight, time, duration); // cambiar a lerp es lo mismo my nword
-            le.preferredWidth = EaseInOut(startWidth, endWidth, time, duration);
             yield return null;
             time += Time.deltaTime;
         }
         if (!show) missionsWindow.SetActive(false);
 
-        le.preferredHeight = endHeight;
-        le.preferredWidth = endWidth;
         cg.alpha = endAlpha;
 
         onComplete?.Invoke();
@@ -141,7 +152,7 @@ public class QuestSystem : MonoBehaviour
     IEnumerator ShowAndHideMission()
     {
         ShowActiveMission();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         HideActiveMission(() =>
         {
             if(missionsWindow.activeSelf) 
