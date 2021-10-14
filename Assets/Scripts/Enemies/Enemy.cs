@@ -123,6 +123,11 @@ public class Enemy : MonoBehaviour
         return health;
     }
 
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
     public Rigidbody GetRigidBody() // cambiar nombre despues
     {
         return rb;

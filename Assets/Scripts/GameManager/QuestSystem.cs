@@ -86,7 +86,7 @@ public class QuestSystem : MonoBehaviour
         Objective objective = new Objective();
         objective.objective = CreateObjective();
         objectives.Add(objective);
-        objective.objective.SetObjectiveTitle(name);
+        objective.objective.SetObjectiveTitle(name, 0.5f);
         objective.id = objectiveID;
         objectiveID++;
         ShowMissionEvent();
@@ -97,7 +97,7 @@ public class QuestSystem : MonoBehaviour
         for(int i = 0; i < objectives.Count; i++)
         {
             objectives[i].objective = CreateObjective();
-            objectives[i].objective.SetObjectiveTitle(mission.objective[i]);
+            objectives[i].objective.SetObjectiveTitle(mission.objective[i], 1.0f);
             objectives[i].id = objectiveID;
             objectiveID++;
         }
@@ -144,7 +144,6 @@ public class QuestSystem : MonoBehaviour
             yield return null;
             time += Time.deltaTime;
         }
-        if (!show) missionsWindow.SetActive(false);
 
         cg.alpha = endAlpha;
 
@@ -165,8 +164,6 @@ public class QuestSystem : MonoBehaviour
         yield return new WaitForSeconds(5);
         HideActiveMission(() =>
         {
-            if(missionsWindow.activeSelf) 
-                missionsWindow.SetActive(false);
             isMissionOnScreen = false;
         });
     }
@@ -176,7 +173,7 @@ public class QuestSystem : MonoBehaviour
         if (!isMissionOnScreen)
         {
             StartCoroutine(ShowAndHideMission());
-        }   
+        }
     }
 
 

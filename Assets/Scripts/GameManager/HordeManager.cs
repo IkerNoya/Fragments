@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class HordeManager : MonoBehaviour
 {
 
-    [SerializeField] List<GameObject> enemies;
+    [SerializeField] List<Enemy> enemies;
     [SerializeField] int enemyCount = 1;
     bool hordeKilled = false;
     public UnityEvent Survived;
@@ -23,9 +23,9 @@ public class HordeManager : MonoBehaviour
             hordeKilled = true;
             Survived?.Invoke();
         }
-        foreach(GameObject enemy in enemies)
+        foreach(Enemy enemy in enemies.ToArray())
         {
-            if (!enemy) enemies.Remove(enemy);
+            if (enemy && enemy.GetIsDead()) enemies.Remove(enemy);
         }
         enemyCount = enemies.Count;
     }

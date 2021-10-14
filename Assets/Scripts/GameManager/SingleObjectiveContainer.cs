@@ -31,7 +31,7 @@ public class SingleObjectiveContainer : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void SetObjectiveTitle(string text)
+    public void SetObjectiveTitle(string text, float duration)
     {
         objective.text = text;
         Canvas.ForceUpdateCanvases();
@@ -41,7 +41,7 @@ public class SingleObjectiveContainer : MonoBehaviour
             StopCoroutine(animationCoroutine);
         }
 
-        animationCoroutine = StartCoroutine(ObjectiveAnimation(true, animationDuration, null));
+        animationCoroutine = StartCoroutine(ObjectiveAnimation(true, duration, null));
     }
 
     public void Hide(System.Action onComplete)
