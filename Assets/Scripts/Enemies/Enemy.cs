@@ -53,6 +53,15 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
+
+        if (Vector3.Distance(player.transform.position, transform.position) < 2)
+            canMove = false;
+        else
+        {
+            if(!gamePaused && !isDead)
+                canMove = true;
+        }
+
         if (gamePaused || !canMove) {
             navMesh.enabled = false;
             return;
