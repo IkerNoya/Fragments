@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 public class Door_Key : MonoBehaviour {
     [SerializeField] bool canUseKey = true;
@@ -9,6 +10,8 @@ public class Door_Key : MonoBehaviour {
     public UI_InventoryItem itemUI;
 
     public static Action<GameObject> UsedKey;
+
+    public UnityEvent PickedUpKey;
 
     public bool GetCanPickUp() {
         return canPickUp;
@@ -25,6 +28,7 @@ public class Door_Key : MonoBehaviour {
         transform.position = new Vector3(0, -999, 0);
         canPickUp = false;
         audio.Play();
+        PickedUpKey?.Invoke();
         return this;
     }
 }

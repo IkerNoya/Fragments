@@ -51,7 +51,7 @@ public class SingleObjectiveContainer : MonoBehaviour
             StopCoroutine(animationCoroutine);
         }
 
-        animationCoroutine = StartCoroutine(ObjectiveAnimation(false, animationDuration, onComplete));
+        animationCoroutine = StartCoroutine(ObjectiveAnimation(false, animationDuration*2, onComplete));
     }
 
     public IEnumerator ObjectiveAnimation(bool show, float duration, System.Action onComplete)

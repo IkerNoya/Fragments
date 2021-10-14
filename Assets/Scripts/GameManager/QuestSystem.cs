@@ -10,13 +10,14 @@ public class QuestSystem : MonoBehaviour
     [System.Serializable]
     public class Objective
     {
+        public int id;
         public string name = "Objective Lorem Itsum";
         public bool isCompleted = false;
 
         public SingleObjectiveContainer objective = null;
     }
 
-
+    int objectiveID = 0;
     public Mission mission;
 
     public PlayerController player;
@@ -86,6 +87,8 @@ public class QuestSystem : MonoBehaviour
         objective.objective = CreateObjective();
         objectives.Add(objective);
         objective.objective.SetObjectiveTitle(name);
+        objective.id = objectiveID;
+        objectiveID++;
         ShowMissionEvent();
     }
 
@@ -95,6 +98,8 @@ public class QuestSystem : MonoBehaviour
         {
             objectives[i].objective = CreateObjective();
             objectives[i].objective.SetObjectiveTitle(mission.objective[i]);
+            objectives[i].id = objectiveID;
+            objectiveID++;
         }
     }
 
@@ -104,12 +109,17 @@ public class QuestSystem : MonoBehaviour
         return objective;
     }
 
-    public void RemoveObjective(SingleObjectiveContainer objective)
+    public void RemoveObjective(Objective objective)
     {
-        objective.Hide(() =>
+        ShowMissionEvent();
+        if(objective != null)
         {
-            Destroy(objective.gameObject);
-        });
+            objective.objective.Hide(() =>
+            {
+                objective.objective = null;
+                objectives.Remove(objective);
+            });
+        }
     }
 
     IEnumerator MissionAnimation(bool show, float duration, System.Action onComplete)
@@ -167,6 +177,22 @@ public class QuestSystem : MonoBehaviour
         {
             StartCoroutine(ShowAndHideMission());
         }   
+    }
+
+
+    //La ID se encuentra en el inspector o dependiendo de su lugar en la lista de objectivos
+    //TODO: Encontrar una manera de automatizarlo
+    public void CompleteObjective(int id)
+    {
+        for (int i = 0; i < objectives.Count; i++)
+        {
+            if (objectives[i].id == id)
+            {
+                objectives[i].isCompleted = true;
+                RemoveObjective(objectives[i]);
+                break;
+            }
+        }
     }
 
     private void OnDestroy()
