@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door_Base : MonoBehaviour {
     [SerializeField] Door_Key keyNecesaryToOpenDoor;
@@ -15,7 +16,7 @@ public class Door_Base : MonoBehaviour {
     [SerializeField] bool cursedDoor = false;
     Quaternion newRotation = Quaternion.identity;
 
-
+    public UnityEvent Escape;
 
     bool isDoorOpening = false;
     void Start()
@@ -51,6 +52,7 @@ public class Door_Base : MonoBehaviour {
         else
             source.clip = lockedDoor;
 
+        Escape?.Invoke();
         source.Play();
         closedDoor = false;
         isDoorOpening = true;

@@ -22,8 +22,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] KeyCode keyToShoot;
     [SerializeField] KeyCode keyToReload;
 
+    [Header("Missions")]
+    [SerializeField] List<Mission> missions;
+
+
     FPSController fPSController;
     bool gamePaused = false;
+
+    public static event Action ShowObjective;
 
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
@@ -32,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Start() {
         fPSController = GetComponent<FPSController>();
-        hud.ChangeAmmoText(weapon.GetActualAmmo(),weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
     }
 
     private void OnDisable() {
@@ -66,6 +72,10 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(keyToReload))
                 weapon.StartReload();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ShowObjective?.Invoke();
         }
 
         TryPickUpObject();
@@ -136,13 +146,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     void WeaponAmmoChanged() {
-        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(),weapon.GetMaxAmmo());
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
     }
 
     void SetGamePause(bool value) {
         gamePaused = value;
     }
 
-
+    public void AddMission(Mission mission)
+    {
+        missions.Add(mission);
+    }
 
 }
