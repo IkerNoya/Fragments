@@ -65,25 +65,6 @@ public class Weapon_Base : MonoBehaviour {
         if (!reloading)
             return;
 
-        timerReloading += Time.deltaTime;
-        if (timerReloading >= timeToReload) {
-            timerReloading = 0;
-            reloading = false;
-
-            int diff = ammoPerMagazine - actualAmmo;
-            totalAmmo -= diff;
-
-            if (totalAmmo <= 0) {
-                totalAmmo += ammoPerMagazine;
-                actualAmmo = totalAmmo;
-                totalAmmo = 0;
-            }
-            else 
-                actualAmmo = ammoPerMagazine;
-
-            shootTimer = fireRate;
-            AmmoChanged?.Invoke();
-        }
 
     }
 
@@ -141,6 +122,25 @@ public class Weapon_Base : MonoBehaviour {
         animator.SetTrigger("Reload");
         source.PlayOneShot(reloadingSound);
         reloading = true;
+    }
+    public void EndReload()
+    {
+        reloading = false;
+
+        int diff = ammoPerMagazine - actualAmmo;
+        totalAmmo -= diff;
+
+        if (totalAmmo <= 0)
+        {
+            totalAmmo += ammoPerMagazine;
+            actualAmmo = totalAmmo;
+            totalAmmo = 0;
+        }
+        else
+            actualAmmo = ammoPerMagazine;
+
+        shootTimer = fireRate;
+        AmmoChanged?.Invoke();
     }
 
     public int GetActualAmmo() {
