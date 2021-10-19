@@ -34,7 +34,8 @@ public class AgentLinkMover : MonoBehaviour
                         yield return StartCoroutine(Curve(agent, .7f));
                         break;
                 }
-                agent.CompleteOffMeshLink();
+                if(agent.isOnNavMesh)
+                    agent.CompleteOffMeshLink();
             }
             yield return null;
         }
