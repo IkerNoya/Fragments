@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: 438895262a3e5f6429749f87eb283a17
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1476726515988046147
+    second: Disparo_Spread_Spreadsheet_0
+  - first:
+      213: -6549383079846025897
+    second: Disparo_Spread_Spreadsheet_1
+  - first:
+      213: 1841570600324478443
+    second: Disparo_Spread_Spreadsheet_2
+  - first:
+      213: 8985743951895390505
+    second: Disparo_Spread_Spreadsheet_3
+  - first:
+      213: 5189628669976755775
+    second: Disparo_Spread_Spreadsheet_4
+  - first:
+      213: 6289716226648575904
+    second: Disparo_Spread_Spreadsheet_5
+  - first:
+      213: -446897303804953490
+    second: Disparo_Spread_Spreadsheet_6
+  - first:
+      213: -3310305860945283855
+    second: Disparo_Spread_Spreadsheet_7
+  - first:
+      213: 3599555671297539435
+    second: Disparo_Spread_Spreadsheet_8
+  - first:
+      213: 6572503024749859214
+    second: Disparo_Spread_Spreadsheet_9
+  - first:
+      213: -3123334316204415736
+    second: Disparo_Spread_Spreadsheet_10
+  - first:
+      213: -3252976437898878139
+    second: Disparo_Spread_Spreadsheet_11
+  - first:
+      213: -5516865256819743801
+    second: Disparo_Spread_Spreadsheet_12
+  - first:
+      213: 1931954535653476689
+    second: Disparo_Spread_Spreadsheet_13
+  - first:
+      213: 3576906931821272362
+    second: Disparo_Spread_Spreadsheet_14
+  - first:
+      213: -5792274627721909580
+    second: Disparo_Spread_Spreadsheet_15
+  - first:
+      213: -1205822681693906230
+    second: Disparo_Spread_Spreadsheet_16
+  - first:
+      213: -636711070638237833
+    second: Disparo_Spread_Spreadsheet_17
+  - first:
+      213: 4664867705127531269
+    second: Disparo_Spread_Spreadsheet_18
+  - first:
+      213: 8448859707619404453
+    second: Disparo_Spread_Spreadsheet_19
+  - first:
+      213: 3992864586724865602
+    second: Disparo_Spread_Spreadsheet_20
+  - first:
+      213: 86256752117414831
+    second: Disparo_Spread_Spreadsheet_21
+  - first:
+      213: -2077272841348783726
+    second: Disparo_Spread_Spreadsheet_22
+  - first:
+      213: 8779966566056620302
+    second: Disparo_Spread_Spreadsheet_23
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Disparo_Spread_Spreadsheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3412ed731f26e7410800000000000000
+      internalID: 1476726515988046147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Disparo_Spread_Spreadsheet_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 0
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755e2dbf9caeb15a0800000000000000
+      internalID: -6549383079846025897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Disparo_Spread_Spreadsheet_2
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 0
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be5b42534b29e8910800000000000000
+      internalID: 1841570600324478443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Disparo_Spread_Spreadsheet_3
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929e6570486c3bc70800000000000000
+      internalID: 8985743951895390505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Disparo_Spread_Spreadsheet_4
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 0
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3eb52e87c3450840800000000000000
+      internalID: 5189628669976755775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 834b9bab2ff0aa24099dedf8121146d2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

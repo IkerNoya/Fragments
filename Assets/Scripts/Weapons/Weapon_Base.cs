@@ -8,6 +8,7 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] float range;
     [SerializeField] float damage;
     [SerializeField] ParticleSystem shootParticles;
+    [SerializeField] ParticleSystem bulletParticles;
     [SerializeField] GameObject shootImpactHole;
     [SerializeField] float fireRate;
     [SerializeField] float horizontalRecoil;
@@ -87,6 +88,7 @@ public class Weapon_Base : MonoBehaviour {
         }
 
         shootParticles.Play();
+        bulletParticles.Play();
 
         source.PlayOneShot(shootSounds[UnityEngine.Random.Range(0, shootSounds.Count)]);
 
