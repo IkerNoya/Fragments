@@ -2,8 +2,7 @@
 using UnityEngine;
 
 //Forces unity to create a rigidbody into object if missing
-public class FPSController : MonoBehaviour
-{
+public class FPSController : MonoBehaviour {
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
@@ -34,12 +33,11 @@ public class FPSController : MonoBehaviour
 
     AudioClip currentMovementAudio;
 
-    public enum MovementState
-    {
-        jogging, sprinting, inAir
+    public enum MovementState {
+        jogging, sprinting, inAir, accelerating
     }
 
-   // Rigidbody rb;
+    // Rigidbody rb;
     CharacterController controller;
 
     MovementState movementState;
@@ -49,13 +47,19 @@ public class FPSController : MonoBehaviour
     float startTime;
     float timeWalking;
     float accelerationTime = 0;
+    float velocityMultiplier = 0;
     float verticalInput;
     float horizontalInput;
+    float verticalVelocityMultiplier;
+    float horizontalVelocityMultiplier;
+    public float velocityMultiplierSpeed;
 
     bool isRunning = false;
     bool isGrounded;
     bool isInStair;
     bool canMove = true;
+    bool isAccelerating = false;
+    bool maxSpeedReached = false;
     bool isJumping = false; // tal vez lo usemos despues
     bool setStartTimeAndSpeed = false;
 
@@ -70,36 +74,30 @@ public class FPSController : MonoBehaviour
 
     bool gamePaused = false;
 
-    void Awake()
-    {
+    void Awake() {
         InitialCutscene.initialCutscene += SetCanMove;
         InitialCutscene.endInitialCutscene += SetCanMove;
         PauseController.SetPause += SetGamePause;
     }
 
 
-    void Start()
-    {
+    void Start() {
         controller = GetComponent<CharacterController>();
         currentMovementAudio = jogSound;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         PauseController.SetPause -= SetGamePause;
         InitialCutscene.initialCutscene -= SetCanMove;
         InitialCutscene.endInitialCutscene -= SetCanMove;
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         PauseController.SetPause -= SetGamePause;
     }
 
-    void Update()
-    {
-        if (gamePaused)
-        {
+    void Update() {
+        if (gamePaused) {
             loopedSoundsSource.Stop();
             return;
         }
@@ -115,33 +113,90 @@ public class FPSController : MonoBehaviour
             velocity.y = -2;
 
 
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0) {
             timeWalking += Time.deltaTime;
-        else
+
+            velocityMultiplier += Time.deltaTime * velocityMultiplierSpeed;
+            if (velocityMultiplier >= 1f)
+                velocityMultiplier = 1f;
+
+        }
+        else{
             timeWalking = 0;
 
+            velocityMultiplier -= Time.deltaTime * velocityMultiplierSpeed;
+            if (velocityMultiplier <= 0)
+                velocityMultiplier = 0;
+        }
 
         SetMovementState();
         Inputs();
         Move();
     }
-
-    void Move()
-    {
-        if (isGrounded || isInStair)
-        {
+    void Move() {
+        if (isGrounded || isInStair) {
             verticalInput = Input.GetAxisRaw("Vertical");
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            if (velocity.y <= 0 && isJumping)
-            {
+            if (velocity.y <= 0 && isJumping) {
                 Land?.Invoke(velocity.y);
                 isJumping = false;
             }
         }
 
-        movement = transform.right * horizontalInput + transform.forward * verticalInput;
-        SetSpeedFromMovementState();
+        #region ShitDontOpen
+        if (verticalInput < -0.5f) {
+            if (verticalVelocityMultiplier > 0)
+                verticalVelocityMultiplier = 0;
 
+            verticalVelocityMultiplier -= Time.deltaTime * velocityMultiplierSpeed;
+            if (verticalVelocityMultiplier <= -1f)
+                verticalVelocityMultiplier = -1;
+        }
+        else if (verticalInput > 0.5f) {
+            if (verticalVelocityMultiplier < 0)
+                verticalVelocityMultiplier = 0;
+
+            verticalVelocityMultiplier += Time.deltaTime * velocityMultiplierSpeed;
+            if (verticalVelocityMultiplier >= 1f)
+                verticalVelocityMultiplier = 1;
+        }
+        else {
+            if (verticalVelocityMultiplier > 0.1f)
+                verticalVelocityMultiplier -= Time.deltaTime * velocityMultiplierSpeed;
+            else if (verticalVelocityMultiplier < -0.1f)
+                verticalVelocityMultiplier += Time.deltaTime * velocityMultiplierSpeed;
+            else 
+                verticalVelocityMultiplier = 0;
+        }
+
+        if (horizontalInput < -0.5f) {
+            if (horizontalVelocityMultiplier > 0)
+                horizontalVelocityMultiplier = 0;
+
+            horizontalVelocityMultiplier -= Time.deltaTime * velocityMultiplierSpeed;
+            if (horizontalVelocityMultiplier <= -1f)
+                horizontalVelocityMultiplier = -1;
+        }
+        else if (horizontalInput > 0.5f) {
+            if (horizontalVelocityMultiplier < 0)
+                horizontalVelocityMultiplier = 0;
+
+            horizontalVelocityMultiplier += Time.deltaTime * velocityMultiplierSpeed;
+            if (horizontalVelocityMultiplier >= 1f)
+                horizontalVelocityMultiplier = 1;
+        }
+        else {
+            if (horizontalVelocityMultiplier > 0.1f)
+                horizontalVelocityMultiplier -= Time.deltaTime * velocityMultiplierSpeed;
+            else if (horizontalVelocityMultiplier < -0.1f)
+                horizontalVelocityMultiplier += Time.deltaTime * velocityMultiplierSpeed;
+            else 
+                horizontalVelocityMultiplier = 0;
+        }
+        #endregion
+
+        movement = transform.right * horizontalVelocityMultiplier + transform.forward * verticalVelocityMultiplier;
+        SetSpeedFromMovementState();
 
         if ((Mathf.Abs(movement.x) > 0.5f || Mathf.Abs(movement.z) > 0.5f) && !loopedSoundsSource.isPlaying && (isGrounded || isInStair))
         {
@@ -183,7 +238,7 @@ public class FPSController : MonoBehaviour
                 isRunning = false;
             }
 
-            if (Input.GetKeyDown(jumpKey))
+            if (Input.GetKeyDown(jumpKey) && !isJumping)
             {
                 Jump();
             }
@@ -191,15 +246,11 @@ public class FPSController : MonoBehaviour
 
     }
 
-    void Jump()
-    {
-        if (Input.GetKeyDown(jumpKey) && !isJumping)
-        {
-            sfxSource.Play();
-            isRunning = false;
-            isJumping = true;
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * (gravity * gravityScale)); // result = sqrt(h * -2 * g)
-        }
+    void Jump() {
+        sfxSource.Play();
+        isRunning = false;
+        isJumping = true;
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * (gravity * gravityScale)); // result = sqrt(h * -2 * g)
     }
 
 
@@ -210,13 +261,13 @@ public class FPSController : MonoBehaviour
         switch (movementState)
         {
             case MovementState.jogging:
-                if (!isInStair) currentSpeed = standardSpeed;
-                else currentSpeed = standardSpeed * 0.5f;
+                if (!isInStair) currentSpeed = standardSpeed  * velocityMultiplier;
+                else currentSpeed = standardSpeed * 0.5f * velocityMultiplier;
                 break;
 
             case MovementState.sprinting:
-                if (!isInStair) currentSpeed = sprintingSpeed;
-                else currentSpeed = sprintingSpeed * 0.5f;
+                if (!isInStair) currentSpeed = sprintingSpeed * velocityMultiplier;
+                else currentSpeed = sprintingSpeed * 0.5f * velocityMultiplier;
                 break;
         }
     }

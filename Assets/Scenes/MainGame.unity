@@ -15330,7 +15330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 683659286}
   screenFadeSpeed: 0.3
-  hasPlayedInitialCutscene: 0
+  hasPlayedInitialCutscene: 1
   audioSource: {fileID: 1402661191}
   dialogue: {fileID: 8300000, guid: e6c971cababa16949a398998d5180882, type: 3}
   activateInitialQuest:
@@ -20079,6 +20079,7 @@ MonoBehaviour:
   landSound: {fileID: 8300000, guid: 7c86500013fda7c49a4b0a987822d1f5, type: 3}
   sfxSource: {fileID: 1402661191}
   loopedSoundsSource: {fileID: 853683021}
+  velocityMultiplierSpeed: 3
 --- !u!4 &1402661197
 Transform:
   m_ObjectHideFlags: 0
