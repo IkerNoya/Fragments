@@ -25019,6 +25019,7 @@ MonoBehaviour:
   landSound: {fileID: 8300000, guid: 7c86500013fda7c49a4b0a987822d1f5, type: 3}
   sfxSource: {fileID: 1402661191}
   loopedSoundsSource: {fileID: 853683021}
+  velocityMultiplierSpeed: 3
 --- !u!4 &1402661197
 Transform:
   m_ObjectHideFlags: 0
