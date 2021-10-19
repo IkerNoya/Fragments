@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
 
     bool gamePaused = false;
+    bool initialCutsceneEnded = false;
 
     private void Awake() {
         PauseController.SetPause += SetGamePause;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
 
     void InitialCutsceneEnded(bool value)
     {
+        initialCutsceneEnded = true;
         canMove = value;
     }
 
@@ -58,7 +60,7 @@ public class Enemy : MonoBehaviour
             canMove = false;
         else
         {
-            if(!gamePaused && !isDead)
+            if(!gamePaused && !isDead && initialCutsceneEnded)
                 canMove = true;
         }
 

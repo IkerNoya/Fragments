@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3368324999948661859
+--- !u!1 &6154047544434132786
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3368324999948661856}
-  - component: {fileID: 3368324999948661887}
-  - component: {fileID: 3368324999948661886}
-  - component: {fileID: 2920810430935740922}
-  - component: {fileID: 3990722856216278018}
-  - component: {fileID: 3368324999948661857}
-  - component: {fileID: 9083779726323291942}
+  - component: {fileID: 6785870268040273288}
+  - component: {fileID: 7603090586515788333}
+  - component: {fileID: 5649605010270660327}
+  - component: {fileID: 6460123889334860391}
+  - component: {fileID: 6460123889334860390}
+  - component: {fileID: 6460123889334860385}
+  - component: {fileID: 6460123889334860388}
   m_Layer: 12
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3368324999948661856
+--- !u!4 &6785870268040273288
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.574, z: 0}
-  m_LocalScale: {x: 0.29161593, y: 0.069483295, z: 0.102750815}
+  m_GameObject: {fileID: 6154047544434132786}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.298, y: 1.0072, z: 7.249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3368324999948661887
+--- !u!33 &7603090586515788333
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3368324999948661886
+  m_GameObject: {fileID: 6154047544434132786}
+  m_Mesh: {fileID: -4678803886217204686, guid: ef18ef18130f18144af7f4be5f15d8ed, type: 3}
+--- !u!23 &5649605010270660327
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
+  m_GameObject: {fileID: 6154047544434132786}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4931b48e20e967a4baf059f2d2b44461, type: 2}
+  - {fileID: 2100000, guid: fe583fe47397fb34c891e3d71edd3a48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,13 +83,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2920810430935740922
+--- !u!114 &6460123889334860391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
+  m_GameObject: {fileID: 6154047544434132786}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed1c7a8483dec54ead068b513070396, type: 3}
@@ -97,15 +97,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUseKey: 1
   canPickUp: 1
-  audio: {fileID: 9083779726323291942}
-  itemUI: {fileID: 3990722856216278018}
---- !u!114 &3990722856216278018
+  audio: {fileID: 0}
+  itemUI: {fileID: 0}
+  PickedUpKey:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: CompleteObjective
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: AddSingleObjective
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Escape
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6460123889334860390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
+  m_GameObject: {fileID: 6154047544434132786}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3286219af0bfdce4a995682fb6dec214, type: 3}
@@ -115,27 +140,27 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 26654d7a986159f4e9b7ad70de0e651e, type: 3}
   image: {fileID: 0}
   text: {fileID: 0}
-  itemGameObject: {fileID: 3368324999948661859}
---- !u!65 &3368324999948661857
+  itemGameObject: {fileID: 6154047544434132786}
+--- !u!65 &6460123889334860385
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
+  m_GameObject: {fileID: 6154047544434132786}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &9083779726323291942
+  m_Size: {x: 0.24, y: 0.014415024, z: 0.42}
+  m_Center: {x: 0.0020084847, y: 0.0072067305, z: 0.02883409}
+--- !u!82 &6460123889334860388
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368324999948661859}
+  m_GameObject: {fileID: 6154047544434132786}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 5c3ff817a57ad6342b3c9a85ae77fc28,

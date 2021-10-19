@@ -103,7 +103,7 @@
                 //Constantly changing random noise values
                 float random = rand(uv + _Time.x);
                 //Sampling the noise texture while also making it move constantly
-                float noise = tex2D(_NoiseTexture, uv * _NoiseTexture_ST.xy + rand(_Time.x)).x;
+                //float noise = tex2D(_NoiseTexture, uv * _NoiseTexture_ST.xy + rand(_Time.x)).x;
 
                 //Getting random values from -  1 to 1 every few frames to randomly change the speed and direction of the sine lines
                 float sineLinesTime = _Time.y * _SineLinesSpeed * (rand(floor(_Time.y)) * 2.0 - 1.0);
@@ -130,9 +130,9 @@
                 //Grain noise
                 col *= max(0.7, random);
                 //Top and bottom noise
-                col += smoothstep(abs(uv.y * 2.0 - 1.0) - 0.8, abs(uv.y * 2.0 - 1.0) - 0.99, noise);
+                //col += smoothstep(abs(uv.y * 2.0 - 1.0) - 0.8, abs(uv.y * 2.0 - 1.0) - 0.99, noise);
                 //Passing lines noise
-                col += step(0.99, 1.0 - randLines) * step(sineLines, noise) * 0.2;
+                //col += step(0.99, 1.0 - randLines) * step(sineLines, noise) * 0.2;
                 return col;
             }
             ENDCG
