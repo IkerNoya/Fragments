@@ -55,7 +55,7 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _ChromaticAberration: 4.32
+    - _ChromaticAberration: 2.14
     - _ColorBleedAmount: 0
     - _ColorBleedIterations: 0.77
     - _Contrast: 0.924
