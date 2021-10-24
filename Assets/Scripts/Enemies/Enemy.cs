@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake() {
         PauseController.SetPause += SetGamePause;
+        Console.ConsolePause += SetGamePause;
         InitialCutscene.endInitialCutscene += InitialCutsceneEnded;
     }
 
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy() {
         PauseController.SetPause -= SetGamePause;
+        Console.ConsolePause -= SetGamePause;
         InitialCutscene.endInitialCutscene -= InitialCutsceneEnded;
     }
     private void OnDisable() {

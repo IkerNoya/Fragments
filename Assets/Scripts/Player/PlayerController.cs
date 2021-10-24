@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
         PauseController.SetPause += SetGamePause;
+        Console.ConsolePause += SetGamePause;
     }
 
     private void Start() {
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDisable() {
         Weapon_Base.AmmoChanged -= WeaponAmmoChanged;
         PauseController.SetPause -= SetGamePause;
+        Console.ConsolePause -= SetGamePause;
     }
 
     private void OnDestroy() {

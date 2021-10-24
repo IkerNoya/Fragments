@@ -58,10 +58,7 @@ public class FPSController : MonoBehaviour {
     bool isGrounded;
     bool isInStair;
     bool canMove = true;
-    bool isAccelerating = false;
-    bool maxSpeedReached = false;
     bool isJumping = false; // tal vez lo usemos despues
-    bool setStartTimeAndSpeed = false;
 
     Vector3 forwardMovement = Vector3.zero;
     Vector3 rightMovement = Vector3.zero;
@@ -78,6 +75,7 @@ public class FPSController : MonoBehaviour {
         InitialCutscene.initialCutscene += SetCanMove;
         InitialCutscene.endInitialCutscene += SetCanMove;
         PauseController.SetPause += SetGamePause;
+        Console.ConsolePause += SetGamePause;
     }
 
 
@@ -88,6 +86,7 @@ public class FPSController : MonoBehaviour {
 
     private void OnDisable() {
         PauseController.SetPause -= SetGamePause;
+        Console.ConsolePause -= SetGamePause;
         InitialCutscene.initialCutscene -= SetCanMove;
         InitialCutscene.endInitialCutscene -= SetCanMove;
     }
@@ -225,7 +224,6 @@ public class FPSController : MonoBehaviour {
             if (Input.GetKeyDown(sprintKey))
             {
                 loopedSoundsSource.clip = runSound;
-                setStartTimeAndSpeed = false;
             }
             if (Input.GetKey(sprintKey))
             {
@@ -233,7 +231,6 @@ public class FPSController : MonoBehaviour {
             }
             else if (Input.GetKeyUp(sprintKey))
             {
-                setStartTimeAndSpeed = false;
                 loopedSoundsSource.clip = jogSound;
                 isRunning = false;
             }

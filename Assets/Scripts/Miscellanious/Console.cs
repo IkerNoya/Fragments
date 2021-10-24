@@ -1,18 +1,86 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using TMPro;
 
 public class Console : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] TMP_InputField console;
+    [SerializeField] TMP_Text text;
+
+    [SerializeField] string fieldInput = "";
+
+    public static event Action<bool> ConsolePause;
+
+    bool godMode = false;
+    bool infiniteAmmo = false;
+    bool maxDamage = false;
+
+    bool pause = false;
+
     void Start()
     {
-        
+        console.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            if (!console.gameObject.activeSelf)
+            {
+                pause = !pause;
+                console.gameObject.SetActive(true);
+                ConsolePause?.Invoke(pause);
+            }
+            else
+            {
+                pause = !pause;
+                console.gameObject.SetActive(false);
+                ConsolePause?.Invoke(pause);
+            }
+        }
+        if (console.gameObject.activeSelf)
+        {
+            console.ActivateInputField();
+        }       
     }
+
+    public void SetCheat(string cheat)
+    {
+        fieldInput = cheat;
+    }
+
+    void CheckCheat()
+    {
+        switch (fieldInput)
+        {
+            case "god":
+                godMode = !godMode;
+                Debug.Log("God Mode " + godMode);
+                fieldInput = "";
+                break;
+            case "infinite_ammo":
+                infiniteAmmo = !infiniteAmmo;
+                Debug.Log("InfiniteAmmo " + infiniteAmmo);
+                fieldInput = "";
+                break;
+            case "max_damage":
+                maxDamage = !maxDamage;
+                Debug.Log("Max Damage " + maxDamage);
+                fieldInput = "";
+                break;
+        }
+    }
+
+    public void EndEdit()
+    {
+        CheckCheat();
+        text.text = "";
+        pause = !pause;
+        console.gameObject.SetActive(false);
+        ConsolePause?.Invoke(pause);
+
+    }
+
+
 }

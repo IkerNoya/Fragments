@@ -15,16 +15,19 @@ public class MouseLook : MonoBehaviour
     float rotateZ = 0;
 
     bool canMove = true;
+    bool pause = false;
 
     void Awake()
     {
         InitialCutscene.initialCutscene += SetMoveBool;
+        Console.ConsolePause += SetGamePause;
         InitialCutscene.endInitialCutscene += SetMoveBool;
     }
 
     void OnDisable()
     {
         InitialCutscene.initialCutscene -= SetMoveBool;
+        Console.ConsolePause -= SetGamePause;
         InitialCutscene.endInitialCutscene -= SetMoveBool;
     }
 
@@ -38,6 +41,9 @@ public class MouseLook : MonoBehaviour
     {
         if (!canMove)
             return;
+        if (pause)
+            return;
+
         float mouseX = Input.GetAxis("Mouse X") * horizontalSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * verticalSensitivity * Time.deltaTime;
 
@@ -84,5 +90,9 @@ public class MouseLook : MonoBehaviour
     void SetMoveBool(bool value)
     {
         canMove = value;
+    }
+    void SetGamePause(bool value)
+    {
+        pause = value;
     }
 }
