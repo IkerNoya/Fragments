@@ -21592,7 +21592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 683659286}
   screenFadeSpeed: 0.3
-  hasPlayedInitialCutscene: 1
+  hasPlayedInitialCutscene: 0
   audioSource: {fileID: 1402661191}
   dialogue: {fileID: 8300000, guid: e6c971cababa16949a398998d5180882, type: 3}
   activateInitialQuest:
