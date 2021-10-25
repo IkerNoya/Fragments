@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class Console : MonoBehaviour
@@ -10,6 +11,10 @@ public class Console : MonoBehaviour
     [SerializeField] string fieldInput = "";
 
     public static event Action<bool> ConsolePause;
+
+    public UnityEvent InfiniteAmmo;
+    public UnityEvent MaxDamage;
+    public UnityEvent GodMode;
 
     bool godMode = false;
     bool infiniteAmmo = false;
@@ -56,16 +61,19 @@ public class Console : MonoBehaviour
         {
             case "god":
                 godMode = !godMode;
+                GodMode?.Invoke();
                 Debug.Log("God Mode " + godMode);
                 fieldInput = "";
                 break;
             case "infinite_ammo":
                 infiniteAmmo = !infiniteAmmo;
+                InfiniteAmmo?.Invoke();
                 Debug.Log("InfiniteAmmo " + infiniteAmmo);
                 fieldInput = "";
                 break;
             case "max_damage":
                 maxDamage = !maxDamage;
+                MaxDamage?.Invoke();
                 Debug.Log("Max Damage " + maxDamage);
                 fieldInput = "";
                 break;
@@ -79,7 +87,6 @@ public class Console : MonoBehaviour
         pause = !pause;
         console.gameObject.SetActive(false);
         ConsolePause?.Invoke(pause);
-
     }
 
 

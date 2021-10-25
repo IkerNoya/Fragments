@@ -32386,6 +32386,37 @@ MonoBehaviour:
   console: {fileID: 399929428}
   text: {fileID: 825718774}
   fieldInput: 
+  InfiniteAmmo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1631931125210413638}
+        m_MethodName: InfiniteAmmo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MaxDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1631931125210413638}
+        m_MethodName: MaxDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GodMode:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1884091676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40443,7 +40474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
-  damage: 30
+  baseDamage: 30
   shootParticles: {fileID: 6432522329765082416}
   bulletParticles: {fileID: 786662105}
   shootImpactHole: {fileID: 3701030072362383426, guid: 0e69b8908f0f3d74fbbc8d803c9e9a85,

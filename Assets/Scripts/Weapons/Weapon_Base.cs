@@ -6,7 +6,7 @@ public class Weapon_Base : MonoBehaviour {
 
     [Header("Shoot")]
     [SerializeField] float range;
-    [SerializeField] float damage;
+    [SerializeField] float baseDamage;
     [SerializeField] ParticleSystem shootParticles;
     [SerializeField] ParticleSystem bulletParticles;
     [SerializeField] GameObject shootImpactHole;
@@ -14,14 +14,17 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] float horizontalRecoil;
     [SerializeField] float verticalRecoil;
     [SerializeField] bool isSemiAutomatic;
+    float damage = 0;
+    float maxDamage = 9999;
+
 
     [Header("Ammo")]
     [SerializeField] float timeToReload;
     float timerReloading;
     [SerializeField] int totalAmmo;
     [SerializeField] int ammoPerMagazine;
-    bool reloading;
-    int actualAmmo;
+    bool reloading = false;
+    int actualAmmo = 0;
 
     [Header("Audio")]
     [SerializeField] AudioSource source;
@@ -38,11 +41,13 @@ public class Weapon_Base : MonoBehaviour {
     MouseLook recoil;
 
     bool canShoot = true;
+    bool isInfiniteAmmoActive = false;
+    bool isMaxDamageActive = false;
     float shootTimer = 0;
-    
 
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;
+        damage = baseDamage;
         reloading = false;
         timerReloading = 0f;
         fpsController = GetComponentInParent<FPSController>();
@@ -112,8 +117,8 @@ public class Weapon_Base : MonoBehaviour {
                 Destroy(hole, 5f);
             }
         }
-
-        actualAmmo--;
+        if(!isInfiniteAmmoActive)
+            actualAmmo--;
         AmmoChanged?.Invoke();
     }
 
@@ -143,6 +148,17 @@ public class Weapon_Base : MonoBehaviour {
 
         shootTimer = fireRate;
         AmmoChanged?.Invoke();
+    }
+
+    public void InfiniteAmmo()
+    {
+        isInfiniteAmmoActive = !isInfiniteAmmoActive;
+    }
+    public void MaxDamage()
+    {
+        isMaxDamageActive = !isMaxDamageActive;
+        if (isMaxDamageActive) damage = maxDamage;
+        else damage = baseDamage;
     }
 
     public int GetActualAmmo() {
