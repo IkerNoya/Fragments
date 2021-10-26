@@ -21,11 +21,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] NavMeshAgent navMesh;
     [SerializeField] bool canMove = true;
-    PlayerController player;
+    [SerializeField] Transform player;
     Rigidbody rb;
+
+    Vector3 lastPlayerPosition;
 
     bool gamePaused = false;
     bool initialCutsceneEnded = false;
+    NavMeshPath path;
 
     private void Awake() {
         PauseController.SetPause += SetGamePause;
@@ -41,9 +44,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
         deathEffect = meshRenderer.material;
         rb = GetComponent<Rigidbody>();
+        navMesh.destination = player.position;
+        path = new NavMeshPath();
     }
 
     private void OnDestroy() {
@@ -58,7 +62,7 @@ public class Enemy : MonoBehaviour
 
     private void Update() {
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 2)
+        if (Vector3.Distance(player.position, transform.position) < 2)
             canMove = false;
         else
         {
@@ -71,7 +75,13 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if(!navMesh.enabled)
         navMesh.enabled = true;
+
+
+
+        navMesh.SetDestination(player.position);
+        Debug.Log(navMesh.destination + " Player " + player.position);
 
     }
 
@@ -79,18 +89,6 @@ public class Enemy : MonoBehaviour
         if (gamePaused || !canMove || isDead)
             return;
 
-        
-        if(navMesh.path != null)
-        {
-            if(navMesh.isOnNavMesh)
-                navMesh.SetDestination(player.transform.position);
-        }
-        else
-        {
-            navMesh.path = new NavMeshPath();
-            if (navMesh.isOnNavMesh)
-                navMesh.SetDestination(player.transform.position);
-        }
     }
 
     public void Hit(float dmg, Vector3 hitPos, Vector3 attackerPos) {
@@ -127,6 +125,12 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(navMesh.destination, 1);
+        Gizmos.DrawSphere(player.position, .5f);
+    }
     void SetGamePause(bool value) {
         gamePaused = value;
     }
