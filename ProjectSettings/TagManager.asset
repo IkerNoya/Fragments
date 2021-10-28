@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Map
+  - Puzzle
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Weapon
   - Stair
   - InvisibleFloor
-  - 
+  - Puzzle
   - 
   - 
   - 
