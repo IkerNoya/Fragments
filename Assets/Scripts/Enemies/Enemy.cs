@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
 
 
         navMesh.SetDestination(player.position);
-        Debug.Log(navMesh.destination + " Player " + player.position);
 
     }
 
@@ -125,12 +124,6 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(navMesh.destination, 1);
-        Gizmos.DrawSphere(player.position, .5f);
-    }
     void SetGamePause(bool value) {
         gamePaused = value;
     }
