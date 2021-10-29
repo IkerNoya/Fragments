@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        if (Physics.Raycast(ray, out hit, 3)) {
+        if (Physics.Raycast(ray, out hit, 5)) {
             if (layerKeys == (layerKeys | (1 << hit.transform.gameObject.layer))) {
                 hud.SetInteractBool(true);
                 hud.SetPickupTextActive(true);

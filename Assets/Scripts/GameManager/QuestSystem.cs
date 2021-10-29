@@ -94,12 +94,18 @@ public class QuestSystem : MonoBehaviour
 
     void AddStartingObjectives()
     {
-        for(int i = 0; i < objectives.Count; i++)
+        if(objectives.Count > 0)
         {
-            objectives[i].objective = CreateObjective();
-            objectives[i].objective.SetObjectiveTitle(mission.objective[i], 1.0f);
-            objectives[i].id = objectiveID;
-            objectiveID++;
+            for(int i = 0; i < objectives.Count; i++)
+            {
+                if (objectives[i] != null)
+                {
+                    objectives[i].objective = CreateObjective();
+                    objectives[i].objective.SetObjectiveTitle(mission.objective[i], 1.0f);
+                    objectives[i].id = objectiveID;
+                    objectiveID++;
+                }
+            }
         }
     }
 

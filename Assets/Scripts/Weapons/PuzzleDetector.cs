@@ -6,6 +6,7 @@ public class PuzzleDetector : MonoBehaviour
 {
     [SerializeField] List<GameObject> eyes;
     [SerializeField] LayerMask puzzleLayer = 0;
+    [SerializeField] LayerMask keyLayer = 0;
     [SerializeField] float emissionIntensity = 0;
 
     List<Renderer> objectRenderers;
@@ -50,6 +51,6 @@ public class PuzzleDetector : MonoBehaviour
 
     bool FindPuzzle()
     {
-        return Physics.Raycast(transform.position, transform.forward, 10, puzzleLayer);
+        return Physics.Raycast(transform.position, transform.forward, 10, puzzleLayer) || Physics.Raycast(transform.position, transform.forward, 10, keyLayer);
     }
 }
