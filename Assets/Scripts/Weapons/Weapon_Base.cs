@@ -46,7 +46,6 @@ public class Weapon_Base : MonoBehaviour {
     bool isMaxDamageActive = false;
     float shootTimer = 0;
 
-    public UnityEvent ShotAtPuzzle;
 
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;
@@ -118,10 +117,6 @@ public class Weapon_Base : MonoBehaviour {
             else if (hit.collider.CompareTag("Map")) {
                 GameObject hole = Instantiate(shootImpactHole, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
                 Destroy(hole, 5f);
-            }
-            else if (hit.collider.CompareTag("Puzzle"))
-            {
-                ShotAtPuzzle?.Invoke();
             }
         }
         if(!isInfiniteAmmoActive)

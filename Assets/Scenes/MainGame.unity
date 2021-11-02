@@ -66056,58 +66056,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6585314639534528901, guid: d28b38b59f2c28e48a785643c6db90ca, type: 3}
---- !u!1 &1491081153 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 205078768774448764, guid: 3a55bfcc57e72a74f84f519c97739cd2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1016124513058105712}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1491081154
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491081153}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2362037, y: 2.512928, z: 3.2362037}
-  m_Center: {x: 0, y: -1.2564638, z: 0}
---- !u!114 &1491081155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491081153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178032af2ec43114ebf402b5e42e0994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keySpawnPositions:
-  - {fileID: 299412971}
-  - {fileID: 1805317020}
-  - {fileID: 1600070655}
-  - {fileID: 1857092785}
-  - {fileID: 1193743196}
-  Key: {fileID: 191789444}
-  SpawnedKey:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1275880908}
-        m_MethodName: AddSingleObjective
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Find The key
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1506021823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79587,6 +79535,7 @@ GameObject:
   - component: {fileID: 1874943401}
   - component: {fileID: 1874943402}
   - component: {fileID: 1874943403}
+  - component: {fileID: 1874943404}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -79669,6 +79618,39 @@ MonoBehaviour:
   Ambient: {fileID: 8300000, guid: cb9f069228a846f41b63112c1af4aedb, type: 3}
   CameraSource: {fileID: 1984846066}
   ClockSource: {fileID: 537239717}
+--- !u!114 &1874943404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874943400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178032af2ec43114ebf402b5e42e0994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keySpawnPositions:
+  - {fileID: 299412971}
+  - {fileID: 1805317020}
+  - {fileID: 1600070655}
+  - {fileID: 1857092785}
+  - {fileID: 1193743196}
+  Key: {fileID: 191789444}
+  SpawnedKey:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275880908}
+        m_MethodName: AddSingleObjective
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Find The key
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1884091676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89913,20 +89895,6 @@ MonoBehaviour:
   noAmmoSound: {fileID: 8300000, guid: 1eb5385b3ca3c3a4f8c244666d77fbb8, type: 3}
   reloadingSound: {fileID: 8300000, guid: 9711db40235da3844b7715817e9eb5a1, type: 3}
   animator: {fileID: 2454728998124452634}
-  ShotAtPuzzle:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1491081155}
-        m_MethodName: SpawnKey
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1631931125210413639
 MonoBehaviour:
   m_ObjectHideFlags: 0
