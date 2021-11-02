@@ -25,12 +25,20 @@ public class PlayerController : MonoBehaviour {
     [Header("Missions")]
     [SerializeField] List<Mission> missions;
 
+    [Header("Health")]
+    [SerializeField] float actualHealth;
+    [SerializeField] float maxHealth;
+    [SerializeField] float healingPerSecond;
+    [SerializeField] float timeToStartHealing;
+    bool alive = true;
+    bool healing = false;
+    float timerHealing = 0;
 
     FPSController fPSController;
     bool gamePaused = false;
 
     public static event Action ShowObjective;
-
+    public static event Action PlayerDead;
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
         PauseController.SetPause += SetGamePause;
@@ -40,6 +48,11 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         fPSController = GetComponent<FPSController>();
         hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
+
+        actualHealth = maxHealth;
+        alive = true;
+        healing = false;
+        timerHealing = 0;
     }
 
     private void OnDisable() {
@@ -54,8 +67,25 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        if (!alive)
+            return;
+
         if (!fPSController.GetCanMove())
             return;
+
+        if (actualHealth != maxHealth) {
+            if (healing) {
+                actualHealth += healingPerSecond * Time.deltaTime;
+                if (actualHealth >= maxHealth)
+                    actualHealth = maxHealth;
+                hud.UpdateHealthRedScreen(actualHealth, maxHealth);
+            }
+            else {
+                timerHealing += Time.deltaTime;
+                if (timerHealing >= timeToStartHealing)
+                    healing = true;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
@@ -79,6 +109,9 @@ public class PlayerController : MonoBehaviour {
         {
             ShowObjective?.Invoke();
         }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+            Hit(10);
 
         TryPickUpObject();
         TryInteractWithDoor();
@@ -158,6 +191,20 @@ public class PlayerController : MonoBehaviour {
     public void AddMission(Mission mission)
     {
         missions.Add(mission);
+    }
+
+    public void Hit(float damage) {
+        healing = false;
+        timerHealing = 0;
+
+        actualHealth -= damage;
+        if (actualHealth <= 0) {
+            Debug.Log("Mas muerto que muertin");
+            actualHealth = 0;
+            alive = false;
+            PlayerDead?.Invoke();
+        }
+        hud.UpdateHealthRedScreen(actualHealth, maxHealth);
     }
 
 }

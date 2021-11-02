@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class PlayerHUD : MonoBehaviour
 {
     [Header("Interactions")]
@@ -14,6 +16,12 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI lowAmmoText;
     [SerializeField] GameObject ReloadText;
     [SerializeField] GameObject crosshair;
+
+    [Header("")]
+    [SerializeField] Image healthPanel;
+    [SerializeField] Color healthPanelColor;
+    [SerializeField] float maxAlpha;
+
 
     PlayerController player; // TEMPORAL; QUITAR DESPUES PORFAVOR ES URGENTE EL QUITAR ESTO; NO DEJAR ACA
 
@@ -58,6 +66,14 @@ public class PlayerHUD : MonoBehaviour
     public void SetInteractBool(bool value)
     {
         isAboutToInteract = value;
+    }
+
+    public void UpdateHealthRedScreen(float actualHP, float maxHP) {
+        float alpha = (maxHP - actualHP) / maxHP;
+        if (alpha >= maxAlpha)
+            alpha = maxAlpha;
+
+        healthPanel.color  = new Color(healthPanelColor.r, healthPanelColor.g, healthPanelColor.b, alpha);
     }
 
 }

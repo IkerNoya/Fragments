@@ -16,12 +16,14 @@ public class MouseLook : MonoBehaviour
 
     bool canMove = true;
     bool pause = false;
+    bool alive = true;
 
     void Awake()
     {
         InitialCutscene.initialCutscene += SetMoveBool;
         Console.ConsolePause += SetGamePause;
         InitialCutscene.endInitialCutscene += SetMoveBool;
+        PlayerController.PlayerDead += PlayerDead;
     }
 
     void OnDisable()
@@ -29,6 +31,7 @@ public class MouseLook : MonoBehaviour
         InitialCutscene.initialCutscene -= SetMoveBool;
         Console.ConsolePause -= SetGamePause;
         InitialCutscene.endInitialCutscene -= SetMoveBool;
+        PlayerController.PlayerDead -= PlayerDead;
     }
 
     void Start()
@@ -39,6 +42,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (!alive)
+            return;
         if (!canMove)
             return;
         if (pause)
@@ -94,5 +99,9 @@ public class MouseLook : MonoBehaviour
     void SetGamePause(bool value)
     {
         pause = value;
+    }
+
+    void PlayerDead() {
+        alive = false;
     }
 }
