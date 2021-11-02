@@ -20,8 +20,8 @@ public class PlayerHUD : MonoBehaviour
     [Header("")]
     [SerializeField] Image healthPanel;
     [SerializeField] Color healthPanelColor;
-    [SerializeField] float maxAlpha;
-
+    [SerializeField] GameObject missionGO;
+    [SerializeField] GameObject playerHudGO;
 
     PlayerController player; // TEMPORAL; QUITAR DESPUES PORFAVOR ES URGENTE EL QUITAR ESTO; NO DEJAR ACA
 
@@ -67,12 +67,12 @@ public class PlayerHUD : MonoBehaviour
     {
         isAboutToInteract = value;
     }
-
+    public void SetUIActive(bool value) {
+        missionGO.SetActive(value);
+        playerHudGO.SetActive(value);
+    }
     public void UpdateHealthRedScreen(float actualHP, float maxHP) {
         float alpha = (maxHP - actualHP) / maxHP;
-        if (alpha >= maxAlpha)
-            alpha = maxAlpha;
-
         healthPanel.color  = new Color(healthPanelColor.r, healthPanelColor.g, healthPanelColor.b, alpha);
     }
 

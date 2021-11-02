@@ -203,6 +203,8 @@ public class PlayerController : MonoBehaviour {
             actualHealth = 0;
             alive = false;
             PlayerDead?.Invoke();
+            weapon.gameObject.SetActive(false);
+            hud.SetUIActive(false);
         }
         hud.UpdateHealthRedScreen(actualHealth, maxHealth);
     }

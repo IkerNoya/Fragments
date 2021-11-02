@@ -579,7 +579,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 147948418}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d7fc3df3ecfb0f841a96816d850dd73d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7343,9 +7343,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 10125822}
   - {fileID: 567939328}
   - {fileID: 1299363002}
-  - {fileID: 10125822}
   m_Father: {fileID: 1402661197}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7376,7 +7376,8 @@ MonoBehaviour:
   crosshair: {fileID: 232789962}
   healthPanel: {fileID: 10125823}
   healthPanelColor: {r: 0.754717, g: 0.15307939, b: 0.15307939, a: 1}
-  maxAlpha: 0.75
+  missionGO: {fileID: 1299363001}
+  playerHudGO: {fileID: 567939327}
 --- !u!114 &147948420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34088,7 +34089,7 @@ RectTransform:
   - {fileID: 726264894}
   - {fileID: 930080260}
   m_Father: {fileID: 147948418}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -63318,7 +63319,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 147948418}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
