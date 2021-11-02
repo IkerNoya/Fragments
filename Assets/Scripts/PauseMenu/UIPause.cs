@@ -45,6 +45,10 @@ public class UIPause : MonoBehaviour
         optionsPanel.SetActive(false);
     }
 
+    public void OnClickMenu()
+    {
+
+    }
     public void OnClickQuit()
     {
 #if UNITY_EDITOR
