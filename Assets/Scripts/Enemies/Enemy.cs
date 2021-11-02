@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     bool gamePaused = false;
     bool initialCutsceneEnded = false;
-    NavMeshPath path;
+    //NavMeshPath path;
 
     SpriteRenderer sprite;
 
@@ -48,12 +48,15 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().transform;
+
         if(meshRenderer) deathEffect = meshRenderer.material;
         rb = GetComponent<Rigidbody>();
         if(navMesh) navMesh.destination = player.position;
-        path = new NavMeshPath();
+       // path = new NavMeshPath();
         anim = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     private void OnDestroy() {
@@ -78,17 +81,10 @@ public class Enemy : MonoBehaviour
         }
 
         if(navMesh && !navMesh.enabled)
-        navMesh.enabled = true;
+            navMesh.enabled = true;
 
-
-
-        if(navMesh) navMesh.SetDestination(player.position);
-
-    }
-
-    private void FixedUpdate() {
-        if (gamePaused || !canMove || isDead)
-            return;
+        if(navMesh) 
+            navMesh.SetDestination(player.position);
 
     }
 
