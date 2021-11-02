@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
 
@@ -39,6 +41,8 @@ public class PlayerController : MonoBehaviour {
 
     public static event Action ShowObjective;
     public static event Action PlayerDead;
+    public UnityEvent EndGame;
+
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
         PauseController.SetPause += SetGamePause;
@@ -207,8 +211,16 @@ public class PlayerController : MonoBehaviour {
             PlayerDead?.Invoke();
             weapon.gameObject.SetActive(false);
             hud.SetUIActive(false);
+            StartCoroutine(WaitToLoose(1.5f));
         }
         hud.UpdateHealthRedScreen(actualHealth, maxHealth);
     }
 
+
+    IEnumerator WaitToLoose(float time)
+    {
+        yield return new WaitForSeconds(time);
+        EndGame?.Invoke();
+        yield return null;
+    }
 }
