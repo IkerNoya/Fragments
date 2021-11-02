@@ -46979,6 +46979,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1003731577712676753, guid: d28b38b59f2c28e48a785643c6db90ca, type: 3}
+--- !u!1 &784194614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1660606464011468366, guid: d28b38b59f2c28e48a785643c6db90ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1665161256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &784194615
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784194614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2289021806216359091, guid: d28b38b59f2c28e48a785643c6db90ca, type: 3}
 --- !u!1001 &786645170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63002,6 +63022,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31977892, y: 1.6563246, z: 1.6980472}
   m_Center: {x: 0, y: -0.00000011920929, z: 0.00000017881393}
+--- !u!1 &1285918415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5479481148060263626, guid: d28b38b59f2c28e48a785643c6db90ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1665161256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1285918416
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285918415}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5640632570303379537, guid: d28b38b59f2c28e48a785643c6db90ca, type: 3}
 --- !u!1001 &1289367762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64904,6 +64944,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1393201757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1402095297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9016333770560946487, guid: d28b38b59f2c28e48a785643c6db90ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1665161256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1402095298
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402095297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7001459994903556946, guid: d28b38b59f2c28e48a785643c6db90ca, type: 3}
 --- !u!1 &1402661190
 GameObject:
   m_ObjectHideFlags: 0
@@ -70351,6 +70411,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc0ccfc76194f6d43929eb6bef919316, type: 2}
+    - target: {fileID: 1660606464011468366, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660606464011468366, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 1663249652201125309, guid: d28b38b59f2c28e48a785643c6db90ca,
         type: 3}
       propertyPath: m_Layer
@@ -70801,6 +70871,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 5479481148060263626, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479481148060263626, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 5587089045429799965, guid: d28b38b59f2c28e48a785643c6db90ca,
         type: 3}
       propertyPath: m_Layer
@@ -71211,6 +71291,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc0ccfc76194f6d43929eb6bef919316, type: 2}
+    - target: {fileID: 9016333770560946487, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016333770560946487, guid: d28b38b59f2c28e48a785643c6db90ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 9090893469343617430, guid: d28b38b59f2c28e48a785643c6db90ca,
         type: 3}
       propertyPath: m_Layer
