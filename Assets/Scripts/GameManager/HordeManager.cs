@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HordeManager : MonoBehaviour
-{
+public class HordeManager : MonoBehaviour {
 
-    [SerializeField] List<Enemy> enemies;
-    [SerializeField] int enemyCount = 1;
-    bool hordeKilled = false;
-    public UnityEvent Survived;
-    void Start()
-    {
-        enemyCount = enemies.Count;
+    public UnityEvent AllEnemiesDead;
+    [SerializeField] List<Enemy> enemiesCreated;
+    private void Awake() {
+        Enemy.EnemyDead += EnemyDead;    
     }
 
-    void Update()
-    {
-
-        if (enemyCount <= 0 && !hordeKilled)
-        {
-            hordeKilled = true;
-            Survived?.Invoke();
-        }
-        foreach(Enemy enemy in enemies.ToArray())
-        {
-            if (enemy && enemy.GetIsDead()) enemies.Remove(enemy);
-        }
-        enemyCount = enemies.Count;
+    void Start() {
+        Enemy[] ec = FindObjectsOfType<Enemy>();
+        for (int i = 0; i < ec.Length; i++)
+            enemiesCreated.Add(ec[i]);
     }
+    private void OnDisable() {
+        Enemy.EnemyDead -= EnemyDead;
+    }
+
+    void EnemyDead(Enemy enemy) {
+        enemiesCreated.Remove(enemy);
+        if (enemiesCreated.Count <= 0) 
+            AllEnemiesDead?.Invoke();
+        
+    }
+
 }

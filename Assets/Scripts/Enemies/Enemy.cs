@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float damage;
     [SerializeField] NavMeshAgent navMesh;
-    [SerializeField] bool canMove = true;
+    [SerializeField] bool canMove = false;
     [SerializeField] Transform player;
     Rigidbody rb;
 
@@ -31,6 +32,8 @@ public class Enemy : MonoBehaviour
     bool gamePaused = false;
     bool initialCutsceneEnded = false;
     //NavMeshPath path;
+
+    public static Action<Enemy> EnemyDead;
 
     SpriteRenderer sprite;
 
@@ -107,6 +110,7 @@ public class Enemy : MonoBehaviour
                 navMesh.enabled = false;
             source.PlayOneShot(deathSound);
             isDead = true;
+            EnemyDead?.Invoke(this);
             Destroy(this.gameObject, 1);
             anim.SetTrigger("Die");
             //meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
