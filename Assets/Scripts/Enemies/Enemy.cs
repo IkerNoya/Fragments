@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     float deathValue = 0;
     bool isDead = false;
 
+    Animator anim;
+
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip deathSound;
     [SerializeField] ParticleSystem hitParticles;
@@ -30,6 +32,8 @@ public class Enemy : MonoBehaviour
     bool initialCutsceneEnded = false;
     NavMeshPath path;
 
+    SpriteRenderer sprite;
+
     private void Awake() {
         PauseController.SetPause += SetGamePause;
         Console.ConsolePause += SetGamePause;
@@ -44,19 +48,17 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        deathEffect = meshRenderer.material;
+        if(meshRenderer) deathEffect = meshRenderer.material;
         rb = GetComponent<Rigidbody>();
-        navMesh.destination = player.position;
+        if(navMesh) navMesh.destination = player.position;
         path = new NavMeshPath();
+        anim = GetComponent<Animator>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnDestroy() {
         PauseController.SetPause -= SetGamePause;
         Console.ConsolePause -= SetGamePause;
-        InitialCutscene.endInitialCutscene -= InitialCutsceneEnded;
-    }
-    private void OnDisable() {
-        PauseController.SetPause -= SetGamePause;
         InitialCutscene.endInitialCutscene -= InitialCutsceneEnded;
     }
 
@@ -71,16 +73,16 @@ public class Enemy : MonoBehaviour
         }
 
         if (gamePaused || !canMove) {
-            navMesh.enabled = false;
+            if(navMesh) navMesh.enabled = false;
             return;
         }
 
-        if(!navMesh.enabled)
+        if(navMesh && !navMesh.enabled)
         navMesh.enabled = true;
 
 
 
-        navMesh.SetDestination(player.position);
+        if(navMesh) navMesh.SetDestination(player.position);
 
     }
 
@@ -91,9 +93,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void Hit(float dmg, Vector3 hitPos, Vector3 attackerPos) {
-        hitParticles.transform.position = hitPos;
-        hitParticles.transform.LookAt(attackerPos);
-        hitParticles.Play();
+
+        if(sprite.color.a > 0.5f) // checks if an enemy is visible
+        {
+            hitParticles.transform.position = hitPos;
+            hitParticles.transform.LookAt(attackerPos);
+            hitParticles.Play();
+        }
 
         if (isDead)
             return;
@@ -101,14 +107,14 @@ public class Enemy : MonoBehaviour
 
 
         if(health <= 0) {
-            navMesh.enabled = false;
-            rb.isKinematic = false;
-            rb.useGravity = true;
+            if (navMesh)
+                navMesh.enabled = false;
             source.PlayOneShot(deathSound);
             isDead = true;
-            Destroy(this.gameObject, 6.73f);
-            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
-            StartCoroutine(DissolveEffect());
+            Destroy(this.gameObject, 1);
+            anim.SetTrigger("Die");
+            //meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
+            //StartCoroutine(DissolveEffect());
         }
     }
 
