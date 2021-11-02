@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,15 +23,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float damage;
     [SerializeField] NavMeshAgent navMesh;
-    [SerializeField] bool canMove = true;
-    [SerializeField] Transform player;
+    [SerializeField] bool canMove = false;
+    [SerializeField] PlayerController player;
+    [SerializeField] float distanceToAttack;
     Rigidbody rb;
 
     Vector3 lastPlayerPosition;
 
     bool gamePaused = false;
     bool initialCutsceneEnded = false;
-    NavMeshPath path;
+    //NavMeshPath path;
+
+    public static Action<Enemy> EnemyDead;
 
     SpriteRenderer sprite;
 
@@ -38,6 +42,7 @@ public class Enemy : MonoBehaviour
         PauseController.SetPause += SetGamePause;
         Console.ConsolePause += SetGamePause;
         InitialCutscene.endInitialCutscene += InitialCutsceneEnded;
+        PlayerController.PlayerDead += StopMovement;
     }
 
     void InitialCutsceneEnded(bool value)
@@ -48,27 +53,33 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+
         if(meshRenderer) deathEffect = meshRenderer.material;
         rb = GetComponent<Rigidbody>();
-        if(navMesh) navMesh.destination = player.position;
-        path = new NavMeshPath();
+        if(navMesh) navMesh.destination = player.transform.position;
+       // path = new NavMeshPath();
         anim = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     private void OnDestroy() {
         PauseController.SetPause -= SetGamePause;
         Console.ConsolePause -= SetGamePause;
         InitialCutscene.endInitialCutscene -= InitialCutsceneEnded;
+        PlayerController.PlayerDead -= StopMovement;
     }
 
     private void Update() {
+        if (isDead)
+            return;
 
-        if (Vector3.Distance(player.position, transform.position) < 2)
-            canMove = false;
-        else
-        {
-            if(!gamePaused && !isDead && initialCutsceneEnded)
+        if (Vector3.Distance(player.transform.position, transform.position) < distanceToAttack) {
+            Attack();
+        }
+        else {
+            if (!gamePaused && !isDead && initialCutsceneEnded)
                 canMove = true;
         }
 
@@ -78,17 +89,10 @@ public class Enemy : MonoBehaviour
         }
 
         if(navMesh && !navMesh.enabled)
-        navMesh.enabled = true;
+            navMesh.enabled = true;
 
-
-
-        if(navMesh) navMesh.SetDestination(player.position);
-
-    }
-
-    private void FixedUpdate() {
-        if (gamePaused || !canMove || isDead)
-            return;
+        if(navMesh) 
+            navMesh.SetDestination(player.transform.position);
 
     }
 
@@ -107,15 +111,25 @@ public class Enemy : MonoBehaviour
 
 
         if(health <= 0) {
-            if (navMesh)
-                navMesh.enabled = false;
-            source.PlayOneShot(deathSound);
-            isDead = true;
-            Destroy(this.gameObject, 1);
-            anim.SetTrigger("Die");
+            Die(1);
             //meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // solucion temporal hasta lograr que se casteen sombras del shader
             //StartCoroutine(DissolveEffect());
         }
+    }
+
+    void Attack() {
+        player.Hit(damage);
+        Die(0.01f);
+    }
+
+    void Die(float timeToDissapear) {
+        if (navMesh)
+            navMesh.enabled = false;
+        source.PlayOneShot(deathSound);
+        isDead = true;
+        EnemyDead?.Invoke(this);
+        Destroy(this.gameObject, timeToDissapear);
+        anim.SetTrigger("Die");
     }
 
     IEnumerator DissolveEffect() {
@@ -148,4 +162,11 @@ public class Enemy : MonoBehaviour
     {
         return rb;
     }
+
+    void StopMovement() {
+        canMove = false;
+        navMesh.enabled = false;
+        Debug.Log("ASD");
+    }
+
 }

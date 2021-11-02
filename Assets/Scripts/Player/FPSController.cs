@@ -66,6 +66,7 @@ public class FPSController : MonoBehaviour {
     Vector3 movement = Vector3.zero;
     RaycastHit slopeHit;
 
+    bool alive = true;
 
     public static event Action<float> Land;
 
@@ -76,12 +77,14 @@ public class FPSController : MonoBehaviour {
         InitialCutscene.endInitialCutscene += SetCanMove;
         PauseController.SetPause += SetGamePause;
         Console.ConsolePause += SetGamePause;
+        PlayerController.PlayerDead += PlayerDead;
     }
 
 
     void Start() {
         controller = GetComponent<CharacterController>();
         currentMovementAudio = jogSound;
+        alive = true;
     }
 
     private void OnDisable() {
@@ -89,6 +92,7 @@ public class FPSController : MonoBehaviour {
         Console.ConsolePause -= SetGamePause;
         InitialCutscene.initialCutscene -= SetCanMove;
         InitialCutscene.endInitialCutscene -= SetCanMove;
+        PlayerController.PlayerDead -= PlayerDead;
     }
 
     private void OnDestroy() {
@@ -96,6 +100,9 @@ public class FPSController : MonoBehaviour {
     }
 
     void Update() {
+        if (!alive)
+            return;
+
         if (gamePaused) {
             loopedSoundsSource.Stop();
             return;
@@ -334,6 +341,10 @@ public class FPSController : MonoBehaviour {
     void SetGamePause(bool value)
     {
         gamePaused = value;
+    }
+
+    void PlayerDead() {
+        alive = false;
     }
 
 }

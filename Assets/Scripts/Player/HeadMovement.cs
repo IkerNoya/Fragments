@@ -20,6 +20,7 @@ public class HeadMovement : MonoBehaviour
 
     FPSController player;
     Animator anim;
+    bool alive = true;
 
     float hBobFrequency;
     float hBobVerticalAmplitude;
@@ -31,6 +32,7 @@ public class HeadMovement : MonoBehaviour
     {
         FPSController.Land += Land;
         HeadAnimationValues.IsLanding += SetLandingBool;
+        PlayerController.PlayerDead += PlayerDead;
     }
     void Start()
     {
@@ -39,12 +41,18 @@ public class HeadMovement : MonoBehaviour
     }
     void Update()
     {
+        if (!alive)
+            return;
+
         if (!player.GetCanMove())
             return;
 
     }
     void LateUpdate()
     {
+        if (!alive)
+            return;
+
         if (!player.GetCanMove())
             return;
         //Crouch();
@@ -124,11 +132,18 @@ public class HeadMovement : MonoBehaviour
     {
         FPSController.Land -= Land;
         HeadAnimationValues.IsLanding -= SetLandingBool;
+        PlayerController.PlayerDead -= PlayerDead;
     }
     private void OnDestroy()
     {
         FPSController.Land -= Land;
+        PlayerController.PlayerDead -= PlayerDead;
         HeadAnimationValues.IsLanding -= SetLandingBool;
+    }
+
+    void PlayerDead() {
+        alive = false;
+        anim.SetTrigger("Death");
     }
 
 }
