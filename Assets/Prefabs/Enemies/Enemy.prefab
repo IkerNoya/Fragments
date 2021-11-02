@@ -4920,10 +4920,11 @@ MonoBehaviour:
   hitParticles: {fileID: 8353229059436281726}
   health: 100
   speed: 1
-  damage: 0
+  damage: 50
   navMesh: {fileID: 1617903140}
   canMove: 0
   player: {fileID: 0}
+  distanceToAttack: 2
 --- !u!54 &836364461
 Rigidbody:
   m_ObjectHideFlags: 0

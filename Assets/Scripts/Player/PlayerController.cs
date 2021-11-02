@@ -192,7 +192,9 @@ public class PlayerController : MonoBehaviour {
     {
         missions.Add(mission);
     }
-
+    public bool GetAlive() {
+        return alive;
+    }
     public void Hit(float damage) {
         healing = false;
         timerHealing = 0;

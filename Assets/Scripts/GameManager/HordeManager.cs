@@ -22,8 +22,9 @@ public class HordeManager : MonoBehaviour {
 
     void EnemyDead(Enemy enemy) {
         enemiesCreated.Remove(enemy);
-        if (enemiesCreated.Count <= 0) 
-            AllEnemiesDead?.Invoke();
+        if (enemiesCreated.Count <= 0)
+            if (FindObjectOfType<PlayerController>().GetAlive())
+                AllEnemiesDead?.Invoke();
         
     }
 
