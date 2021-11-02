@@ -143,6 +143,7 @@ public class HeadMovement : MonoBehaviour
 
     void PlayerDead() {
         alive = false;
+        anim.SetTrigger("Death");
     }
 
 }
