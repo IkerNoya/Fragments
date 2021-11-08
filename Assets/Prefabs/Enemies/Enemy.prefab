@@ -4925,6 +4925,7 @@ MonoBehaviour:
   canMove: 0
   player: {fileID: 0}
   distanceToAttack: 2
+  ammoBox: {fileID: 1543341386167937835, guid: 0bd73f593d7795a4cbe4af2a765ec2ed, type: 3}
 --- !u!54 &836364461
 Rigidbody:
   m_ObjectHideFlags: 0

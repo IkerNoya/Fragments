@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer sprite;
 
+    [SerializeField] AmmoBox ammoBox;
+
     private void Awake() {
         PauseController.SetPause += SetGamePause;
         Console.ConsolePause += SetGamePause;
@@ -130,6 +132,7 @@ public class Enemy : MonoBehaviour
         EnemyDead?.Invoke(this);
         Destroy(this.gameObject, timeToDissapear);
         anim.SetTrigger("Die");
+        Instantiate(ammoBox, transform.position + Vector3.down, Quaternion.identity);
     }
 
     IEnumerator DissolveEffect() {
