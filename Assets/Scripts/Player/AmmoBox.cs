@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoBox : MonoBehaviour {
+    [SerializeField] int ammoPerBox;
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            Debug.Log("CHEEKI BREEKI");
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player) {
+                player.AddAmmo(ammoPerBox);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

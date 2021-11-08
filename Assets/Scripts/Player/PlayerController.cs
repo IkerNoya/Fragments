@@ -187,7 +187,10 @@ public class PlayerController : MonoBehaviour {
     void WeaponAmmoChanged() {
         hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
     }
-
+    public void AddAmmo(int value) {
+        weapon.AddAmmo(value);
+        WeaponAmmoChanged();
+    }
     void SetGamePause(bool value) {
         gamePaused = value;
     }
