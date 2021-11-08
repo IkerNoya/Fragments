@@ -101,7 +101,10 @@ public class FPSController : MonoBehaviour {
 
     void Update() {
         if (!alive)
+        {
+            loopedSoundsSource.Stop();
             return;
+        }
 
         if (gamePaused) {
             loopedSoundsSource.Stop();

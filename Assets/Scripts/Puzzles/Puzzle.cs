@@ -11,6 +11,7 @@ public class Puzzle : MonoBehaviour
 
     public UnityEvent SpawnedKey;
 
+
     public void SpawnKey()
     {
         if (!puzzleActivated)
