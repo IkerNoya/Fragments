@@ -8,7 +8,7 @@ public class EndGame : MonoBehaviour
     public void Died()
     {
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.visible = true;  
         SceneManager.LoadScene("Loose");            
     }
 
