@@ -172,8 +172,11 @@ public class Weapon_Base : MonoBehaviour {
     public int GetActualAmmo() {
         return actualAmmo;
     }
-    public int GetMaxAmmo() {
+    public int GetTotalAmmo() {
         return totalAmmo;
+    }
+    public int GetMaxAmmo() {
+        return maxAmmo;
     }
     public int GetAmmoPerMagazine() {
         return ammoPerMagazine;

@@ -185,11 +185,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     void WeaponAmmoChanged() {
-        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetMaxAmmo());
+        hud.ChangeAmmoText(weapon.GetActualAmmo(), weapon.GetAmmoPerMagazine(), weapon.GetTotalAmmo());
     }
     public void AddAmmo(int value) {
         weapon.AddAmmo(value);
         WeaponAmmoChanged();
+    }
+    public Weapon_Base GetActualWeapon() {
+        return weapon;
     }
     void SetGamePause(bool value) {
         gamePaused = value;
