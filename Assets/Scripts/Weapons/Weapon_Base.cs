@@ -33,6 +33,7 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] List<AudioClip> shootSounds;
     [SerializeField] AudioClip noAmmoSound;
     [SerializeField] AudioClip reloadingSound;
+    [SerializeField] AudioClip ammoRefilledSound;
 
     [Header("Animations")]
     [SerializeField] Animator animator;
@@ -157,6 +158,7 @@ public class Weapon_Base : MonoBehaviour {
         totalAmmo += value;
         if (totalAmmo >= maxAmmo)
             totalAmmo = maxAmmo;
+        source.PlayOneShot(ammoRefilledSound);
     }
     public void InfiniteAmmo()
     {

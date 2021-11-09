@@ -48,10 +48,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
-  damage: 1
+  baseDamage: 0
   shootParticles: {fileID: 6432522328515170995}
+  bulletParticles: {fileID: 0}
   shootImpactHole: {fileID: 3701030072362383426, guid: 0e69b8908f0f3d74fbbc8d803c9e9a85,
     type: 3}
+  fireRate: 0
+  horizontalRecoil: 0
+  verticalRecoil: 0
+  isSemiAutomatic: 0
   timeToReload: 1.5
   totalAmmo: 120
   ammoPerMagazine: 12
@@ -61,6 +66,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc4b79b3013ea224b843c6e1433f477b, type: 3}
   noAmmoSound: {fileID: 8300000, guid: c1b214b56cf16304ba5c8d1b24042ebc, type: 3}
   reloadingSound: {fileID: 8300000, guid: 9711db40235da3844b7715817e9eb5a1, type: 3}
+  ammoRefilledSound: {fileID: 8300000, guid: cf5c81809d3d8c748be8f494752f06a2, type: 3}
   animator: {fileID: 2454728999357570201}
 --- !u!82 &9132767095682124890
 AudioSource:
