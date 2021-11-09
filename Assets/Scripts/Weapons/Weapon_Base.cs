@@ -26,12 +26,14 @@ public class Weapon_Base : MonoBehaviour {
     [SerializeField] int ammoPerMagazine;
     bool reloading = false;
     int actualAmmo = 0;
+    int maxAmmo;
 
     [Header("Audio")]
     [SerializeField] AudioSource source;
     [SerializeField] List<AudioClip> shootSounds;
     [SerializeField] AudioClip noAmmoSound;
     [SerializeField] AudioClip reloadingSound;
+    [SerializeField] AudioClip ammoRefilledSound;
 
     [Header("Animations")]
     [SerializeField] Animator animator;
@@ -49,6 +51,7 @@ public class Weapon_Base : MonoBehaviour {
 
     protected virtual void Start() {
         actualAmmo = ammoPerMagazine;
+        maxAmmo = totalAmmo;
         damage = baseDamage;
         reloading = false;
         timerReloading = 0f;
@@ -151,7 +154,12 @@ public class Weapon_Base : MonoBehaviour {
         shootTimer = fireRate;
         AmmoChanged?.Invoke();
     }
-
+    public void AddAmmo(int value) {
+        totalAmmo += value;
+        if (totalAmmo >= maxAmmo)
+            totalAmmo = maxAmmo;
+        source.PlayOneShot(ammoRefilledSound);
+    }
     public void InfiniteAmmo()
     {
         isInfiniteAmmoActive = !isInfiniteAmmoActive;
@@ -166,8 +174,11 @@ public class Weapon_Base : MonoBehaviour {
     public int GetActualAmmo() {
         return actualAmmo;
     }
-    public int GetMaxAmmo() {
+    public int GetTotalAmmo() {
         return totalAmmo;
+    }
+    public int GetMaxAmmo() {
+        return maxAmmo;
     }
     public int GetAmmoPerMagazine() {
         return ammoPerMagazine;
