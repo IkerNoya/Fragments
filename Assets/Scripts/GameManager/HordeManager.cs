@@ -8,6 +8,7 @@ public class HordeManager : MonoBehaviour {
     public UnityEvent AllEnemiesDead;
     [SerializeField] List<Enemy> enemiesCreated;
     private void Awake() {
+        Enemy.EnemyDead += EnemyDead;    
     }
 
     void Start() {
@@ -16,6 +17,7 @@ public class HordeManager : MonoBehaviour {
             enemiesCreated.Add(ec[i]);
     }
     private void OnDisable() {
+        Enemy.EnemyDead -= EnemyDead;
     }
 
     void EnemyDead(Enemy enemy) {
