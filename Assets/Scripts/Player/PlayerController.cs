@@ -211,7 +211,6 @@ public class PlayerController : MonoBehaviour {
 
         actualHealth -= damage;
         if (actualHealth <= 0) {
-            Debug.Log("Mas muerto que muertin");
             actualHealth = 0;
             alive = false;
             PlayerDead?.Invoke();

@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip attackSound;
     [SerializeField] ParticleSystem hitParticles;
 
     [SerializeField] float health;
@@ -121,7 +122,13 @@ public class Enemy : MonoBehaviour
 
     void Attack() {
         player.Hit(damage);
-        Die(0.01f);
+        if (navMesh)
+            navMesh.enabled = false;
+        isDead = true;
+        EnemyDead?.Invoke(this);
+        source.PlayOneShot(attackSound);
+        sprite.enabled = false;
+        Destroy(this.gameObject, attackSound.length);
     }
 
     void Die(float timeToDissapear) {
@@ -171,7 +178,6 @@ public class Enemy : MonoBehaviour
     void StopMovement() {
         canMove = false;
         navMesh.enabled = false;
-        Debug.Log("ASD");
     }
 
 }

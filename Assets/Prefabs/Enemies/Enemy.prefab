@@ -4917,6 +4917,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   source: {fileID: 836364460}
   deathSound: {fileID: 8300000, guid: ddaf815613209e84f859e568b534874f, type: 3}
+  attackSound: {fileID: 8300000, guid: 2d5c728a90e9e4846ba7f6526c5c590c, type: 3}
   hitParticles: {fileID: 8353229059436281726}
   health: 100
   speed: 1
