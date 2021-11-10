@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Credits.unity
     guid: 876c5182f5fac914c927b509b27d3156
   - enabled: 1
-    path: Assets/Scenes/Deprecated/MainGame.unity
-    guid: 6f9fe76bd91153143884b4b2f86d7814
+    path: Assets/Scenes/MainGame.unity
+    guid: ea63fffaad32052439a8d1038ff1e935
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: 7371ae547358eab4f969d5f4f8b71338
