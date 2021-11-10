@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] bool shouldEscapeExit = false;
     [SerializeField] string backSceneName = "";
 
+
     public void ChangeScene(string name)
     {
         SceneManager.LoadScene(name);
