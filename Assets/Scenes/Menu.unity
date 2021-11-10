@@ -1450,6 +1450,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2192084113051871472, guid: 53c024b4433ee6b45bf86078c515ad5b,
+        type: 3}
+      propertyPath: shouldEscapeExit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3557186368732942130, guid: 53c024b4433ee6b45bf86078c515ad5b,
         type: 3}
       propertyPath: m_LocalPosition.x

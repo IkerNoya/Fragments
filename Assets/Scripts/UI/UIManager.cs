@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] bool isInGame = false;
+    [SerializeField] bool shouldEscapeExit = false;
+    [SerializeField] string backSceneName = "";
 
     public void ChangeScene(string name)
     {
@@ -19,9 +21,13 @@ public class UIManager : MonoBehaviour
         if (isInGame)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && shouldEscapeExit)
         {
             OnClickQuit();
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && !shouldEscapeExit)
+        {
+            SceneManager.LoadScene(backSceneName);
         }
     }
 }
