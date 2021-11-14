@@ -10,10 +10,11 @@ public class UIPause : MonoBehaviour
     [Header("Pause Panels")]
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
+    [SerializeField] GameObject howToPlayPanel;
     [SerializeField] Slider verticalSensitivity;
     [SerializeField] Slider horizontalSensitivity;
-    [SerializeField] TMPro.TextMeshProUGUI verticalValue;
-    [SerializeField] TMPro.TextMeshProUGUI horizontalValue;
+    [SerializeField] Text verticalValue;
+    [SerializeField] Text horizontalValue;
 
     GameInstance gameInstance;
     void Start()
@@ -47,11 +48,19 @@ public class UIPause : MonoBehaviour
     {
         pausePanel.SetActive(false);
         optionsPanel.SetActive(true);
+        howToPlayPanel.SetActive(false);
+    }
+    public void OnClickHowToPlay()
+    {
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        howToPlayPanel.SetActive(true);
     }
     public void OnClickBack()
     {
         pausePanel.SetActive(true);
         optionsPanel.SetActive(false);
+        howToPlayPanel.SetActive(false);
     }
 
     public void OnClickMenu()
