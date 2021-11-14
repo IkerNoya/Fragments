@@ -15,23 +15,32 @@ public class UIPause : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI verticalValue;
     [SerializeField] TMPro.TextMeshProUGUI horizontalValue;
 
-
+    GameInstance gameInstance;
     void Start()
     {
-        verticalSensitivity.value = ml.GetVerticalSensitivity();
-        horizontalSensitivity.value = ml.GetHorizontalSensitivity();
+        gameInstance = GameInstance.Get();
+        if (gameInstance)
+        {
+            verticalSensitivity.value = gameInstance.verticalSensitivity;
+            horizontalSensitivity.value = gameInstance.horitontalSensitivity;
 
-        verticalValue.text = ((int)ml.GetVerticalSensitivity()).ToString();
-        horizontalValue.text = ((int)ml.GetHorizontalSensitivity()).ToString();
+            verticalValue.text = ((int)gameInstance.verticalSensitivity).ToString();
+            horizontalValue.text = ((int)gameInstance.horitontalSensitivity).ToString();
+
+            ml.SetHorizontalSensitivity(gameInstance.horitontalSensitivity);
+            ml.SetVerticalSensitivity(gameInstance.verticalSensitivity);
+        }
     }
     public void OnVerticalSliderValueChange()
     {
-        ml.SetVerticalSensitivity(verticalSensitivity.value);
+        gameInstance.verticalSensitivity = verticalSensitivity.value;
+        ml.SetVerticalSensitivity(gameInstance.verticalSensitivity);
         verticalValue.text = ((int)ml.GetVerticalSensitivity()).ToString();
     }
     public void OnHorizontalSliderValueChange()
     {
-        ml.SetHorizontalSensitivity(horizontalSensitivity.value);
+        gameInstance.horitontalSensitivity = horizontalSensitivity.value;
+        ml.SetHorizontalSensitivity(gameInstance.horitontalSensitivity);
         horizontalValue.text = ((int)ml.GetHorizontalSensitivity()).ToString();
     }
     public void OnClickOptions()
@@ -47,7 +56,7 @@ public class UIPause : MonoBehaviour
 
     public void OnClickMenu()
     {
-
+        
     }
     public void OnClickQuit()
     {
