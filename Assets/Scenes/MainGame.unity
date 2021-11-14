@@ -28899,6 +28899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d3856a090f20b4da7963643bdd0d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInGame: 1
+  shouldEscapeExit: 0
+  backSceneName: 
 --- !u!4 &789727528
 Transform:
   m_ObjectHideFlags: 0

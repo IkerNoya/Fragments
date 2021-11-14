@@ -1,0 +1,12 @@
+El contador de la izquierda que marca cuantas balas estan cargadas:
+Esta en 48 y tipo Roboto Regular
+
+Cuando el arma esta completamente cargada Se pone azul
+Cuando ya no tiene más balas se pone roja
+Entre medio tiene el color blanco general
+
+El "/" que separa la municion total de las balas cargadas
+Va en 48 y tipo Roboto Light
+
+La municion total:
+Va en 36 y Roboto Light

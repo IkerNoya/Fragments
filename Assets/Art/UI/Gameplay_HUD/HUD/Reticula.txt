@@ -1,0 +1,4 @@
+La reticula de combate pudee llegar a tener una animación de que cuando disparamos se agrande un poco
+y vuelva a su estado original. Modificando la escala un poco y despues volviendo a la original.
+Sino diganme si necesitan cada palito por separado.
+Es opcional igual

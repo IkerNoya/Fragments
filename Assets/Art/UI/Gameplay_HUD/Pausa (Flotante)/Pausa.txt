@@ -1,0 +1,4 @@
+Cuando ponemos pausa el la pantalla de gameplay debería estar blurreada junto con la municion.
+
+Mientras que el objetivo se va a resaltar y la llave con su estado tambien va a ser visible
+(Es decir que el objetivo y la llave estan por encima del gameplay, que debería estar blurreado o con una viñeta)

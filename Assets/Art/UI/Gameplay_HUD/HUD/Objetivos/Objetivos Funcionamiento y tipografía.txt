@@ -1,0 +1,13 @@
+Objetivo Nuevo:
+El color de la letra es 103D42 
+La fuente es Roboto en Regular y esta en 24
+
+(Opcional)
+El diamante se me ocurrio que puede tener una animación sutil de que rota 180 grados cuando aparece un nuevo objetivo
+
+Objetivo:
+
+El color de la letra es EBEBEB con 60% de transparencia
+La cosa es que este objetivo siempre este en el HUD 
+y que se "resalte" (Pasandose al estado Objetivo Nuevo) cuando tocas J
+
