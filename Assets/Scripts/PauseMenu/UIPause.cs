@@ -12,9 +12,13 @@ public class UIPause : MonoBehaviour
     [SerializeField] GameObject optionsPanel;
     [SerializeField] GameObject howToPlayPanel;
     [SerializeField] Slider verticalSensitivity;
-    [SerializeField] Slider horizontalSensitivity;
+    [SerializeField] Slider horizontalSensitivity;   
+    [SerializeField] Slider SFXslider;
+    [SerializeField] Slider MusicSlider;
     [SerializeField] Text verticalValue;
     [SerializeField] Text horizontalValue;
+    [SerializeField] Text SFXValue;
+    [SerializeField] Text MusicValue;
 
     GameInstance gameInstance;
     void Start()
@@ -43,6 +47,16 @@ public class UIPause : MonoBehaviour
         gameInstance.horitontalSensitivity = horizontalSensitivity.value;
         ml.SetHorizontalSensitivity(gameInstance.horitontalSensitivity);
         horizontalValue.text = ((int)ml.GetHorizontalSensitivity()).ToString();
+    }
+    public void OnSFXSliderValueChange()
+    {
+        gameInstance.sfxVolume = SFXslider.value;
+        SFXValue.text = ((int)gameInstance.sfxVolume).ToString();
+    }
+    public void OnMusicSliderValueChange()
+    {
+        gameInstance.musicVolume = MusicSlider.value;
+        MusicValue.text = ((int)gameInstance.musicVolume).ToString();
     }
     public void OnClickOptions()
     {
