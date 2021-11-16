@@ -11,9 +11,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] GameObject pickUpText;
     [SerializeField] GameObject blackScreen;
     [Header("Ammo")]
-    [SerializeField] TextMeshProUGUI ammoText;
-    [SerializeField] GameObject lowAmmoTextObj;
-    [SerializeField] TextMeshProUGUI lowAmmoText;
+    [SerializeField] Text ammoText;
     [SerializeField] GameObject ReloadText;
     [SerializeField] GameObject crosshair;
 
@@ -42,19 +40,15 @@ public class PlayerHUD : MonoBehaviour
     public void ChangeAmmoText(int actualAmmo, int ammoPerMagazine, int maxAmmo) {
         ammoText.text = actualAmmo + " / " + maxAmmo;
         if (((float)actualAmmo / (float)ammoPerMagazine) <= 0.25f) {
-            lowAmmoTextObj.SetActive(true);
-            lowAmmoText.text = "LOW AMMO";
             if (actualAmmo <= 0) {
                 crosshair.SetActive(false);
                 if (!isAboutToInteract)
                 {
                     ReloadText.SetActive(true);
                 }
-                lowAmmoText.text = "NO AMMO";
             }
         }
         else {
-            lowAmmoTextObj.SetActive(false);
             crosshair.SetActive(true);
             ReloadText.SetActive(false);
         }
