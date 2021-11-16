@@ -61,10 +61,11 @@ public class Enemy : MonoBehaviour
 
         if(meshRenderer) deathEffect = meshRenderer.material;
         rb = GetComponent<Rigidbody>();
-        if(navMesh) navMesh.destination = player.transform.position;
+        if(navMesh && navMesh.enabled) navMesh.destination = player.transform.position;
        // path = new NavMeshPath();
         anim = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+
 
     }
 
@@ -95,7 +96,7 @@ public class Enemy : MonoBehaviour
         if(navMesh && !navMesh.enabled)
             navMesh.enabled = true;
 
-        if(navMesh) 
+        if(navMesh && navMesh.enabled) 
             navMesh.SetDestination(player.transform.position);
 
     }
@@ -182,4 +183,21 @@ public class Enemy : MonoBehaviour
         navMesh.enabled = false;
     }
 
+    public void SetCanMove(bool value)
+    {
+        StartCoroutine(ActivateEnemy());
+    }
+    IEnumerator ActivateEnemy()
+    {
+        navMesh.enabled = false;
+        yield return new WaitForSeconds(2f);
+        navMesh.enabled = true;
+        canMove = true;
+        yield return null;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
 }
