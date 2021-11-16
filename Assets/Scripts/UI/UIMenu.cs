@@ -13,6 +13,7 @@ public class UIMenu : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         fade.raycastTarget = true;
+        Time.timeScale = 1;
     }
 
     public void OnClickPlay()
