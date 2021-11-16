@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
     public static event Action PlayerDead;
     public UnityEvent EndGame;
 
+    bool god = false;
+
     private void Awake() {
         Weapon_Base.AmmoChanged += WeaponAmmoChanged;
         PauseController.SetPause += SetGamePause;
@@ -206,6 +208,9 @@ public class PlayerController : MonoBehaviour {
         return alive;
     }
     public void Hit(float damage) {
+        if (god)
+            return;
+
         healing = false;
         timerHealing = 0;
 
@@ -227,5 +232,10 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(time);
         EndGame?.Invoke();
         yield return null;
+    }
+
+    public void GodMode()
+    {
+        god = !god;
     }
 }

@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer sprite;
 
+
     [SerializeField] AmmoBox ammoBox;
 
     private void Awake() {
@@ -128,6 +129,7 @@ public class Enemy : MonoBehaviour
         EnemyDead?.Invoke(this);
         source.PlayOneShot(attackSound);
         sprite.enabled = false;
+        Die(0.5f);
         Destroy(this.gameObject, attackSound.length);
     }
 

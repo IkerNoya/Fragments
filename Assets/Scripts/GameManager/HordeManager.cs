@@ -7,14 +7,20 @@ public class HordeManager : MonoBehaviour {
 
     public UnityEvent AllEnemiesDead;
     [SerializeField] List<Enemy> enemiesCreated;
+
+    FPSController player;
     private void Awake() {
         Enemy.EnemyDead += EnemyDead;    
     }
 
     void Start() {
+        player = FindObjectOfType<FPSController>();
+
         Enemy[] ec = FindObjectsOfType<Enemy>();
         for (int i = 0; i < ec.Length; i++)
             enemiesCreated.Add(ec[i]);
+
+
     }
     private void OnDisable() {
         Enemy.EnemyDead -= EnemyDead;

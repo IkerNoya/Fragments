@@ -1,0 +1,2282 @@
+fileFormatVersion: 2
+guid: 03a035392d6a9b54093cf57fa9e30ffd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1175984656655628949
+    second: Enemigo_Idle_V2_0
+  - first:
+      213: 289902136237242163
+    second: Enemigo_Idle_V2_1
+  - first:
+      213: 1508528374547300124
+    second: Enemigo_Idle_V2_2
+  - first:
+      213: 3787268458556233485
+    second: Enemigo_Idle_V2_3
+  - first:
+      213: -7293622931938321574
+    second: Enemigo_Idle_V2_4
+  - first:
+      213: 8901596780198096664
+    second: Enemigo_Idle_V2_5
+  - first:
+      213: 3400583295036555260
+    second: Enemigo_Idle_V2_6
+  - first:
+      213: -4136325986602696694
+    second: Enemigo_Idle_V2_7
+  - first:
+      213: -5886669289420471693
+    second: Enemigo_Idle_V2_8
+  - first:
+      213: 2389911595916082399
+    second: Enemigo_Idle_V2_9
+  - first:
+      213: 4853213423519820624
+    second: Enemigo_Idle_V2_10
+  - first:
+      213: -8909680298614467313
+    second: Enemigo_Idle_V2_11
+  - first:
+      213: 2300349134950280457
+    second: Enemigo_Idle_V2_12
+  - first:
+      213: -1570356776542946219
+    second: Enemigo_Idle_V2_13
+  - first:
+      213: 4700411248189137845
+    second: Enemigo_Idle_V2_14
+  - first:
+      213: 2971338219244458260
+    second: Enemigo_Idle_V2_15
+  - first:
+      213: -8473513790874945510
+    second: Enemigo_Idle_V2_16
+  - first:
+      213: -6974671326573033352
+    second: Enemigo_Idle_V2_17
+  - first:
+      213: 6290273040137061541
+    second: Enemigo_Idle_V2_18
+  - first:
+      213: 1018493440907576665
+    second: Enemigo_Idle_V2_19
+  - first:
+      213: -2996372687231663608
+    second: Enemigo_Idle_V2_20
+  - first:
+      213: 480576525653398014
+    second: Enemigo_Idle_V2_21
+  - first:
+      213: 1713224588412890205
+    second: Enemigo_Idle_V2_22
+  - first:
+      213: -242909220593821871
+    second: Enemigo_Idle_V2_23
+  - first:
+      213: -1517282688302286012
+    second: Enemigo_Idle_V2_24
+  - first:
+      213: -84564709416086986
+    second: Enemigo_Idle_V2_25
+  - first:
+      213: 3906979937256718654
+    second: Enemigo_Idle_V2_26
+  - first:
+      213: -7871979232411033716
+    second: Enemigo_Idle_V2_27
+  - first:
+      213: -7893109812824046571
+    second: Enemigo_Idle_V2_28
+  - first:
+      213: 1461277942050738535
+    second: Enemigo_Idle_V2_29
+  - first:
+      213: 1955210494170172041
+    second: Enemigo_Idle_V2_30
+  - first:
+      213: -8168740559610983189
+    second: Enemigo_Idle_V2_31
+  - first:
+      213: -5633996450533347076
+    second: Enemigo_Idle_V2_32
+  - first:
+      213: -8922863437696105041
+    second: Enemigo_Idle_V2_33
+  - first:
+      213: 8839833270600128872
+    second: Enemigo_Idle_V2_34
+  - first:
+      213: 1797158322808277747
+    second: Enemigo_Idle_V2_35
+  - first:
+      213: 8804634824583118010
+    second: Enemigo_Idle_V2_36
+  - first:
+      213: -6967949029358595682
+    second: Enemigo_Idle_V2_37
+  - first:
+      213: 7422426266251317030
+    second: Enemigo_Idle_V2_38
+  - first:
+      213: 5329929190748099069
+    second: Enemigo_Idle_V2_39
+  - first:
+      213: -812052320212427431
+    second: Enemigo_Idle_V2_40
+  - first:
+      213: 7809203865737196515
+    second: Enemigo_Idle_V2_41
+  - first:
+      213: 4161213343857005044
+    second: Enemigo_Idle_V2_42
+  - first:
+      213: 8040547263874117068
+    second: Enemigo_Idle_V2_43
+  - first:
+      213: -4942550061009262392
+    second: Enemigo_Idle_V2_44
+  - first:
+      213: -5463581482480678987
+    second: Enemigo_Idle_V2_45
+  - first:
+      213: 3334112288700189545
+    second: Enemigo_Idle_V2_46
+  - first:
+      213: -7145933659444509571
+    second: Enemigo_Idle_V2_47
+  - first:
+      213: -1389738276666728562
+    second: Enemigo_Idle_V2_48
+  - first:
+      213: -7308242841735094788
+    second: Enemigo_Idle_V2_49
+  - first:
+      213: 5971363737563284759
+    second: Enemigo_Idle_V2_50
+  - first:
+      213: 5122322908170064786
+    second: Enemigo_Idle_V2_51
+  - first:
+      213: -2104600122837823004
+    second: Enemigo_Idle_V2_52
+  - first:
+      213: 3495582212891610281
+    second: Enemigo_Idle_V2_53
+  - first:
+      213: 3312092563557110252
+    second: Enemigo_Idle_V2_54
+  - first:
+      213: -4474234995018019170
+    second: Enemigo_Idle_V2_55
+  - first:
+      213: 9198053171775573866
+    second: Enemigo_Idle_V2_56
+  - first:
+      213: -6374580116933129781
+    second: Enemigo_Idle_V2_57
+  - first:
+      213: -519138438556921574
+    second: Enemigo_Idle_V2_58
+  - first:
+      213: -3346274489494304510
+    second: Enemigo_Idle_V2_59
+  - first:
+      213: -186343689972291659
+    second: Enemigo_Idle_V2_60
+  - first:
+      213: -2703205014912045956
+    second: Enemigo_Idle_V2_61
+  - first:
+      213: 9213410779784980580
+    second: Enemigo_Idle_V2_62
+  - first:
+      213: 518155616358320052
+    second: Enemigo_Idle_V2_63
+  - first:
+      213: 8964111533758403033
+    second: Enemigo_Idle_V2_64
+  - first:
+      213: -6301388570143151225
+    second: Enemigo_Idle_V2_65
+  - first:
+      213: 5350981105526668500
+    second: Enemigo_Idle_V2_66
+  - first:
+      213: -723050320939737955
+    second: Enemigo_Idle_V2_67
+  - first:
+      213: -7455220182160838053
+    second: Enemigo_Idle_V2_68
+  - first:
+      213: -3844122794644171271
+    second: Enemigo_Idle_V2_69
+  - first:
+      213: 3506741182044451903
+    second: Enemigo_Idle_V2_70
+  - first:
+      213: -6113923533774092917
+    second: Enemigo_Idle_V2_71
+  - first:
+      213: -9165402399049805932
+    second: Enemigo_Idle_V2_72
+  - first:
+      213: 5700441703707196009
+    second: Enemigo_Idle_V2_73
+  - first:
+      213: -7293509467992264575
+    second: Enemigo_Idle_V2_74
+  - first:
+      213: 8639925698513464322
+    second: Enemigo_Idle_V2_75
+  - first:
+      213: -5678454604181847792
+    second: Enemigo_Idle_V2_76
+  - first:
+      213: 250452585277445340
+    second: Enemigo_Idle_V2_77
+  - first:
+      213: -7559421130552548894
+    second: Enemigo_Idle_V2_78
+  - first:
+      213: 1867357714919604832
+    second: Enemigo_Idle_V2_79
+  - first:
+      213: 3175752395314165376
+    second: Enemigo_Idle_V2_80
+  - first:
+      213: -6850957537410206805
+    second: Enemigo_Idle_V2_81
+  - first:
+      213: 1259540042617304164
+    second: Enemigo_Idle_V2_82
+  - first:
+      213: 2443114187494492724
+    second: Enemigo_Idle_V2_83
+  - first:
+      213: 4712434058399795354
+    second: Enemigo_Idle_V2_84
+  - first:
+      213: 4850782073910202751
+    second: Enemigo_Idle_V2_85
+  - first:
+      213: 5578419813459538400
+    second: Enemigo_Idle_V2_86
+  - first:
+      213: -4183436414750926197
+    second: Enemigo_Idle_V2_87
+  - first:
+      213: 7734974326815156344
+    second: Enemigo_Idle_V2_88
+  - first:
+      213: 2349864075691750407
+    second: Enemigo_Idle_V2_89
+  - first:
+      213: -7564538961402630050
+    second: Enemigo_Idle_V2_90
+  - first:
+      213: 7823372719303048942
+    second: Enemigo_Idle_V2_91
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b654bb67f201eafe0800000000000000
+      internalID: -1175984656655628949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_1
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3373c0af470f50400800000000000000
+      internalID: 289902136237242163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_2
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f3d7a609e5fe410800000000000000
+      internalID: 1508528374547300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_3
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d071945e8941f8430800000000000000
+      internalID: 3787268458556233485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_4
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b5c203698d7ca90800000000000000
+      internalID: -7293622931938321574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_5
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fe771eb13d88b70800000000000000
+      internalID: 8901596780198096664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_6
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfff7c16d7c413f20800000000000000
+      internalID: 3400583295036555260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_7
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00445d2e61d896c0800000000000000
+      internalID: -4136325986602696694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_8
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37244ed58795e4ea0800000000000000
+      internalID: -5886669289420471693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_9
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc3a272febaa2120800000000000000
+      internalID: 2389911595916082399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_10
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b6e0035e31a5340800000000000000
+      internalID: 4853213423519820624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_11
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 2856
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f05d9c259f47a5480800000000000000
+      internalID: -8909680298614467313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90da618b95b7cef10800000000000000
+      internalID: 2300349134950280457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_13
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55cb783f4d8f43ae0800000000000000
+      internalID: -1570356776542946219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_14
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b3609a50273b3140800000000000000
+      internalID: 4700411248189137845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_15
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4119b991e505c3920800000000000000
+      internalID: 2971338219244458260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_16
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18768f0a18086a80800000000000000
+      internalID: -8473513790874945510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_17
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8780382c16df43f90800000000000000
+      internalID: -6974671326573033352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_18
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a40691b00a8b4750800000000000000
+      internalID: 6290273040137061541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_19
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9558c57636a622e00800000000000000
+      internalID: 1018493440907576665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_20
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 802cfda9aeeba66d0800000000000000
+      internalID: -2996372687231663608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_21
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef156facdc95ba600800000000000000
+      internalID: 480576525653398014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_22
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ca0d4afa896c710800000000000000
+      internalID: 1713224588412890205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_23
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 2448
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15796d1d95301acf0800000000000000
+      internalID: -242909220593821871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b74e31f6781fae0800000000000000
+      internalID: -1517282688302286012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_25
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63258b648d093def0800000000000000
+      internalID: -84564709416086986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_26
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31c3c88d81683630800000000000000
+      internalID: 3906979937256718654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_27
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8f53ec789c11c290800000000000000
+      internalID: -7871979232411033716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_28
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5140979d17a067290800000000000000
+      internalID: -7893109812824046571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_29
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7615c0ecb80874410800000000000000
+      internalID: 1461277942050738535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_30
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a0126d59d422b10800000000000000
+      internalID: 1955210494170172041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_31
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beccf0aadbdc2ae80800000000000000
+      internalID: -8168740559610983189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_32
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf0f524141600d1b0800000000000000
+      internalID: -5633996450533347076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_33
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa58dc09afe9b2480800000000000000
+      internalID: -8922863437696105041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_34
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869dccf26856daa70800000000000000
+      internalID: 8839833270600128872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_35
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 2040
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3facf1c09f9c0f810800000000000000
+      internalID: 1797158322808277747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc7f4859b8503a70800000000000000
+      internalID: 8804634824583118010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_37
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e919d0c864fdc4f90800000000000000
+      internalID: -6967949029358595682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_38
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f407b0d51c10760800000000000000
+      internalID: 7422426266251317030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_39
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df1968c1c56b7f940800000000000000
+      internalID: 5329929190748099069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_40
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95dd4ba97b20bb4f0800000000000000
+      internalID: -812052320212427431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_41
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e37fdb7a8ddf5c60800000000000000
+      internalID: 7809203865737196515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_42
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f1563b3d799fb930800000000000000
+      internalID: 4161213343857005044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_43
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccda4f6c223c59f60800000000000000
+      internalID: 8040547263874117068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_44
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c825f008e8886bb0800000000000000
+      internalID: -4942550061009262392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_45
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b74657c6957d24b0800000000000000
+      internalID: -5463581482480678987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_46
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b4d313675254e20800000000000000
+      internalID: 3334112288700189545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_47
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 1632
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d748d40923b84dc90800000000000000
+      internalID: -7145933659444509571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f14888668a6bce0800000000000000
+      internalID: -1389738276666728562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_49
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd961e2bd7e39a90800000000000000
+      internalID: -7308242841735094788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_50
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715cb128eab8ed250800000000000000
+      internalID: 5971363737563284759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_51
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2939256bb85261740800000000000000
+      internalID: 5122322908170064786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_52
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e11204c655fac2e0800000000000000
+      internalID: -2104600122837823004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_53
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac0492908dc28030800000000000000
+      internalID: 3495582212891610281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_54
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1d80a63aae6fd20800000000000000
+      internalID: 3312092563557110252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_55
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9e44504af258e1c0800000000000000
+      internalID: -4474234995018019170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_56
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f86d850ac06af70800000000000000
+      internalID: 9198053171775573866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_57
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9cee95821f887a0800000000000000
+      internalID: -6374580116933129781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_58
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1150943756abc8f0800000000000000
+      internalID: -519138438556921574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_59
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 1224
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2098db4c415af81d0800000000000000
+      internalID: -3346274489494304510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7e019b669f96df0800000000000000
+      internalID: -186343689972291659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_61
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7cec137c594c7ad0800000000000000
+      internalID: -2703205014912045956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_62
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 468a6da1a4c9cdf70800000000000000
+      internalID: 9213410779784980580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_63
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7496ba9cbd03700800000000000000
+      internalID: 518155616358320052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_64
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1d6a032fbe66c70800000000000000
+      internalID: 8964111533758403033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_65
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b29ec4b78fc88a0800000000000000
+      internalID: -6301388570143151225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_66
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dc7ebaf6f0824a40800000000000000
+      internalID: 5350981105526668500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_67
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c97a1609537f5f0800000000000000
+      internalID: -723050320939737955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_68
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b52faf76ebcb98890800000000000000
+      internalID: -7455220182160838053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_69
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f590407faee6aac0800000000000000
+      internalID: -3844122794644171271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_70
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f343efa86827aa030800000000000000
+      internalID: 3506741182044451903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_71
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 816
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b858e7160faf62ba0800000000000000
+      internalID: -6113923533774092917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f8f151413fdc080800000000000000
+      internalID: -9165402399049805932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_73
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a3a4cf6890c1f40800000000000000
+      internalID: 5700441703707196009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_74
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1807f5218cf38ca90800000000000000
+      internalID: -7293509467992264575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_75
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ce9a185ae27e770800000000000000
+      internalID: 8639925698513464322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_76
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0114f8c8f931231b0800000000000000
+      internalID: -5678454604181847792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_77
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd45a82ac49c97300800000000000000
+      internalID: 250452585277445340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_78
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e165d5888a871790800000000000000
+      internalID: -7559421130552548894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_79
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0624e52b2ff2ae910800000000000000
+      internalID: 1867357714919604832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_80
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086fb494af9821c20800000000000000
+      internalID: 3175752395314165376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_81
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba3316bea628ce0a0800000000000000
+      internalID: -6850957537410206805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_82
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464b594def8ca7110800000000000000
+      internalID: 1259540042617304164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_83
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 408
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43a835bc86fa7e120800000000000000
+      internalID: 2443114187494492724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a984f5efecde56140800000000000000
+      internalID: 4712434058399795354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_85
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f71104e7890715340800000000000000
+      internalID: 4850782073910202751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_86
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e1b14db3478a6d40800000000000000
+      internalID: 5578419813459538400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_87
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a565edeb271f5c0800000000000000
+      internalID: -4183436414750926197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_88
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87865982b26285b60800000000000000
+      internalID: 7734974326815156344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo_Idle_V2_89
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 0
+        width: 255
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704fe0e3de46c9020800000000000000
+      internalID: 2349864075691750407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2e8a4d1e01ac6cc4182ee37f1adfff7c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
