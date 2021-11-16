@@ -65,9 +65,9 @@ public class SingleObjectiveContainer : MonoBehaviour
         if (show)
         {
             startHeight = rectTransform.rect.height;
-            endHeight = objective.rectTransform.rect.height;
+            endHeight = 50;
             startWidth = rectTransform.rect.width;
-            endWidth = objective.rectTransform.rect.width;
+            endWidth = 210;
         }
         else
         {

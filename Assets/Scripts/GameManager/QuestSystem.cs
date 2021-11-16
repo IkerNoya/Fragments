@@ -74,7 +74,7 @@ public class QuestSystem : MonoBehaviour
     void CreateMission()
     {
         GameObject header = GameObject.Instantiate(this.header, missionsWindow.transform, false);
-        title = header.GetComponent<Text>();
+        title = header.GetComponentInChildren<Text>();
         title.text = mission.title;
         headerRectTransform = title.transform as RectTransform;
         Canvas.ForceUpdateCanvases();
