@@ -62,13 +62,13 @@ public class UIOptions : MonoBehaviour
     public void UpdateSFXVolume()
     {
         sfxVolume = sfx_volume.value;
-        sfxValue.text = ((int)sfxVolume).ToString();
+        sfxValue.text = sfxVolume.ToString("F1");
         gameInstance.sfxVolume = sfxVolume;
     }
     public void UpdateMusicVolume()
     {
         musicVolume = music_volume.value;
-        musicValue.text = ((int)musicVolume).ToString();
+        musicValue.text =musicVolume.ToString("F1");
         gameInstance.musicVolume = musicVolume;
     }
 }

@@ -77,6 +77,9 @@ public class Console : MonoBehaviour
                 Debug.Log("Max Damage " + maxDamage);
                 fieldInput = "";
                 break;
+            case "elg":
+                MusicManager.Get().ELEGANTEKELOKE();
+                break;
         }
     }
 

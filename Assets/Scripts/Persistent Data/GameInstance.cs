@@ -20,7 +20,7 @@ public class GameInstance : MonoBehaviour
     public float sfxVolume { get { return m_sfxVolume; } set { 
             m_sfxVolume = value; 
             sfxMixer.SetFloat("MyExposedParam", -20 + (m_sfxVolume*2)); 
-            if(m_sfxVolume <= 0)
+            if(m_sfxVolume < 0.1f)
                 sfxMixer.SetFloat("MyExposedParam", -80);
         }
     }
@@ -28,7 +28,7 @@ public class GameInstance : MonoBehaviour
     public float musicVolume { get { return m_musicVolume; } set {
             m_musicVolume = value; 
             musicMixer.SetFloat("MyExposedParam", -13 + (m_musicVolume * 2)); 
-            if(m_musicVolume <= 0)
+            if(m_musicVolume < 0.1f)
             musicMixer.SetFloat("MyExposedParam", -80);
 
         }
