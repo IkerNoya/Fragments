@@ -34,6 +34,9 @@ public class UIPause : MonoBehaviour
 
             ml.SetHorizontalSensitivity(gameInstance.horitontalSensitivity);
             ml.SetVerticalSensitivity(gameInstance.verticalSensitivity);
+
+            SFXslider.value = gameInstance.sfxVolume;
+            MusicSlider.value = gameInstance.musicVolume;
         }
     }
     public void OnVerticalSliderValueChange()
