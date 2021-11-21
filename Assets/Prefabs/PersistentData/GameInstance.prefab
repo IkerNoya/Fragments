@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341f78c80ba7f8b4c8f07e86cfef5641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxMixer: {fileID: 24100000, guid: 5c3ff817a57ad6342b3c9a85ae77fc28, type: 2}
+  musicMixer: {fileID: 24100000, guid: fc4e61045713fba4abf38f56ccb2ae10, type: 2}
