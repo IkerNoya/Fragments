@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class UIMenu : MonoBehaviour
 {
+    [Header("Exit Data")]
+    [SerializeField] GameObject ExitPanel;
+
     [SerializeField] Image fade;
     Animator anim;
 
@@ -13,6 +16,17 @@ public class UIMenu : MonoBehaviour
         anim = GetComponent<Animator>();
         fade.raycastTarget = true;
         Time.timeScale = 1;
+        ExitPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (ExitPanel.activeSelf)
+            return;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnClickExit();
+        }
     }
 
     public void OnClickPlay()
@@ -26,5 +40,13 @@ public class UIMenu : MonoBehaviour
     public void MoveToGame()
     {
         SceneManager.LoadScene("MainGame");
+    }
+    public void OnClickExit()
+    {
+        ExitPanel.SetActive(true);
+    }
+    public void OnClickNo()
+    {
+        ExitPanel.SetActive(false);
     }
 }

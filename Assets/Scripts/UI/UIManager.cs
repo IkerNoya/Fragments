@@ -22,10 +22,6 @@ public class UIManager : MonoBehaviour
         if (isInGame)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && shouldEscapeExit)
-        {
-            OnClickQuit();
-        }
         else if(Input.GetKeyDown(KeyCode.Escape) && !shouldEscapeExit)
         {
             SceneManager.LoadScene(backSceneName);
