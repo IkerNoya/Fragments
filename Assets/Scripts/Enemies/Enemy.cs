@@ -93,12 +93,13 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if(navMesh && !navMesh.enabled)
-            navMesh.enabled = true;
+        if (!isDead) {
+            if (navMesh && !navMesh.enabled)
+                navMesh.enabled = true;
 
-        if(navMesh && navMesh.enabled) 
-            navMesh.SetDestination(player.transform.position);
-
+            if (navMesh && navMesh.enabled)
+                navMesh.SetDestination(player.transform.position);
+        }
     }
 
     public void Hit(float dmg, Vector3 hitPos, Vector3 attackerPos) {
@@ -123,14 +124,15 @@ public class Enemy : MonoBehaviour
     }
 
     void Attack() {
+        source.PlayOneShot(attackSound);
         player.Hit(damage);
         if (navMesh)
             navMesh.enabled = false;
         isDead = true;
+        transform.localScale = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+
         EnemyDead?.Invoke(this);
-        source.PlayOneShot(attackSound);
-        sprite.enabled = false;
-        Die(0.5f);
         Destroy(this.gameObject, attackSound.length);
     }
 
