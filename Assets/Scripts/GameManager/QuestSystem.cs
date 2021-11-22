@@ -18,14 +18,14 @@ public class QuestSystem : MonoBehaviour
     }
 
     int objectiveID = 0;
-    public Mission mission;
+    public List<Mission> missions;
 
     public PlayerController player;
     [Header("Window")]
     [SerializeField] GameObject missionsWindow;
     [SerializeField] GameObject header;
-    [SerializeField] SingleObjectiveContainer objectiveContainer;
-    [SerializeField] List<Objective> objectives;
+    //[SerializeField] SingleObjectiveContainer objectiveContainer;
+    //[SerializeField] List<Objective> objectives;
     [Header("Canvas Group")]
     [SerializeField] CanvasGroup cg;
 
@@ -62,71 +62,107 @@ public class QuestSystem : MonoBehaviour
 
         animationCoroutine = StartCoroutine(MissionAnimation(false, 1, onComplete));
     }
-    public void ActivateMission()
+    public void ActivateMission(int id)
     {
-        mission.isActive = true;
-        player.AddMission(mission);
-        CreateMission();
-        AddStartingObjectives();
+        for (int i = 0; i < missions.Count; i++)
+        {
+            if (missions[i].id == id)
+            {
+                missions[i].isActive = true;
+                player.AddMission(missions[i]);
+                CreateMission(id);
+            }
+            else
+            {
+                missions[i].isActive = false;
+            }
+        }
+        
+        //AddStartingObjectives();
+
         ShowMissionEvent();
     }
 
-    void CreateMission()
+    void CreateMission(int id)
     {
         GameObject header = GameObject.Instantiate(this.header, missionsWindow.transform, false);
         title = header.GetComponentInChildren<Text>();
-        title.text = mission.title;
+
+        for (int i = 0; i < missions.Count; i++)
+        {
+            if (missions[i].id == id)
+            {
+                title.text = missions[i].title;
+            }
+        }
+
         headerRectTransform = title.transform as RectTransform;
         Canvas.ForceUpdateCanvases();
         
     }
 
-    public void AddSingleObjective(string name)
-    {
-        Objective objective = new Objective();
-        objective.objective = CreateObjective();
-        objectives.Add(objective);
-        objective.objective.SetObjectiveTitle(name, 0.5f);
-        objective.id = objectiveID;
-        objectiveID++;
-        ShowMissionEvent();
-    }
-
-    void AddStartingObjectives()
-    {
-        if(objectives.Count > 0)
+    public void ChangeMission(int id) {
+        for (int i = 0; i < missions.Count; i++)
         {
-            for(int i = 0; i < objectives.Count; i++)
+            if (missions[i].id == id)
             {
-                if (objectives[i] != null)
-                {
-                    objectives[i].objective = CreateObjective();
-                    objectives[i].objective.SetObjectiveTitle(mission.objective[i], 1.0f);
-                    objectives[i].id = objectiveID;
-                    objectiveID++;
-                }
+                title.text = missions[i].title;
+                missions[id].isActive = true;
             }
+            else
+                missions[i].isActive = false;
         }
-    }
-
-    public SingleObjectiveContainer CreateObjective()
-    {
-        SingleObjectiveContainer objective = Instantiate<SingleObjectiveContainer>(objectiveContainer, missionsWindow.transform, false);
-        return objective;
-    }
-
-    public void RemoveObjective(Objective objective)
-    {
         ShowMissionEvent();
-        if(objective != null)
-        {
-            objective.objective.Hide(() =>
-            {
-                objective.objective = null;
-                objectives.Remove(objective);
-            });
-        }
+
     }
+
+
+    //public void AddSingleObjective(string name)
+    //{
+    //    Objective objective = new Objective();
+    //    objective.objective = CreateObjective();
+    //    objectives.Add(objective);
+    //    objective.objective.SetObjectiveTitle(name, 0.5f);
+    //    objective.id = objectiveID;
+    //    objectiveID++;
+    //    ShowMissionEvent();
+    //}
+
+    //void AddStartingObjectives()
+    //{
+    //    if(objectives.Count > 0)
+    //    {
+    //        for(int i = 0; i < objectives.Count; i++)
+    //        {
+    //            if (objectives[i] != null)
+    //            {
+    //                objectives[i].objective = CreateObjective();
+    //                objectives[i].objective.SetObjectiveTitle(mission.objective[i], 1.0f);
+    //                objectives[i].id = objectiveID;
+    //                objectiveID++;
+    //            }
+    //        }
+    //    }
+    //}
+
+    //public SingleObjectiveContainer CreateObjective()
+    //{
+    //    SingleObjectiveContainer objective = Instantiate<SingleObjectiveContainer>(objectiveContainer, missionsWindow.transform, false);
+    //    return objective;
+    //}
+
+    //public void RemoveObjective(Objective objective)
+    //{
+    //    ShowMissionEvent();
+    //    if(objective != null)
+    //    {
+    //        objective.objective.Hide(() =>
+    //        {
+    //            objective.objective = null;
+    //            objectives.Remove(objective);
+    //        });
+    //    }
+    //}
 
     IEnumerator MissionAnimation(bool show, float duration, System.Action onComplete)
     {
@@ -185,18 +221,18 @@ public class QuestSystem : MonoBehaviour
 
     //La ID se encuentra en el inspector o dependiendo de su lugar en la lista de objectivos
     //TODO: Encontrar una manera de automatizarlo
-    public void CompleteObjective(int id)
-    {
-        for (int i = 0; i < objectives.Count; i++)
-        {
-            if (objectives[i].id == id)
-            {
-                objectives[i].isCompleted = true;
-                RemoveObjective(objectives[i]);
-                break;
-            }
-        }
-    }
+    //public void CompleteObjective(int id)
+    //{
+    //    for (int i = 0; i < objectives.Count; i++)
+    //    {
+    //        if (objectives[i].id == id)
+    //        {
+    //            objectives[i].isCompleted = true;
+    //            RemoveObjective(objectives[i]);
+    //            break;
+    //        }
+    //    }
+    //}
 
     private void OnDestroy()
     {

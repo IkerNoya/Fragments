@@ -2213,60 +2213,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 69817853}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &70695120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 70695121}
-  - component: {fileID: 70695122}
-  m_Layer: 0
-  m_Name: Survive
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &70695121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70695120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 457499698}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70695122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70695120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37e1dace81e0aa46b4303a25c64cbb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission:
-    isActive: 0
-    title: Survive
-    objective: []
-  player: {fileID: 1402661194}
-  missionsWindow: {fileID: 1299363001}
-  header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
-  objectiveContainer: {fileID: 2658031703832367627, guid: 2cde2bbce1329034db78dd930c1fa957,
-    type: 3}
-  objectives: []
-  cg: {fileID: 1299363007}
 --- !u!1001 &72491684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4148,60 +4094,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 154650824}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &157012957
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 157012958}
-  - component: {fileID: 157012959}
-  m_Layer: 0
-  m_Name: PickUpKey
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &157012958
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157012957}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 457499698}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &157012959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157012957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37e1dace81e0aa46b4303a25c64cbb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission:
-    isActive: 0
-    title: Find key
-    objective: []
-  player: {fileID: 1402661194}
-  missionsWindow: {fileID: 1299363001}
-  header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
-  objectiveContainer: {fileID: 2658031703832367627, guid: 2cde2bbce1329034db78dd930c1fa957,
-    type: 3}
-  objectives: []
-  cg: {fileID: 1299363007}
 --- !u!1 &161045321
 GameObject:
   m_ObjectHideFlags: 0
@@ -11160,9 +11052,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1275880907}
-  - {fileID: 157012958}
-  - {fileID: 1065900987}
-  - {fileID: 70695121}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22236,7 +22125,63 @@ MonoBehaviour:
         m_CallState: 2
   currentRound: 0
   roundToSpawnObjective: 2
-  timeBetweenRounds: 30
+  timeBetweenRounds: 10
+  StartRound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275880908}
+        m_MethodName: ChangeMission
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndRoundBeforeKey:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275880908}
+        m_MethodName: ChangeMission
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndRoundAfterKey:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275880908}
+        m_MethodName: ChangeMission
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndRoundBeforeEscape:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275880908}
+        m_MethodName: ChangeMission
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &808003801
 Transform:
   m_ObjectHideFlags: 0
@@ -26209,18 +26154,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275880908}
         m_MethodName: ActivateMission
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1874943403}
-        m_MethodName: PlayClockSound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26845,60 +26779,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1065900986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1065900987}
-  - component: {fileID: 1065900988}
-  m_Layer: 0
-  m_Name: Escape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1065900987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065900986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 457499698}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1065900988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065900986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37e1dace81e0aa46b4303a25c64cbb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission:
-    isActive: 0
-    title: Escape
-    objective: []
-  player: {fileID: 1402661194}
-  missionsWindow: {fileID: 1299363001}
-  header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
-  objectiveContainer: {fileID: 2658031703832367627, guid: 2cde2bbce1329034db78dd930c1fa957,
-    type: 3}
-  objectives: []
-  cg: {fileID: 1299363007}
 --- !u!1 &1067874859
 GameObject:
   m_ObjectHideFlags: 0
@@ -30099,7 +29979,7 @@ GameObject:
   - component: {fileID: 1275880907}
   - component: {fileID: 1275880908}
   m_Layer: 0
-  m_Name: ExploreMansion
+  m_Name: MainMissions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30131,16 +30011,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37e1dace81e0aa46b4303a25c64cbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission:
-    isActive: 0
+  missions:
+  - isActive: 0
     title: Explore
     objective: []
+    id: 0
+  - isActive: 0
+    title: Survive
+    objective: []
+    id: 1
+  - isActive: 0
+    title: Find Key
+    objective: []
+    id: 2
+  - isActive: 0
+    title: Escape
+    objective: []
+    id: 3
   player: {fileID: 1402661194}
   missionsWindow: {fileID: 1299363001}
   header: {fileID: 2064915286050001500, guid: 40c22fa716b47ae468cf661690173181, type: 3}
-  objectiveContainer: {fileID: 2658031703832367627, guid: 2cde2bbce1329034db78dd930c1fa957,
-    type: 3}
-  objectives: []
   cg: {fileID: 1299363007}
 --- !u!1001 &1281822945
 PrefabInstance:
@@ -36889,7 +36779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600070654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.069, y: 1.208, z: 7.68}
+  m_LocalPosition: {x: -6.486, y: 1.239, z: 5.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1240620797}
@@ -54278,7 +54168,7 @@ PrefabInstance:
     - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
         type: 3}
       propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
         type: 3}
@@ -54289,7 +54179,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1275880908}
+      objectReference: {fileID: 808003800}
     - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
         type: 3}
       propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -54353,6 +54243,21 @@ PrefabInstance:
     - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
         type: 3}
       propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
+        type: 3}
+      propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayerPickedUpKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
+        type: 3}
+      propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460123889334860391, guid: 5f2f5e4100750554dab7dde87c0e678f,
+        type: 3}
+      propertyPath: PickedUpKey.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6785870268040273288, guid: 5f2f5e4100750554dab7dde87c0e678f,

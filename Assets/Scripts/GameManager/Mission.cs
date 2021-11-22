@@ -6,4 +6,5 @@ public class Mission
 
     public string title;
     public string[] objective;
+    public int id = 0;
 }

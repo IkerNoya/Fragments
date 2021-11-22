@@ -20,8 +20,15 @@ public class HordeManager : MonoBehaviour {
     [SerializeField] int roundToSpawnObjective = 0;
     [SerializeField] float timeBetweenRounds = 0;
 
+    [Header("Mission Data")]
+    public UnityEvent StartRound;
+    public UnityEvent EndRoundBeforeKey;
+    public UnityEvent EndRoundAfterKey;
+    public UnityEvent EndRoundBeforeEscape; // Buscar mejor manera de usar estos eventos
+
     bool canSpawnEnemies = true;
     bool hasSpawnedKey = false;
+    bool playerPickedUpKey = false;
 
     float spawnTimer = 0;
 
@@ -63,13 +70,22 @@ public class HordeManager : MonoBehaviour {
             if (FindObjectOfType<PlayerController>().GetAlive())
                 SpawnKeyAfterRound?.Invoke();
             hasSpawnedKey = true;
+            if (!playerPickedUpKey)
+                EndRoundAfterKey?.Invoke();
+            canSpawnEnemies = true;
         }
         else if(enemiesCreated.Count <= 0)
         {
             currentRound++;
+            if (!hasSpawnedKey)
+                EndRoundBeforeKey?.Invoke();
+            else if (hasSpawnedKey && !playerPickedUpKey)
+                EndRoundAfterKey?.Invoke();
+            else if(hasSpawnedKey && playerPickedUpKey)
+                EndRoundBeforeEscape?.Invoke();
+            canSpawnEnemies = true;
         }
-        canSpawnEnemies = true;
-        
+
     }
     public void SpawnHorde()
     {
@@ -86,7 +102,18 @@ public class HordeManager : MonoBehaviour {
             }
         }
         PlayAudioQueue?.Invoke();
-        enemyCount += enemyAdditionAmmount;
+        StartRound?.Invoke();
+
+        if (enemyCount < maxEnemyCount)
+            enemyCount += enemyAdditionAmmount;
+        else
+            enemyCount = maxEnemyCount;
     }
 
+    public void PlayerPickedUpKey()
+    {
+        playerPickedUpKey = true;
+        if (spawnTimer > 1)
+            EndRoundBeforeEscape?.Invoke();
+    }
 }
