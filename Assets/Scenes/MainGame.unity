@@ -3834,6 +3834,7 @@ MonoBehaviour:
   pickUpText: {fileID: 2002938174}
   blackScreen: {fileID: 683659285}
   ammoText: {fileID: 642405416}
+  ammoTotalText: {fileID: 1214618335}
   ReloadText: {fileID: 43313925}
   crosshair: {fileID: 232789962}
   healthPanel: {fileID: 10125823}
@@ -3965,7 +3966,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 567939328}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13528,6 +13529,7 @@ RectTransform:
   - {fileID: 232789965}
   - {fileID: 683659288}
   - {fileID: 642405415}
+  - {fileID: 1214618334}
   - {fileID: 1309340733}
   - {fileID: 930080260}
   - {fileID: 152961134}
@@ -14324,8 +14326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 905.0004, y: -489.73795}
-  m_SizeDelta: {x: 618.0033, y: 230.09943}
+  m_AnchoredPosition: {x: 901.5001, y: -489.74}
+  m_SizeDelta: {x: 926.07214, y: 230.09943}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &642405416
 MonoBehaviour:
@@ -14359,7 +14361,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 8 / 120
+  m_Text: 12
 --- !u!222 &642405417
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24968,7 +24970,7 @@ RectTransform:
   - {fileID: 127826839}
   - {fileID: 43313926}
   m_Father: {fileID: 567939328}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28573,6 +28575,84 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1211262716}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214618333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214618334}
+  - component: {fileID: 1214618336}
+  - component: {fileID: 1214618335}
+  m_Layer: 9
+  m_Name: Ammo Max Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1214618334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214618333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.46770993, y: 0.46770993, z: 0.46770993}
+  m_Children: []
+  m_Father: {fileID: 567939328}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 905.0004, y: -489.74}
+  m_SizeDelta: {x: 582.90955, y: 230.09943}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1214618335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214618333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e5dd902d549ac244bb1a0beaae45ea65, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 200
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '  / 120'
+--- !u!222 &1214618336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214618333}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1220834501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30857,7 +30937,7 @@ RectTransform:
   m_LocalScale: {x: 0.46770993, y: 0.46770993, z: 0.46770993}
   m_Children: []
   m_Father: {fileID: 567939328}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -40522,7 +40602,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 567939328}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
