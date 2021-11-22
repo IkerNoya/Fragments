@@ -5,45 +5,77 @@ using UnityEngine.Events;
 
 public class HordeManager : MonoBehaviour {
 
-    public UnityEvent AllEnemiesDead;
+    public UnityEvent SpawnKeyAfterRound;
     [SerializeField] List<Enemy> enemiesCreated;
     [SerializeField] List<Transform> spawners;
     [SerializeField] GameObject enemy;
+    [Header("Horde")]
+    [SerializeField] int initialEnemyCount = 0;
+    [SerializeField] int maxEnemyCount = 0;
+    [SerializeField] int enemyAdditionAmmount = 0;
+    public UnityEvent PlayAudioQueue;
+
+    [Header("Rounds")]
+    [SerializeField] int currentRound = 0;
+    [SerializeField] int roundToSpawnObjective = 0;
+    [SerializeField] float timeBetweenRounds = 0;
+
+    bool canSpawnEnemies = true;
     bool hasSpawnedKey = false;
 
+    float spawnTimer = 0;
+
+    int enemyCount = 0;
+
     FPSController player;
-    private void Awake() {
+
+    void Awake() {
         Enemy.EnemyDead += EnemyDead;    
     }
 
     void Start() {
         player = FindObjectOfType<FPSController>();
 
-        Enemy[] ec = FindObjectsOfType<Enemy>();
-        for (int i = 0; i < ec.Length; i++)
-            enemiesCreated.Add(ec[i]);
-
+        enemyCount = initialEnemyCount;
 
     }
-    private void OnDisable() {
+    void OnDisable() {
         Enemy.EnemyDead -= EnemyDead;
+    }
+    void Update()
+    {
+        if (!canSpawnEnemies)
+            return;
+
+        if(spawnTimer >= timeBetweenRounds)
+        {
+            SpawnHorde();
+            spawnTimer = 0;
+            canSpawnEnemies = false;
+        }
+        spawnTimer += Time.deltaTime;    
     }
 
     void EnemyDead(Enemy enemy) {
         enemiesCreated.Remove(enemy);
-        if (enemiesCreated.Count <= 0 && !hasSpawnedKey)
+        if (enemiesCreated.Count <= 0 && currentRound >= roundToSpawnObjective && !hasSpawnedKey)
         {
             if (FindObjectOfType<PlayerController>().GetAlive())
-                AllEnemiesDead?.Invoke();
+                SpawnKeyAfterRound?.Invoke();
             hasSpawnedKey = true;
         }
+        else if(enemiesCreated.Count <= 0)
+        {
+            currentRound++;
+        }
+        canSpawnEnemies = true;
         
     }
     public void SpawnHorde()
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < enemyCount; i++)
         {
-            if (enemiesCreated.Count < 5)
+            if (enemiesCreated.Count < enemyCount)
             {
                 int index = Random.Range(0, spawners.Count);
                 GameObject en = Instantiate(enemy);
@@ -53,6 +85,8 @@ public class HordeManager : MonoBehaviour {
                 enemiesCreated.Add(enemyScript);
             }
         }
+        PlayAudioQueue?.Invoke();
+        enemyCount += enemyAdditionAmmount;
     }
 
 }

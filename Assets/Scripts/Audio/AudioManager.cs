@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip Ambient;
     [SerializeField] AudioSource CameraSource;
     [SerializeField] AudioSource ClockSource;
+    [SerializeField] AudioMixerGroup sfxGroup;
     bool isPaused = false;
     
+
+
     void Start()
     {
 
