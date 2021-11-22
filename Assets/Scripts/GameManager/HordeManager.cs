@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
 public class HordeManager : MonoBehaviour {
 
     public UnityEvent SpawnKeyAfterRound;
@@ -101,6 +100,8 @@ public class HordeManager : MonoBehaviour {
                 enemiesCreated.Add(enemyScript);
             }
         }
+
+
         PlayAudioQueue?.Invoke();
         StartRound?.Invoke();
 

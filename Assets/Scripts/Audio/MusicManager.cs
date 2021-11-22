@@ -18,6 +18,11 @@ public class MusicManager : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    private void Start() {
+        if (SceneManager.GetActiveScene().name == sceneGameplayName)
+            source.Stop();
+    }
+
     public static MusicManager Get() {
         return instance;
     }
