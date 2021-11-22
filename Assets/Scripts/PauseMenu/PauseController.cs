@@ -18,8 +18,6 @@ public class PauseController : MonoBehaviour {
         if (Input.GetKeyDown(pauseKey)) {
             if (!gamePaused)
                 PauseGame();
-            else
-                ResumeGame();
         }
     }
 
@@ -40,5 +38,10 @@ public class PauseController : MonoBehaviour {
         Cursor.visible = false;
         pauseMenu.SetActive(false);
         SetPause?.Invoke(false);
+    }
+
+    public bool GetPause()
+    {
+        return gamePaused;
     }
 }

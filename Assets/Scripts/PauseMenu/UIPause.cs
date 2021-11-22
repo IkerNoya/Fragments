@@ -21,8 +21,10 @@ public class UIPause : MonoBehaviour
     [SerializeField] Text MusicValue;
 
     GameInstance gameInstance;
+    PauseController pause;
     void Start()
     {
+        pause = FindObjectOfType<PauseController>();
         gameInstance = GameInstance.Get();
         if (gameInstance)
         {
@@ -83,6 +85,27 @@ public class UIPause : MonoBehaviour
     public void OnClickMenu()
     {
         
+    }
+    void Update()
+    {
+        if (!pause.GetPause())
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pausePanel.activeSelf && !optionsPanel.activeSelf && !howToPlayPanel.activeSelf)
+            {
+                pause.ResumeGame();
+            }
+            else if (!pausePanel.activeSelf && optionsPanel.activeSelf && !howToPlayPanel.activeSelf)
+            {
+                OnClickBack();
+            }
+            else
+            {
+                OnClickBack();
+            }
+        }
     }
     public void OnClickQuit()
     {
