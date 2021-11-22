@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
-    [SerializeField] Image EnterButton;
 
     bool canInteract = false;
     Animator anim;
@@ -20,7 +19,7 @@ public class TitleScreen : MonoBehaviour
     {
         if (!canInteract)
             return;
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.anyKeyDown)
         {
             anim.SetTrigger("out");
         }
