@@ -15,7 +15,7 @@ public class MusicManager : MonoBehaviour {
             return;
         }
         
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public static MusicManager Get() {
@@ -28,7 +28,6 @@ public class MusicManager : MonoBehaviour {
     }
 
     private void OnLevelWasLoaded(int level) {
-        Debug.Log("I SEE HER MOVING THE COLA");
         if (SceneManager.GetActiveScene().name == sceneGameplayName)
             source.Stop();
         else {
