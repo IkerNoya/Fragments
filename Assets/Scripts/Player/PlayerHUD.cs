@@ -12,6 +12,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] GameObject blackScreen;
     [Header("Ammo")]
     [SerializeField] Text ammoText;
+    [SerializeField] Text ammoTotalText;
     [SerializeField] GameObject ReloadText;
     [SerializeField] GameObject crosshair;
 
@@ -38,7 +39,16 @@ public class PlayerHUD : MonoBehaviour
     }
 
     public void ChangeAmmoText(int actualAmmo, int ammoPerMagazine, int maxAmmo) {
-        ammoText.text = actualAmmo + " / " + maxAmmo;
+        ammoText.text = actualAmmo.ToString();
+        ammoTotalText.text = " / " + maxAmmo;
+
+        if (actualAmmo == ammoPerMagazine)
+            ammoText.color = Color.cyan;
+        else if (actualAmmo != ammoPerMagazine && actualAmmo > 0)
+            ammoText.color = Color.white;
+        else
+            ammoText.color = Color.red;
+
         if (((float)actualAmmo / (float)ammoPerMagazine) <= 0.25f) {
             if (actualAmmo <= 0) {
                 crosshair.SetActive(false);
@@ -52,6 +62,7 @@ public class PlayerHUD : MonoBehaviour
             crosshair.SetActive(true);
             ReloadText.SetActive(false);
         }
+
     }
     public bool GetInteractBool()
     {
@@ -69,5 +80,7 @@ public class PlayerHUD : MonoBehaviour
         float alpha = (maxHP - actualHP) / maxHP;
         healthPanel.color  = new Color(healthPanelColor.r, healthPanelColor.g, healthPanelColor.b, alpha);
     }
+
+
 
 }

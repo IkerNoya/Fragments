@@ -6,9 +6,9 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip Ambient;
+    [SerializeField] AudioClip FightMusic;
     [SerializeField] AudioSource CameraSource;
     [SerializeField] AudioSource ClockSource;
-    [SerializeField] AudioMixerGroup sfxGroup;
     bool isPaused = false;
     
 
@@ -45,4 +45,21 @@ public class AudioManager : MonoBehaviour
     {
         PauseController.SetPause -= Pause;
     }
+
+   public void StartFightMusic() {
+        if (CameraSource.clip != FightMusic) {
+            CameraSource.clip = FightMusic;
+            CameraSource.Play();
+            CameraSource.loop = true;
+        }
+    }
+
+    public void StartAmbientMusic() {
+        if (CameraSource.clip != Ambient) {
+            CameraSource.clip = Ambient;
+            CameraSource.Play();
+            CameraSource.loop = true;
+        }
+    }
+
 }
