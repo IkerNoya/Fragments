@@ -58,7 +58,7 @@ MonoBehaviour:
   verticalRecoil: 0
   isSemiAutomatic: 0
   timeToReload: 1.5
-  totalAmmo: 120
+  totalAmmo: 60
   ammoPerMagazine: 12
   source: {fileID: 9132767095682124890}
   shootSounds:
